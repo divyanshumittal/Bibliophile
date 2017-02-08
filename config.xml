@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="io.egen.appid" version="0.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>Bibliophile</name>
+<widget id="io.egen.ssd" version="0.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+  <name>Learning Cloud</name>
   <description>
-        A personal assistant for all the bibliophiles out there
+        A common platform to track reading activity in a community and promote learning.
     </description>
-  <author email="kmukkamala@egen.io" href="https://egen.solutions">
-        Egen Solutions
+  <author email="sjain@egen.solutions" href="https://egen.solutions">
+        Egen Solutions platform for Learning cloud, call Divyanshu, Siddharth, Sandeep
     </author>
   <content src="index.html"/>
   <access origin="*"/>

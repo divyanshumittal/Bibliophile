@@ -1,12 +1,12 @@
 {
-  "name": "Bibliophile",
-  "version": "0.0.0",
+  "name": "Learning Cloud",
+  "version": "0.0.1",
   "authors": [
     "Divyanshu Mittal <dmittal@egen.solutions>",
     "Sandeep Jamithireddy <sreddy@egen.solutions>",
     "Siddharth Jain <sjain@egen.solutions>"
   ],
-  "description": "Bibliophile",
+  "description": "Egen Solutions Learning cloud platform",
   "license": "private",
   "dependencies": {
     "angular": "~1.4.5",
