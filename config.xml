@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <widget id="io.egen.appid" version="0.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>App Name here</name>
+  <name>Bibliophile</name>
   <description>
-        App Desc here.
+        A personal assistant for all the bibliophiles out there
     </description>
   <author email="kmukkamala@egen.io" href="https://egen.solutions">
         Egen Solutions

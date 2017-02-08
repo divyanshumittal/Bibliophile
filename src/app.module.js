@@ -13,10 +13,12 @@
         'ui.router',
         'ionic-material',
         'ui.bootstrap',
+        'nvd3',
 
         // services
         'app.auth',
-        'app.login'
+        'app.login',
+        'app.dashboard'
     ])
         .constant('AvailableLanguages', ['en-US', 'ru-RU', 'el-GR'])
         .constant('DefaultLanguage', 'en-US')

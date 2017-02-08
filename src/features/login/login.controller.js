@@ -6,13 +6,17 @@
 
         // @ngInject
         function LoginController($window, AuthService, $state) {
-            var loginVm = this;
-
+            var vm = this;
            
-            loginVm.validateLogin = validateLogin;
+            vm.login = login;
+            vm.validateLogin = validateLogin;
+
+            function login() {
+                $state.go('app.dashboard');
+            }
             
             function validateLogin() {
-                AuthService.authenticate(loginVm.email, loginVm.password)
+                AuthService.authenticate(vm.email, vm.password)
                     .then(function(resp) {
                         _setUpPush();
                     }, function() {

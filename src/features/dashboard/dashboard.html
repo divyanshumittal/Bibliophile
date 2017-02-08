@@ -1,0 +1,17 @@
+<ion-view class="dashboard" cache-view="false">
+	<ion-header class="bar bar-header bar-royal row">
+		<h1 class="ion-bookmark col col-33 col-offset-33"></h1>
+	</ion-header>
+    <ion-content scroll="true" class="has-header">
+        <b>Dashboard</b>
+        <div class="text-center height-80">
+            <div class="height-50">
+                <nvd3 options="vm.options" data="vm.data"></nvd3>
+            </div>
+            <div lass="height-50">
+                Last book read
+                <img src="../../resources/img/red_Dog_book_cover.jpg" />
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

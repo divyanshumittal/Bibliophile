@@ -12,7 +12,7 @@
                 views: {
                     'appView': {
                         templateUrl: 'features/login/login.html',
-                        controller: 'LoginController as loginVm'
+                        controller: 'LoginController as vm'
                     }
                 },
                 data: {
