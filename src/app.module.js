@@ -18,7 +18,8 @@
         // services
         'app.auth',
         'app.login',
-        'app.dashboard'
+        'app.dashboard',
+        'app.activity'
     ])
         .constant('AvailableLanguages', ['en-US', 'ru-RU', 'el-GR'])
         .constant('DefaultLanguage', 'en-US')

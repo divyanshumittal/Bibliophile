@@ -12,7 +12,7 @@
             vm.validateLogin = validateLogin;
 
             function login() {
-                $state.go('app.dashboard');
+                $state.go('app.activity');
             }
             
             function validateLogin() {
