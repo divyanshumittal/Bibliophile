@@ -1,6 +1,6 @@
 {
   "name": "App Name here",
-  "app_id": "App id here",
+  "app_id": "f91779ba",
   "proxies": [
     {
       "path": "/api",

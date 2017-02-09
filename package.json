@@ -1,8 +1,10 @@
 {
-  "name": "Learning Cloud",
+  "name": "Learning_Cloud",
   "version": "0.0.1",
   "description": "Egen Solutions Platform for Learning Cloud",
   "dependencies": {
+    "@ionic/cloud": "^0.15.1",
+    "bluebird": "^3.4.7",
     "gulp-angular-filesort": "^1.1.1",
     "gulp-concat": "^2.2.0",
     "gulp-minify-css": "^0.3.0",

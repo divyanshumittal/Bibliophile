@@ -93,7 +93,7 @@ gulp.task('fonts', function () {
         .pipe(gulp.dest(path.join(conf.paths.dist, '/fonts/')));
 });
 
-gulp.task('other', function () {
+gulp.task('other', ['ionic'], function () {
     var fileFilter = $.filter(function (file) {
         return file.stat.isFile();
     });
@@ -104,6 +104,13 @@ gulp.task('other', function () {
     ])
         .pipe(fileFilter)
         .pipe(gulp.dest(path.join(conf.paths.dist, '/')));
+});
+
+gulp.task('ionic', function () {
+    return gulp.src([
+        path.join(conf.paths.src, '/ionic/**/*.min.js')
+    ])
+        .pipe(gulp.dest(path.join(conf.paths.dist, '/ionic')));
 });
 
 gulp.task('clean', function (done) {
