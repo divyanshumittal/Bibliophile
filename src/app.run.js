@@ -7,7 +7,7 @@
     // @ngInject
     function runConfig($ionicAnalytics, $ionicPlatform,
                        $timeout, $cordovaStatusbar, $window, $rootScope, $stateParams,
-                       ionicMaterialInk, CONFIG, $cordovaPushV5, $state, $cordovaDevice, $ionicHistory) {
+                       ionicMaterialInk, CONFIG, $state) {
         $ionicPlatform.ready(function () {
             // register for analytics
             if(!CONFIG.devMode) $ionicAnalytics.register();
@@ -26,13 +26,9 @@
                 $window.cordova.logger.__onDeviceReady();
             }
 
-            $rootScope.$on('$cordovaPushV5:notificationReceived', function(event, data) {
-               
-
-            });
-
-            $rootScope.$on('$cordovaPushV5:errorOccurred', function(event, error) {
-               
+           $rootScope.$on('cloud:push:notification', function(event, data) {
+                var msg = data.message;
+                alert(msg.title + ': ' + msg.text);
             });
 
         });
