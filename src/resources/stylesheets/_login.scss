@@ -1,8 +1,26 @@
 .login {
 	
-	.bar {
-		button {
-			min-width: 200px;
-		}
+	background-color: #efebeb;
+
+	.padding-right-5 {
+		padding-right: 5px;
+	}
+
+	.margin-top-20 {
+		margin-top: 20%
+	}
+
+	.large-font {
+		font: 1.5em;
+	}
+
+	.form-input {
+		width: 100%;
+		margin:auto;
+	}
+
+	.sign-in {
+		width: 50%;
+    	border-radius: 20px;
 	}
 }

@@ -12,7 +12,7 @@
             vm.validateLogin = validateLogin;
             vm.registerForPush = registerForPush;
 
-            // gets called when user clicks on register button, should be caled on app init
+            // should get called when ap loads for the first time
             function registerForPush() {
                 $ionicPush.register().then(function(t) {
                     return $ionicPush.saveToken(t);

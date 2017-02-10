@@ -1,15 +1,33 @@
 <ion-view class="login" cache-view="false">
-	<ion-header class="bar bar-header bar-royal row">
-		<h1 class="ion-bookmark col col-33 col-offset-33 text-center"></h1>
-	</ion-header>
-	<ion-content class="has-header">
-		<!-- <div>Put some logo here</div> -->
-		<!-- <custom-tile></custom-tile> -->
-		<button class="button button-dark button-small" ng-click="vm.registerForPush()">Send Push notifications</button>
-	</ion-content>
-	<ion-footer class="bar bar-footer bar-balanced row">
-		<div class="col col-33 col-offset-33 text-center">
-			<button class="button button-clear" ng-click="vm.login()">Login</button>
+	<ion-content>
+		<div class="margin-top-20">
+			<div class="row">
+				<div class="col col-offset-20 col-60 text-center">
+					<span class="ion-ios-book padding-right-5"></span>
+					<b class="large-font">Learning Cloud</b>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col col-offset-10 col-80 text-center">
+					<small>Grow your people grow your company</small>
+				</div>
+			</div>
+			<div class="margin-top-20">
+				<div class="row">
+					<div class="col col-offset-10 col-80">
+						<small>Username</small>
+						<input type="text" class="form-input" ng-model="vm.username">
+						<small>Password</small>
+						<input type="text" class="form-input" ng-model="vm.password">
+					</div>
+					<div class="col-10"></div>
+				</div>
+				<div class="row">
+					<div class="col col-offset-20 col-60 text-center">
+						<button class="button button-positive button-small sign-in" ng-click="vm.login()">Sign in</button>
+					</div>
+				</div>
+			</div>
 		</div>
-	</ion-footer>
+	</ion-content>
 </ion-view>
