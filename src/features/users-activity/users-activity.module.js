@@ -7,10 +7,10 @@
     // @ngInject
     function ActivityConfig($stateProvider) {
         $stateProvider
-            .state('app.activity', {
+            .state('app.home.activity', {
                 url: '/activity',
                 views: {
-                    'appView': {
+                    'homeView': {
                         templateUrl: 'features/users-activity/users-activity.html',
                         controller: 'ActivityController as vm'
                     }

@@ -22,7 +22,7 @@
             }
 
             function login() {
-                $state.go('app.activity');
+                $state.go('app.home.dashboard');
             }
             
             function validateLogin() {

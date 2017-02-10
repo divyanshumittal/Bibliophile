@@ -19,7 +19,8 @@
         // services
         'app.auth',
         'app.login',
-        'app.dashboard',
+        'app.home',
+        'app.home.dashboard',
         'app.activity'
     ])
         .constant('AvailableLanguages', ['en-US', 'ru-RU', 'el-GR'])
@@ -74,7 +75,7 @@
         $ionicConfigProvider.backButton.previousTitleText(false);
         $ionicConfigProvider.backButton.text(' ');
         $ionicConfigProvider.views.swipeBackEnabled(false);
-        $ionicConfigProvider.tabs.position('top');
+        $ionicConfigProvider.tabs.position('bottom');
         $ionicConfigProvider.navBar.alignTitle('left');
 
         if (CONFIG.devMode) {

@@ -44,7 +44,7 @@
                 if(response.status === 404 || response.status === 401 || response.status === 403 || response.status === 419) {
                     $location.url('/app/login');
                     $cordovaPushV5.unregister();
-                    $window.Ionic.Auth.logout();
+                    // $window.Ionic.Auth.logout();
                     localStorage.clear();
                     return $q.reject(response);
                 }

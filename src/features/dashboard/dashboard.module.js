@@ -1,16 +1,16 @@
 (function(angular) {
     'use strict';
     angular
-        .module('app.dashboard', [])
+        .module('app.home.dashboard', [])
         .config(dashboardConfig);
 
     // @ngInject
     function dashboardConfig($stateProvider) {
         $stateProvider
-            .state('app.dashboard', {
+            .state('app.home.dashboard', {
                 url: '/dashboard',
                 views: {
-                    'appView': {
+                    'homeView': {
                         templateUrl: 'features/dashboard/dashboard.html',
                         controller: 'DashboardController as vm'
                     }
