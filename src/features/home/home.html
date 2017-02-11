@@ -1,7 +1,7 @@
 <ion-view name="Home" class="app">
 	<ion-header class="bar bar-header bar-dark row">
 		<div class="col col-20">
-			Pic
+			<img src="../resources/img/user_icon.png" />
 		</div>
 		<div class="col col-80 no-padding">
 		  <label class="item item-input no-padding">
@@ -11,18 +11,16 @@
 		</div>
 	</ion-header>
 	<ion-content class="has-header" scroll="false">
-		<ion-nav-view name="homeView"></ion-nav-view>
+		<ion-tabs class="tabs-dark tabs-icon-top">
+
+		  <ion-tab icon-on="ion-ios-list" icon-off="ion-ios-list-outline" ui-sref="app.home.activity">
+		    <ion-nav-view name="activityView"></ion-nav-view>
+		  </ion-tab>
+
+		  <ion-tab icon-on="ion-ios-filing" icon-off="ion-ios-filing-outline" ui-sref="app.home.dashboard">
+		 	<ion-nav-view name="dashboardView"></ion-nav-view>
+		  </ion-tab>
+
+		</ion-tabs>
 	</ion-content>
-	<ion-tabs class="tabs-dark tabs-icon-top">
-
-	  <ion-tab icon-on="ion-ios-filing" icon-off="ion-ios-filing-outline" ui-sref="app.home.dashboard">
-	 
-	  </ion-tab>
-
-	  <ion-tab icon-on="ion-ios-list" icon-off="ion-ios-list-outline" ui-sref="app.home.activity">
-	    <!-- Tab 2 content -->
-	  </ion-tab>
-
-
-	</ion-tabs>
 </ion-view>

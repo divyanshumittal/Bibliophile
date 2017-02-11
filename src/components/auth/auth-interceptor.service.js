@@ -5,7 +5,7 @@
         .factory('AuthInterceptor', AuthInterceptor);
 
     // @ngInject
-    function AuthInterceptor(CONFIG, AuthTokenService, $location, $cordovaPushV5, $window, $q) {
+    function AuthInterceptor(CONFIG, AuthTokenService, $location, $window, $q, $ionicPush) {
 
         function handleRequest(config) {
             var token = AuthTokenService.getToken();
@@ -43,7 +43,7 @@
             responseError: function(response) {
                 if(response.status === 404 || response.status === 401 || response.status === 403 || response.status === 419) {
                     $location.url('/app/login');
-                    $cordovaPushV5.unregister();
+                    $ionicPush.unregister();
                     // $window.Ionic.Auth.logout();
                     localStorage.clear();
                     return $q.reject(response);

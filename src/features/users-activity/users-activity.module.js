@@ -1,7 +1,7 @@
 (function(angular) {
     'use strict';
     angular
-        .module('app.activity', [])
+        .module('app.home.activity', [])
         .config(ActivityConfig);
 
     // @ngInject
@@ -10,7 +10,7 @@
             .state('app.home.activity', {
                 url: '/activity',
                 views: {
-                    'homeView': {
+                    'activityView': {
                         templateUrl: 'features/users-activity/users-activity.html',
                         controller: 'ActivityController as vm'
                     }

@@ -10,7 +10,7 @@
             .state('app.home.dashboard', {
                 url: '/dashboard',
                 views: {
-                    'homeView': {
+                    'dashboardView': {
                         templateUrl: 'features/dashboard/dashboard.html',
                         controller: 'DashboardController as vm'
                     }

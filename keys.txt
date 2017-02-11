@@ -2,8 +2,11 @@ google api key :
 sender id: 
 generate keystore: keytool -genkey -v -keystore nexstar.keystore -alias nexstar -keyalg RSA -keysize 2048 -validity 10000
 
+Password: 123456
+
 steps to build android :
 
+0. gulp staging
 1. cordova build --release android
 2. jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore ./nexstar.keystore ./platforms/android/build/outputs/apk/android-release-unsigned.apk nexstar
 3. ~/Library/Android/sdk/build-tools/23.0.3/zipalign -v 4 ./platforms/android/build/outputs/apk/android-release-unsigned.apk nexstar.apk

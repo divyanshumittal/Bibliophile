@@ -1,7 +1,7 @@
     (function(angular) {
         'use strict';
         angular
-            .module('app.activity')
+            .module('app.home.activity')
             .controller('ActivityController', ActivityController);
 
         // @ngInject
