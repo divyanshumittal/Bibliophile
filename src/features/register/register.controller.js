@@ -7,7 +7,6 @@
         // @ngInject
         function RegisterController() {
             var vm = this;
-           
-          
         }
+        
     }(angular));

@@ -149,4 +149,16 @@ gulp.task('prepare:emulator',function() {
         'fonts',
         'other');
 });
+gulp.task('prepare:runbrowser', function() {
+    runSequence('configInjector:browser',
+        'ioconfig',
+        'scripts:browser',
+        'styles',
+        'inject:browser',
+        'partials',
+        'html:browser',
+        'fonts',
+        'other',
+        'watch');
+});
 gulp.task('prepare:browser', ['ioconfig', 'html:browser', 'fonts', 'other']);

@@ -5,11 +5,8 @@
             .controller('HomeController', HomeController);
 
         // @ngInject
-        function HomeController($ionicTabsDelegate, $timeout) {
+        function HomeController() {
             var vm = this;  
 
-             // $timeout( function() {
-             //    $ionicTabsDelegate.select(0, false);    
-             //  },400);
         }
     }(angular));

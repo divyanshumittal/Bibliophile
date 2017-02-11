@@ -10,7 +10,6 @@
            
             vm.login = login;
             vm.validateLogin = validateLogin;
-            vm.registerUser = registerUser;
             vm.registerForPush = registerForPush;
 
             // should get called when ap loads for the first time
@@ -26,10 +25,6 @@
                 $state.go('app.home.activity');
             }
             
-            function registerUser() {
-                $state.go('app.register');
-            }
-
             function validateLogin() {
                 AuthService.authenticate(vm.email, vm.password)
                     .then(function(resp) {
@@ -39,4 +34,4 @@
                     });
             }
         }
-    }(angular));
+    })(angular);

@@ -1,0 +1,21 @@
+<ion-header class="bar bar-header bar-dark row search">
+    <div class="col col-20">
+        <div class="text-center">
+          <img src="../resources/img/user_icon.png" />
+        </div>
+    </div>
+    <div class="col col-80 no-padding">
+        <input ion-autocomplete type="text" readonly="readonly" class="ion-autocomplete width-100" autocomplete="off"
+                   ng-model="vm.model"
+                   item-value-key="name"
+                   item-view-value-key="view"
+                   items-method="vm.getResults(query)"
+                   placeholder="Search People, Title, ISBN""
+                   items-clicked-method="vm.itemSelected(callback)"
+                   items-removed-method="vm.itemsRemoved(callback)"
+                   max-selected-items="1"
+                   clear-on-select="true"
+                   external-model="vm.emptyArray"
+                   ng-model-options="{debounce:1100}"/>
+    </div>
+</ion-header>

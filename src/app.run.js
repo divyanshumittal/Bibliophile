@@ -6,8 +6,8 @@
 
     // @ngInject
     function runConfig($ionicAnalytics, $ionicPlatform,
-                       $timeout, $cordovaStatusbar, $window, $rootScope, $stateParams,
-                       ionicMaterialInk, CONFIG, $state) {
+                       $timeout, $cordovaStatusbar, $window, $rootScope,
+                       ionicMaterialInk, CONFIG) {
         $ionicPlatform.ready(function () {
             // register for analytics
             if(!CONFIG.devMode) $ionicAnalytics.register();

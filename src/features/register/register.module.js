@@ -14,7 +14,10 @@
                         templateUrl: 'features/register/register.html',
                         controller: 'RegisterController as vm'
                     }
+                },
+                data: {
+                    authenticate: false
                 }
             });
     }
-}(angular));
+})(angular);

@@ -15,21 +15,29 @@
         'ionic-material',
         'ui.bootstrap',
         'nvd3',
+        'ion-autocomplete',
 
         // services
         'app.auth',
         'app.login',
         'app.register',
+        'app.readingList',
         'app.home',
         'app.home.dashboard',
-        'app.home.activity'
+        'app.home.activity',
+        'app.home.bookDetails',
+        'app.home.leaderboard'
     ])
         .constant('AvailableLanguages', ['en-US', 'ru-RU', 'el-GR'])
         .constant('DefaultLanguage', 'en-US')
         .config(translateConfig)
         .config(appConfig)
         .config(ionicConfig)
-        .config(pushConfig);
+        .config(pushConfig)
+        .config(['$httpProvider', function($httpProvider) {
+            $httpProvider.defaults.useXDomain = true;
+            delete $httpProvider.defaults.headers.common['X-Requested-With'];
+    }]);
 
     // @ngInject
     function translateConfig($translateProvider, DefaultLanguage) {
@@ -45,7 +53,7 @@
             .state('app', {
                 url: '/app',
                 abstract: true,
-                template: '<ion-nav-view class="app" name="appView"></ion-nav-view>'
+                template: '<div class="app"><ion-nav-view name="appView"></ion-nav-view></div>'
             });
 
         $urlRouterProvider.otherwise(function ($injector, $location) {
