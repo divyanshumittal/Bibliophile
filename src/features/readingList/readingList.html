@@ -1,22 +1,22 @@
 <ion-view name="readingList" class="readingList">
-	<search></search>
+	<ion-nav-bar class="bar-dark">
+        <ion-nav-back-button></ion-nav-back-button>
+    </ion-nav-bar>
 	<ion-content class="has-header" scroll="true">
-		{{vm.status}}
-		text
-		<br>
-		goes
-		<br>
-		here
+		<b class="heading">{{vm.status}}</b>
+		<div ng-repeat="book in vm.books">
+			<book-tile book="book"></book-tile>
+		</div>
 	</ion-content>
 	<ion-tabs class="tabs-dark tabs-icon-top">
 
-	  <ion-tab ui-sref="app.readingList" title="Currently Reading" icon-on="ion-ios-recording" icon-off="ion-ios-recording-outline" on-select="vm.getBooks('current')">
+	  <ion-tab ui-sref="app.readingList" title="Currently Reading" icon-on="ion-ios-recording" icon-off="ion-ios-recording-outline" on-select="vm.getBooks('CURRENTLY READING')">
 	 	
 	  </ion-tab>
-	  <ion-tab ui-sref="app.readingList" title="Read" icon-on="ion-android-menu" icon-off="ion-android-menu" on-select="vm.getBooks('read')">
+	  <ion-tab ui-sref="app.readingList" title="Read" icon-on="ion-android-menu" icon-off="ion-android-menu" on-select="vm.getBooks('ALREADY READ')">
 	 	
 	  </ion-tab>
-	  <ion-tab ui-sref="app.readingList" title="Queue" icon-on="ion-android-time" icon-off="ion-android-time" on-select="vm.getBooks('queue')">
+	  <ion-tab ui-sref="app.readingList" title="Queue" icon-on="ion-android-time" icon-off="ion-android-time" on-select="vm.getBooks('IN QUEUE')">
 	 	
 	  </ion-tab>
 

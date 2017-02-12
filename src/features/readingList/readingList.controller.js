@@ -8,12 +8,18 @@
         function ReadingListController() {
             var vm = this;  
 
-            vm.status = 'current';
+            vm.status = 'CURRENTLY READING';
+            vm.books = [{
+                bookName: 'Red Dog',
+                authorName: 'XYZ',
+                bookImg: '../resources/img/red_Dog_book_cover.jpg',
+                points: 200
+            }];
             vm.getBooks = getBooks;
 
             function getBooks(status) {
                 vm.status = status;
-                console.log(vm.status);
+                //set vm.books
             }
         }
     }(angular));

@@ -1,0 +1,41 @@
+.tile {
+
+	img {
+	  max-width: 100%;
+	  max-height: 90%;
+	  border-radius: 50%;
+	}
+
+	.width-80{
+		width: 80%;
+	}
+
+	.white-bckgrnd {
+		background-color: white;
+	}
+
+	.margin-auto {
+		margin: auto
+	}
+
+	.pos-relative {
+		position: relative;
+	}
+
+	.points-badge {
+		z-index: 100;
+		position: absolute;
+		top: 35%;
+		height: 30%;
+		width: 30%;
+		background-color: black;
+		opacity: .5;
+		color: white;
+		border-radius: 50%;
+		border: 3px solid red;
+	}
+
+	.center {
+		transform: translateY(60%);
+	}
+}

@@ -7,6 +7,9 @@ angular.module('app')
             templateUrl: 'components/custom-tile/custom-tile.html',
             controller: 'CustomTileController',
             controllerAs: 'vm',
-            bindtoController: true
+            scope: true,
+            bindToController: {
+            	user: '='
+            }
         };
     };

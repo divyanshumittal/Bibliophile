@@ -1,5 +1,9 @@
 <ion-view class="activity" cache-view="false">
 	<ion-content scroll="true">
-        <custom-tile></custom-tile>
+		<div ng-repeat="user in vm.userArray">
+			<custom-tile user="user">
+        	
+        	</custom-tile>
+		</div>
     </ion-content>
 </ion-view>

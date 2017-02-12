@@ -1,35 +1,14 @@
- <div class="custom-tile row">
+<div class="tile row">
     <div class="col text-center white-bckgrnd margin-5">
         <div class="row container">
-        	<div class="col col-20">
-        		<img src="../resources/img/user_icon.png" />
-        	</div>
-        	<div class="col col-80 margin-auto">
-        		<b>Dave</b>  is currently reading
-        	</div>
+            <div class="col col-20">
+                <img ng-src="{{user.userImg}}" />
+            </div>
+            <div class="col col-80 margin-auto">
+                <b>{{user.userName}}</b>  is currently reading
+            </div>
         </div>
-        <div class="row container">
-        	<div class="col col-40">
-        		<img src="../resources/img/red_Dog_book_cover.jpg" />
-        	</div>
-        	<div class="col col-60">
-        		<div class="row">
-        			<div class="col">
-        				<b>Book name</b>
-        				<div>Author name</div>
-        			</div>
-        		</div>
-        		<div class="row">
-        			<div class="col">
-        				<button class="button button-dark button-small width-80">
-						 	Add
-						</button>
-                        <button class="button button-dark button-small width-80">
-                            Suggest
-                        </button>
-        			</div>
-        		</div>
-        	</div>
+        <book-tile book="vm.user"></book-tile>
         </div>
     </div>
 </div>
