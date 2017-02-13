@@ -1,11 +1,15 @@
 .leaderboard {
-	.padding-12 {
-		padding: 12px;
+	.heading {
+		color: gray;
+		padding: 20px;
 	}
 
 	img {
-		max-width: 40%;
-	    max-height: 40%;
+		max-width: 50%;
 	    border-radius: 50%;
 	}	
+
+	.card {
+		margin: 10px;
+	}
 }

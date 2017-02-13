@@ -8,7 +8,7 @@
         function ReadingListController() {
             var vm = this;  
 
-            vm.status = 'CURRENTLY READING';
+            vm.status = 'RECOMMENDED';
             vm.books = [{
                 bookName: 'Red Dog',
                 authorName: 'XYZ',

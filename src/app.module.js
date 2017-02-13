@@ -22,6 +22,7 @@
         'app.login',
         'app.register',
         'app.readingList',
+        'app.userProfile',
         'app.home',
         'app.home.dashboard',
         'app.home.activity',

@@ -1,6 +1,6 @@
 <ion-header class="bar bar-header bar-dark row search">
     <div class="col col-20">
-        <div class="text-center">
+        <div class="text-center" ui-sref="app.userProfile">
           <img src="../resources/img/user_icon.png" />
         </div>
     </div>
@@ -16,6 +16,7 @@
                    max-selected-items="1"
                    clear-on-select="true"
                    external-model="vm.emptyArray"
-                   ng-model-options="{debounce:1100}"/>
+                   ng-model-options="{debounce:1100}"
+                   cancel-label="<<"/>
     </div>
 </ion-header>
