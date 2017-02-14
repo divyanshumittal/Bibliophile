@@ -1,5 +1,17 @@
 .app .pane {
 	background-color: #ece9e9;
+
+	.pos-relative {
+		position: relative;
+	}
+
+	.vertically-center {
+		position: absolute;
+	    top: 50%;
+	    transform: translate(-50%, -50%);
+	    left: 50%;
+	}
+
 }
 
 .ion-autocomplete-container {
@@ -10,7 +22,14 @@
 	}
 
 	.ion-autocomplete-cancel {
-		color: black !important;
+		background-color: gray;
 	}
 }
 
+.custom-tablet-styles {
+	font-size: 25px;
+
+	button {
+		font-size: 17px;
+	}
+}

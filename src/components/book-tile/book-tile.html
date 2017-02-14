@@ -1,7 +1,7 @@
 <div class="row container tile">
     <div class="col col-offset-10 col-30 pos-relative">
         <div class="points-badge">
-            <div class="center text-center">
+            <div class="vertically-center text-center">
                 {{vm.book.points}} points
             </div>
         </div>
@@ -12,15 +12,50 @@
             <b>{{vm.book.bookName}}</b>
             <div>{{vm.book.authorName}}</div>
             <div class="row responsive-sm">
-                <div class="col no-padding">
-                    <button class="button button-dark button-small">
-                        Add to Queue
-                    </button>
+                <div ng-if="vm.bookStatus === 'activity'">
+                    <div class="col no-padding">
+                        <button class="button button-dark button-small">
+                            Add to Queue
+                        </button>
+                    </div>
+                    <div class="col no-padding">
+                        <button class="button button-dark button-small">
+                            Recommend
+                        </button>
+                    </div>
                 </div>
-                <div class="col no-padding">
-                    <button class="button button-dark button-small">
-                        Recommend
-                    </button>
+                <div ng-if="vm.bookStatus === 'QUEUE'">
+                    <div class="col no-padding">
+                        <button class="button button-dark button-small">
+                            Start reading
+                        </button>
+                    </div>
+                    <div class="col no-padding">
+                        <button class="button button-dark button-small">
+                            Remove
+                        </button>
+                    </div>
+                </div>
+                <div ng-if="vm.bookStatus === 'ALREADY READ'">
+                    <div class="col no-padding">
+                        <button class="button button-dark button-small">
+                            Recommend
+                        </button>
+                    </div>
+                </div>
+                <div ng-if="vm.bookStatus === 'RECOMMENDED'">
+                    <div class="col no-padding">
+                        <button class="button button-dark button-small">
+                            Start reading
+                        </button>
+                    </div>
+                </div>
+                <div ng-if="vm.bookStatus === 'CURRENT'">
+                    <div class="col no-padding">
+                        <button class="button button-dark button-small">
+                            Finish reading
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

@@ -5,7 +5,7 @@
 	<ion-content class="has-header" scroll="true">
 		<b class="heading">{{vm.status}}</b>
 		<div ng-repeat="book in vm.books">
-			<book-tile book="book"></book-tile>
+			<book-tile book="book" book-status="vm.status"></book-tile>
 		</div>
 	</ion-content>
 	<ion-tabs class="tabs-dark tabs-icon-top">

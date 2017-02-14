@@ -54,8 +54,17 @@
             .state('app', {
                 url: '/app',
                 abstract: true,
-                template: '<div class="app"><ion-nav-view name="appView"></ion-nav-view></div>'
-            });
+                template: '<div class="app"><ion-nav-view name="appView"></ion-nav-view></div>',
+                controller: function($window) {
+                    init();
+
+                    function init() {
+                        if ($window.innerHeight > 750) {
+                            angular.element( document.querySelector( '.app' ) ).addClass('custom-tablet-styles');
+                        }
+                    }
+                }
+             });
 
         $urlRouterProvider.otherwise(function ($injector, $location) {
             var user = false;

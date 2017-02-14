@@ -9,7 +9,8 @@ angular.module('app')
             controllerAs: 'vm',
             scope: true,
             bindToController: {
-            	book: '='
+            	book: '=',
+                bookStatus: '='
             }
         };
     };
