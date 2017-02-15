@@ -1,7 +1,21 @@
 <ion-view class="leaderboard" cache-view="false">
     <ion-content scroll="true">
-        <b class="heading">LEADERBOARD</b>
-        <div class="card" ng-repeat="user in vm.data track by $index">
+        <div class="row">
+          <div class="heading col col-80">LEADERBOARD</div>
+          <div class="col">
+            <label class="toggle toggle-dark">
+            <input type="checkbox" ng-model="vm.toggleChart">
+            <div class="track">
+              <div class="handle"></div>
+            </div>
+          </label>
+          </div>
+        </div>
+        <div ng-if="!vm.toggleChart">
+            <nvd3 options="vm.options" data="vm.chartData"></nvd3>
+        </div>
+        <div ng-if="vm.toggleChart">
+          <div class="card" ng-repeat="user in vm.data track by $index">
           <div class="item item-text-wrap row">
               <div class="col col-10">
                 <b>{{$index + 1}}</b>
@@ -16,6 +30,7 @@
                  <b>{{user.points}}</b>
               </div>
             </div>
+        </div>
         </div>
     </ion-content>
 </ion-view>

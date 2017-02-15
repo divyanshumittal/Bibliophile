@@ -1,19 +1,26 @@
 (function(angular) {
     'use strict';
     angular
-        .module('app.home.bookDetails', [])
+        .module('app.bookDetails', [])
         .config(BookDetailsConfig);
 
     // @ngInject
     function BookDetailsConfig($stateProvider) {
         $stateProvider
-            .state('app.home.bookDetails', {
-                url: '/bookDetails',
+            .state('app.bookDetails', {
+                url: '/bookDetails/:id',
                 views: {
-                    'homeView': {
+                    'appView': {
                         templateUrl: 'features/book-details/book-details.html',
                         controller: 'BookDetailsController as vm'
                     }
+                },
+                resolve: {
+                    book: function($stateParams, goodReadsService) {
+                        return goodReadsService.getBook($stateParams.id).then(function(data) {
+                                return data;
+                            });
+                        }
                 },
                 data: {
                     authenticate: false

@@ -3,18 +3,18 @@
         <img class="vertically-center" src="../resources/img/user_icon.png" /> 
     </div>
     <div class="col col-80 no-padding">
-        <input ion-autocomplete type="text" readonly="readonly" class="ion-autocomplete width-100" autocomplete="off"
-                   ng-model="vm.model"
-                   item-value-key="name"
-                   item-view-value-key="view"
+        <input ion-autocomplete type="text" readonly="readonly" class="ion-autocomplete width-100 padding-left" 
+                   autocomplete="off"
+                   ng-model="vm.selectedBook"
+                   item-value-key="goodReadsId"
+                   item-view-value-key="title"
                    items-method="vm.getResults(query)"
-                   placeholder="Search People, Title, ISBN""
+                   placeholder="Search Book Title, ISBN""
                    items-clicked-method="vm.itemSelected(callback)"
-                   items-removed-method="vm.itemsRemoved(callback)"
                    max-selected-items="1"
                    clear-on-select="true"
                    external-model="vm.emptyArray"
                    ng-model-options="{debounce:1100}"
-                   cancel-label="<<"/>
+                   cancel-label="X"/>
     </div>
 </ion-header>

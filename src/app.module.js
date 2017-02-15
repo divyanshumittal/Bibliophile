@@ -23,10 +23,10 @@
         'app.register',
         'app.readingList',
         'app.userProfile',
+        'app.bookDetails',
         'app.home',
         'app.home.dashboard',
         'app.home.activity',
-        'app.home.bookDetails',
         'app.home.leaderboard'
     ])
         .constant('AvailableLanguages', ['en-US', 'ru-RU', 'el-GR'])

@@ -1,5 +1,46 @@
-<ion-view>
-	<ion-content>
-		Book details
+<ion-view name="Book Details" class="book-details">
+	<ion-nav-bar class="bar-dark">
+        <ion-nav-back-button></ion-nav-back-button>
+        <ion-nav-title align-title="center">
+	      Book Details
+	    </ion-nav-title>
+    </ion-nav-bar>
+	<ion-content class="has-header" scroll="true">
+		<div class="row">
+			<div class="col col-20 pos-relative">
+		        <div class="points-badge text-center">
+		           <span>{{vm.book.bookPoints}}</span> <small class="small">POINTS</small>
+		        </div>
+	    	</div>
+	    	<div class="heading text-center">
+				{{vm.book.title}}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-offset-10 col-40">
+				<img ng-src="{{vm.book.imageUrl}}" />
+				<div class="margin-top-10">{{vm.book.authorName}}</div>
+				<div>{{vm.book.releaseDate}}</div>
+			</div>
+			<div class="col-50">
+				{{vm.book.description}}
+			</div>
+		</div>
+		<div class="row">
+
+		</div>
 	</ion-content>
+	<div class="bar bar-dark bar-footer button-bar">
+		<div class="row">
+			<div class="col-33">
+				<a class="white-font">Add</a>
+			</div>
+			<div class="col-33">
+				<a class="white-font">Start</a>
+			</div>
+			<div class="col-33">
+				<a class="white-font ">Recommend</a>
+			</div>
+		</div>
+	</div>
 </ion-view>

@@ -1,9 +1,12 @@
 <ion-view name="readingList" class="readingList">
 	<ion-nav-bar class="bar-dark">
         <ion-nav-back-button></ion-nav-back-button>
+        <ion-nav-title align-title="center">
+	      Reading List
+	    </ion-nav-title>
     </ion-nav-bar>
 	<ion-content class="has-header" scroll="true">
-		<b class="heading">{{vm.status}}</b>
+		<div class="heading">{{vm.status}}</div>
 		<div ng-repeat="book in vm.books">
 			<book-tile book="book" book-status="vm.status"></book-tile>
 		</div>

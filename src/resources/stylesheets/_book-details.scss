@@ -1,0 +1,28 @@
+.book-details {
+	.heading {
+		padding: 12px;
+		font-size: 1.4em;
+		color: gray;
+	}
+
+	img {
+		max-height: 80%;
+    	max-width: 70%;
+	}
+
+	.points-badge {
+		background-color: black;
+		opacity: .5;
+		color: white;
+		border-radius: 50%;
+		border: 3px solid red;
+	}
+
+	.white-font {
+		color: white;
+	}
+
+	.margin-top-10 {
+		margin-top: 10px;
+	}
+}

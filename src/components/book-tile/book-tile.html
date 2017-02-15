@@ -2,7 +2,7 @@
     <div class="col col-offset-10 col-30 pos-relative">
         <div class="points-badge">
             <div class="vertically-center text-center">
-                {{vm.book.points}} points
+                <span>{{vm.book.points}}</span> <small class="small">POINTS</small>
             </div>
         </div>
         <img ng-src="{{vm.book.bookImg}}" />
@@ -11,53 +11,23 @@
         <div class="text-center">
             <b>{{vm.book.bookName}}</b>
             <div>{{vm.book.authorName}}</div>
-            <div class="row responsive-sm">
-                <div ng-if="vm.bookStatus === 'activity'">
-                    <div class="col no-padding">
-                        <button class="button button-dark button-small">
-                            Add to Queue
-                        </button>
-                    </div>
-                    <div class="col no-padding">
-                        <button class="button button-dark button-small">
-                            Recommend
-                        </button>
-                    </div>
-                </div>
-                <div ng-if="vm.bookStatus === 'QUEUE'">
-                    <div class="col no-padding">
-                        <button class="button button-dark button-small">
-                            Start reading
-                        </button>
-                    </div>
-                    <div class="col no-padding">
-                        <button class="button button-dark button-small">
-                            Remove
-                        </button>
-                    </div>
-                </div>
-                <div ng-if="vm.bookStatus === 'ALREADY READ'">
-                    <div class="col no-padding">
-                        <button class="button button-dark button-small">
-                            Recommend
-                        </button>
-                    </div>
-                </div>
-                <div ng-if="vm.bookStatus === 'RECOMMENDED'">
-                    <div class="col no-padding">
-                        <button class="button button-dark button-small">
-                            Start reading
-                        </button>
-                    </div>
-                </div>
-                <div ng-if="vm.bookStatus === 'CURRENT'">
-                    <div class="col no-padding">
-                        <button class="button button-dark button-small">
-                            Finish reading
-                        </button>
-                    </div>
-                </div>
+            <div ng-if="vm.bookStatus === 'activity'" class="row no-padding button-bar button-feel">
+                <a class="col">Add</a>
+                <a class="col">Recommend</a>
             </div>
-        </div>
+            <div ng-if="vm.bookStatus === 'QUEUE'" class="row no-padding button-bar button-feel">
+                <a class="col">Start</a>
+                <a class="col">Remove</a>
+            </div>
+            <div ng-if="vm.bookStatus === 'ALREADY READ'" class="row no-padding button-bar button-feel single-button">
+                <a class="col">Recommend</a>
+            </div>
+            <div ng-if="vm.bookStatus === 'RECOMMENDED'" class="row no-padding button-bar button-feel single-button">
+                <a class="col">Start</a>
+            </div>
+            <div ng-if="vm.bookStatus === 'CURRENT'" class="row no-padding button-bar button-feel single-button">
+                <a class="col">Finish</a>
+            </div>
+            </div>
     </div>
 </div>

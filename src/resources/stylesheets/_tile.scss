@@ -17,6 +17,15 @@
 		position: relative;
 	}
 
+	button {
+		border-radius: 10px;
+	}
+
+	.no-padding {
+		padding: 0;
+		margin: 0;
+	}
+
 	.points-badge {
 		z-index: 100;
 		position: absolute;
@@ -31,12 +40,20 @@
 		left: -10%;
 	}
 
-	button {
-		border-radius: 10px;
+	.button-feel {
+		background-color: #444;
+		font-size: 0.7em;
+		border-radius: 10%;
+		margin-top: 15%;
+
+		a {
+			color: white;
+		}
 	}
 
-	.no-padding {
-		padding: 0;
-		margin: 0;
+	.single-button {
+		width: 50%;
+    	margin-left: auto;
+    	margin-right: auto;
 	}
 }
