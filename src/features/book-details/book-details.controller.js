@@ -6,7 +6,9 @@
 
         // @ngInject
         function BookDetailsController(book) {
-            var vm = this;  
+            var vm = this;
+
+            vm.book = book;
 
             vm.book = {
                 "id": "88e23dbd-a996-4a5f-bbe2-e0d57d434b65",

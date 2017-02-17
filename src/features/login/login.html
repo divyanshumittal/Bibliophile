@@ -15,10 +15,13 @@
 			<div class="margin-top-15">
 				<div class="row">
 					<div class="col col-offset-10 col-80">
+						<div ng-if="vm.invalidLogin" class="text-danger text-center">
+							Username and Password do not match
+						</div>
 						<small>Username</small>
 						<input type="text" class="form-input" ng-model="vm.username">
 						<small>Password</small>
-						<input type="text" class="form-input" ng-model="vm.password">
+						<input type="password" class="form-input" ng-model="vm.password">
 					</div>
 					<div class="col-10"></div>
 				</div>

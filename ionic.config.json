@@ -4,7 +4,7 @@
   "proxies": [
     {
       "path": "/api",
-      "proxyUrl": "https://sampleUrl.egen.io/api"
+      "proxyUrl": "http://10.36.30.124:8080/api"
     }
   ]
 }

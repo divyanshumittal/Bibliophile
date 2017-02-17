@@ -1,0 +1,48 @@
+.register {
+	.margin-top-15 {
+		margin-top: 15%
+	}
+
+	.large-font {
+		font: 1.5em;
+	}
+
+	label {
+		border-radius: 25px;
+		background-color: white;
+	}
+
+	.input-label {
+		font-size: 12px;
+		opacity: 0.7;
+	}
+
+	.margin-10 {
+		margin: 10px 0;
+	}
+
+	.register-buttons {
+		margin-top: 10%;
+	}
+
+	.link {
+		color: #428bca;
+	}
+
+	.disable {
+		color: lightslategrey;
+	}
+
+	.text-danger {
+		color: red;
+	}
+
+	.asterick {
+		position: absolute;
+	    font-size: 0.6em;
+	}
+
+	.padding-left-10 {
+		padding-left: 10px;
+	}
+}

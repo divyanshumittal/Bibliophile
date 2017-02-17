@@ -19,6 +19,5 @@
                     authenticate: false
                 }
             });
-
     }
 }(angular));

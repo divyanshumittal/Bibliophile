@@ -16,6 +16,7 @@
         'ui.bootstrap',
         'nvd3',
         'ion-autocomplete',
+        'ngMessages',
 
         // services
         'app.auth',

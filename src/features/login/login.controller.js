@@ -5,7 +5,7 @@
             .controller('LoginController', LoginController);
 
         // @ngInject
-        function LoginController(AuthService, $state, $ionicPush) {
+        function LoginController(AuthService, $state, $ionicPush, userService) {
             var vm = this;
            
             vm.login = login;
@@ -23,6 +23,19 @@
 
             function login() {
                 $state.go('app.home.activity');
+                // userService.login(vm.username, vm.password).then(function(result) {
+                //     if (result.data) {
+                //         userService.user = result.data;
+                //         $state.go('app.home.activity');
+                //     } else {
+                //         vm.invalidLogin = true;
+                //         console.log('login failed');
+                //     }
+                    
+                // }, function() {
+                    
+                // });
+                
             }
             
             function validateLogin() {

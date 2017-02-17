@@ -5,16 +5,24 @@
             .controller('ActivityController', ActivityController);
 
         // @ngInject
-        function ActivityController() {
-            var vm = this;  
+        function ActivityController(bookfeedService, userService) {
+            var vm = this;
 
-            vm.userArray = [{
-                userName: 'Dave',
-                userImg: '../resources/img/user_icon.png',
-                bookName: 'Red Dog',
+            vm.user = userService.user;
+
+            bookfeedService.getAllFeeds(_.get(vm.user, 'id')).then(function(res) {
+                vm.userFeed = _.get(res, 'data');
+            });
+
+
+            vm.userFeed = [{
+                name: 'Dave',
+                imageUrl: 'resources/img/user_icon.png',
+                title: 'Red Dog',
                 authorName: 'XYZ',
-                bookImg: '../resources/img/red_Dog_book_cover.jpg',
-                points: 200
+                bookImg: 'resources/img/red_Dog_book_cover.jpg',
+                bookPoints: 200,
+                status: 'STARTED_READING'
             }];
         }
     }(angular));

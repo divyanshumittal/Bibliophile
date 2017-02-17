@@ -1,8 +1,9 @@
 .tile {
 
 	img {
-	  max-width: 100%;
-	  max-height: 90%;
+	  max-width: 85%;
+	  max-height: 85%;
+	  box-shadow: 5px 5px 5px #888888;
 	}
 
 	.white-bckgrnd {
@@ -33,18 +34,19 @@
 		height: 45%;
 		width: 55%;
 		background-color: black;
-		opacity: .5;
+		opacity: .9;
 		color: white;
 		border-radius: 50%;
-		border: 3px solid red;
+		border: 3px solid white;
 		left: -10%;
 	}
 
 	.button-feel {
 		background-color: #444;
 		font-size: 0.7em;
-		border-radius: 10%;
+		border-radius: 25px;
 		margin-top: 15%;
+		cursor: pointer;
 
 		a {
 			color: white;
@@ -55,5 +57,25 @@
 		width: 50%;
     	margin-left: auto;
     	margin-right: auto;
+	}
+
+	.large-font-size {
+		font-size: 1.1em;
+	}
+
+	.small-font-size {
+		font-size: 0.8em;
+	}
+
+	.very-small-font-size {
+		font-size: 0.5em;
+	}
+
+	.purple-font {
+		color: #7a4ef5;
+	}
+
+	.round-image {
+		border-radius: 50%;
 	}
 }

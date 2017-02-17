@@ -8,7 +8,7 @@
 	<ion-content class="has-header" scroll="true">
 		<div class="heading">{{vm.status}}</div>
 		<div ng-repeat="book in vm.books">
-			<book-tile book="book" book-status="vm.status"></book-tile>
+			<book-tile book="book" book-status="vm.status" callback="vm.updateBooks"></book-tile>
 		</div>
 	</ion-content>
 	<ion-tabs class="tabs-dark tabs-icon-top">
@@ -16,7 +16,7 @@
 	  <ion-tab title="Recommended" icon-on="ion-lightbulb" icon-off="ion-android-bulb" on-select="vm.getBooks('RECOMMENDED')">
 	 	
 	  </ion-tab>
-	  <ion-tab title="Read" icon-on="ion-android-menu" icon-off="ion-android-menu" on-select="vm.getBooks('ALREADY READ')">
+	  <ion-tab title="Read" icon-on="ion-android-menu" icon-off="ion-android-menu" on-select="vm.getBooks('READ')">
 	 	
 	  </ion-tab>
 	  <ion-tab title="Queue" icon-on="ion-android-time" icon-off="ion-android-time" on-select="vm.getBooks('QUEUE')">

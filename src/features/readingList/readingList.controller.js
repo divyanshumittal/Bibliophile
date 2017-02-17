@@ -5,21 +5,25 @@
             .controller('ReadingListController', ReadingListController);
 
         // @ngInject
-        function ReadingListController() {
+        function ReadingListController(bookfeedService, userService) {
             var vm = this;  
 
             vm.status = 'RECOMMENDED';
+
             vm.books = [{
-                bookName: 'Red Dog',
+                title: 'Red Dog',
                 authorName: 'XYZ',
-                bookImg: '../resources/img/red_Dog_book_cover.jpg',
-                points: 200
+                imageUrl: 'resources/img/red_Dog_book_cover.jpg',
+                bookPoints: 200,
+                status: 'RECOMMENDED'
             }];
             vm.getBooks = getBooks;
 
             function getBooks(status) {
-                vm.status = status;
-                //set vm.books
+                vm.status = status || vm.status;
+                bookfeedService.getBooks(_.get(userService.user, 'id'), status).then(function(result) {
+                    vm.books = result.data;
+                });
             }
         }
     }(angular));

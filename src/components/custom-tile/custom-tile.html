@@ -1,11 +1,11 @@
 <div class="tile row">
     <div class="col text-center white-bckgrnd margin-5">
         <div class="row">
-            <div class="col col-20">
-                <img ng-src="{{user.userImg}}" />
+            <div class="col col-20 pos-relative">
+                <img class="round-image" ng-src="{{user.imageUrl}}" />
             </div>
             <div class="col col-80 margin-auto">
-                <b>{{user.userName}}</b>  is currently reading
+                <b>{{user.name}}</b>  is currently reading
             </div>
         </div>
         <book-tile book="vm.user" book-status="'activity'"></book-tile>

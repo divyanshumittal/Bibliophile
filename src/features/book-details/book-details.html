@@ -8,13 +8,15 @@
 	<ion-content class="has-header" scroll="true">
 		<div class="row">
 			<div class="col col-20 pos-relative">
-		        <div class="points-badge text-center">
-		           <span>{{vm.book.bookPoints}}</span> <small class="small">POINTS</small>
+		        <div class="points-badge">
+		        	<div class="text-center vertically-center">
+		        		<b class="purple-font">{{vm.book.bookPoints}}</b> <div class="very-small-font-size">POINTS</div>
+		        	</div>
 		        </div>
 	    	</div>
-	    	<div class="heading text-center">
+	    	<b class="heading text-center">
 				{{vm.book.title}}
-			</div>
+			</b>
 		</div>
 		<div class="row">
 			<div class="col-offset-10 col-40">
@@ -25,9 +27,6 @@
 			<div class="col-50">
 				{{vm.book.description}}
 			</div>
-		</div>
-		<div class="row">
-
 		</div>
 	</ion-content>
 	<div class="bar bar-dark bar-footer button-bar">

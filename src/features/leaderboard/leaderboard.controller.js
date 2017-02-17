@@ -5,17 +5,16 @@
             .controller('LeaderboardController', LeaderboardController);
 
         // @ngInject
-        function LeaderboardController($window) {
+        function LeaderboardController($window, userService) {
             var vm = this;
 
             vm.toggleChart = false;
-
             vm.options = {
                 chart: {
                     height: $window.innerHeight - 200,
                     type: 'discreteBarChart',
-                    x : function(d) { return d.label; },
-                    y : function(d) { return d.value; },
+                    x : function(d) { return d.name; },
+                    y : function(d) { return d.score; },
                     showValues: true,
                     transitionDuration: 500,
                     xAxis: {
@@ -27,29 +26,38 @@
                     }
                 }
             };
-
-            /* Chart data */
+             /* Chart data */
             vm.chartData = [{
             key: "Cumulative Points",
             values: [{ 
-                  "label" : "John Doe" ,
-                  "value" : 900
+                  "name" : "John Doe" ,
+                  "score" : 900
                 } , 
                 { 
-                  "label" : "Tom Riddles" , 
-                  "value" : 700
+                  "name" : "Tom Riddles" , 
+                  "score" : 700
                 }
                 ]
             }];
 
-            vm.data = [{
+            init();
+
+            function init() {
+                userService.getAllUsers(_.get(userService.user, 'organization')).then(function(result) {
+                    // set data for list and chart here
+                    vm.users = result.data;
+                    vm.chartData[0].values = result.data;
+                });
+            }
+
+            vm.users = [{
                 name: 'John Doe',
                 img: '../resources/img/user_icon.png',
-                points: 900
+                score: 900
             }, {
                 name: 'Tom Riddles',
                 img: '../resources/img/user_icon.png',
-                points: 700
+                score: 700
             }];
         }
     }(angular));
