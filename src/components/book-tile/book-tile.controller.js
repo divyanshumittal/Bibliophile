@@ -30,11 +30,11 @@ angular.module('app')
 				authorName: vm.book.authorName,
 				bookPoints: vm.book.bookPoints,
 				imageUrl: vm.book.imageUrl,
-				name: _.get(userService, 'name'),
+				name: _.get(userService, 'user', 'name'),
 				status: status,
 				title: vm.book.title,
-				userName: _.get(userService, 'username'),
-				userUUID: _.get(userService, 'id')
+				userName: _.get(userService, 'user', 'username'),
+				userUUID: _.get(userService, 'user', 'id')
 			};
 			
 			bookfeedService.createBookfeed(bookfeed).then(function() {

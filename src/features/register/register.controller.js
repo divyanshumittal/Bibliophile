@@ -5,7 +5,7 @@
             .controller('RegisterController', RegisterController);
 
         // @ngInject
-        function RegisterController(userService, $state) {
+        function RegisterController(userService, $state, $ionicPopup) {
             var vm = this;
 
             vm.register = register;
@@ -35,8 +35,15 @@
                        password: vm.password,
                        username: vm.username
                     }
-                    userService.register(user).then(function() { });
-                    $state.go('app.login');
+                    userService.register(user).then(function() {
+                        var alertPopup = $ionicPopup.alert({
+                             title: 'Registration successful'
+                        });
+
+                        alertPopup.then(function(res) {
+                            $state.go('app.login');
+                        });
+                    });
                 }
             }
         }

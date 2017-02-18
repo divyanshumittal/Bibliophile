@@ -2,13 +2,16 @@
     <div class="col text-center white-bckgrnd margin-5">
         <div class="row">
             <div class="col col-20 pos-relative">
-                <img class="round-image" ng-src="{{user.imageUrl}}" />
+                <img class="round-image" ng-src="{{vm.bookFeed.userImgUrl}}" />
             </div>
             <div class="col col-80 margin-auto">
-                <b>{{user.name}}</b>  is currently reading
+                <b>{{vm.bookFeed.name}}</b>
+                <span ng-if="vm.bookFeed.status === 'QUEUE'">  added to queue</span>
+                <span ng-if="vm.bookFeed.status === 'READ'">  finished reading</span>
+                <span ng-if="vm.bookFeed.status === 'STARTED_READING'">  is currently reading</span>
             </div>
         </div>
-        <book-tile book="vm.user" book-status="'activity'"></book-tile>
+        <book-tile book="vm.bookFeed" book-status="'activity'" my-book="false"></book-tile>
         </div>
     </div>
 </div>

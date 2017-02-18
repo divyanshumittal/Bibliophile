@@ -11,7 +11,7 @@
             vm.user = {
                 name: 'John Doe',
                 points: 230,
-                img: '../resources/img/user_icon.png',
+                img: 'resources/img/user_icon.png',
                 booksRead: 3,
                 title: 'Recruiter',
                 org: 'Egen',
@@ -19,10 +19,12 @@
             };
 
             vm.currentBooks = [{
-                bookName: 'Red Dog',
+                imageUrl: 'resources/img/red_Dog_book_cover.jpg',
+                title: 'Red Dog',
                 authorName: 'XYZ',
-                bookImg: '../resources/img/red_Dog_book_cover.jpg',
-                points: 200
+                bookImg: 'resources/img/red_Dog_book_cover.jpg',
+                bookPoints: 200,
+                status: 'STARTED_READING'
             }];
 
             vm.goBack = goBack;

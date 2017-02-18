@@ -6,15 +6,21 @@
 
 	img {
 		max-height: 80%;
-    	max-width: 70%;
+    	max-width: 78%;
+    	width: 80%
 	}
 
 	.points-badge {
+		z-index: 100;
+		position: absolute;
+		top: 20%;
+		height: 45%;
+		width: 55%;
 		background-color: black;
-		opacity: .5;
+		opacity: .9;
 		color: white;
 		border-radius: 50%;
-		border: 3px solid red;
+		border: 3px solid white;
 	}
 
 	.white-font {
@@ -35,5 +41,14 @@
 
 	.very-small-font-size {
 		font-size: 0.5em;
+	}
+
+	.image-container {
+		float: left;
+	}
+
+	.bold-font {
+		font-weight: bold;
+		width: 80%
 	}
 }

@@ -18,27 +18,25 @@
 				{{vm.book.title}}
 			</b>
 		</div>
-		<div class="row">
-			<div class="col-offset-10 col-40">
+		<div class="padding">
+			<div class="image-container">
 				<img ng-src="{{vm.book.imageUrl}}" />
-				<div class="margin-top-10">{{vm.book.authorName}}</div>
+				<div class="margin-top-10 bold-font">{{vm.book.authorName}}</div>
 				<div>{{vm.book.releaseDate}}</div>
 			</div>
-			<div class="col-50">
-				{{vm.book.description}}
-			</div>
+			<div ng-bind-html="vm.book.description"></div>
 		</div>
 	</ion-content>
 	<div class="bar bar-dark bar-footer button-bar">
 		<div class="row">
-			<div class="col-33">
+			<div class="col-33 text-center">
 				<a class="white-font">Add</a>
 			</div>
-			<div class="col-33">
+			<div class="col-33 text-center">
 				<a class="white-font">Start</a>
 			</div>
-			<div class="col-33">
-				<a class="white-font ">Recommend</a>
+			<div class="col-33 text-center">
+				<a class="white-font">Recommend</a>
 			</div>
 		</div>
 	</div>

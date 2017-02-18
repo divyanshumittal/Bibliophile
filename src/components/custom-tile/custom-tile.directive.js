@@ -9,7 +9,7 @@ angular.module('app')
             controllerAs: 'vm',
             scope: true,
             bindToController: {
-            	user: '='
+            	bookFeed: '='
             }
         };
     };

@@ -10,19 +10,19 @@
 
             vm.status = 'RECOMMENDED';
 
-            vm.books = [{
-                title: 'Red Dog',
-                authorName: 'XYZ',
-                imageUrl: 'resources/img/red_Dog_book_cover.jpg',
-                bookPoints: 200,
-                status: 'RECOMMENDED'
-            }];
+            // vm.books = [{
+            //     title: 'Red Dog',
+            //     authorName: 'XYZ',
+            //     imageUrl: 'resources/img/red_Dog_book_cover.jpg',
+            //     bookPoints: 200,
+            //     status: 'RECOMMENDED'
+            // }];
             vm.getBooks = getBooks;
 
             function getBooks(status) {
                 vm.status = status || vm.status;
                 bookfeedService.getBooks(_.get(userService.user, 'id'), status).then(function(result) {
-                    vm.books = result.data;
+                    vm.books = _.get(result, 'content');
                 });
             }
         }

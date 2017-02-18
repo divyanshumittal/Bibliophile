@@ -11,7 +11,8 @@ angular.module('app')
             bindToController: {
             	book: '=',
                 bookStatus: '=',
-                callback: '&?'
+                callback: '&?',
+                myBook: '=?'
             }
         };
     };

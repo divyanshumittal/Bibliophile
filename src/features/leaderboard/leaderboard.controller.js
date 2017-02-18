@@ -47,17 +47,20 @@
                     // set data for list and chart here
                     vm.users = result.data;
                     vm.chartData[0].values = result.data;
+                    _.forEach(vm.users, function(user) {
+                        user.img = 'resources/img/user_icon.png';
+                    });
                 });
             }
 
-            vm.users = [{
-                name: 'John Doe',
-                img: '../resources/img/user_icon.png',
-                score: 900
-            }, {
-                name: 'Tom Riddles',
-                img: '../resources/img/user_icon.png',
-                score: 700
-            }];
+            // vm.users = [{
+            //     name: 'John Doe',
+            //     img: '../resources/img/user_icon.png',
+            //     score: 900
+            // }, {
+            //     name: 'Tom Riddles',
+            //     img: '../resources/img/user_icon.png',
+            //     score: 700
+            // }];
         }
     }(angular));

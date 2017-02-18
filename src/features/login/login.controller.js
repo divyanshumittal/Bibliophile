@@ -22,20 +22,24 @@
             }
 
             function login() {
-                $state.go('app.home.activity');
-                // userService.login(vm.username, vm.password).then(function(result) {
-                //     if (result.data) {
-                //         userService.user = result.data;
-                //         $state.go('app.home.activity');
-                //     } else {
-                //         vm.invalidLogin = true;
-                //         console.log('login failed');
-                //     }
+                // $state.go('app.home.activity');
+                if (vm.username && vm.password) {
+                     userService.login(vm.username, vm.password).then(function(result) {
+                    if (_.get(result, 'data')) {
+                        console.log(result.data);
+                        userService.user = result.data;
+                        $state.go('app.home.activity');
+                    } else {
+                        vm.invalidLogin = true;
+                    }
                     
-                // }, function() {
-                    
-                // });
-                
+                }, function() {
+                    vm.invalidLogin = true;
+                    console.log('login failed');
+                });
+                 } else {
+                    vm.invalidLogin = true;
+                }
             }
             
             function validateLogin() {

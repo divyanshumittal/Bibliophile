@@ -36,10 +36,14 @@
 
                 $http({
                     method: 'GET',
-                    url: '/api/v1/bookfeed',
+                    url: '/api/v1/bookfeed/_search',
                     params: {
                         userId: userId,
-                        status: status
+                        status: status,
+                        page: 0,
+                        size: 1000,
+                        sortOrder: 'desc',
+                        sortBy: 'createdDate'
                     }
                 }).then(function(res) {
                     defer.resolve(res);
