@@ -12,10 +12,15 @@
 					<small>Grow your people grow your company</small>
 				</div>
 			</div>
-			<div class="margin-top-15">
+			<div class="center-timeline">
+				<div class="timeline-circle done"></div>
+				<div class="timeline-circle" ng-class = "{'done' : vm.stepTwo || vm.stepThree}"></div>
+				<div class="timeline-circle" ng-class = "{'done' : vm.stepThree}"></div>
+			</div>
+			<div class="margin-top-10">
 				<div class="row">
 					<div class="col col-offset-10 col-80">
-						<div ng-if="!vm.steptwo">
+						<div ng-if="vm.stepOne">
 							<form name="form1" ng-submit="vm.validatePasswords(form1)">
 								<label class="item-input margin-10">
 								    <span class="input-label">
@@ -52,13 +57,13 @@
 								</div>
 								<div class="register-buttons text-center">
 									<button type="submit" ng-class="form1.$valid ? 'link' : 'disable'">
-										Continue
+										Next
 									</button>
 								</div>
 							</form>
 						</div>
-						<div ng-if="vm.steptwo">
-							<form name="form2" ng-submit="vm.register(form2)">
+						<div ng-if="vm.stepTwo">
+							<form name="form2" ng-submit="vm.nextStep(form2)">
 								<label class="item-input margin-10">
 								   <span class="input-label">
 								    	<i class="ion-asterisk asterick"></i> 
@@ -73,29 +78,48 @@
 								    </span>
 								    <input type="text" ng-model="vm.company" required />
 								</label>
-								<label class="item-input margin-10">
+								<div class="item-input margin-10 label-feel">
 									<div class="input-label">
 								      Genres
 								    </div>
-								    <select ng-model="vm.genres">
-								      <option>Business</option>
-								      <option>Science Fiction</option>
-								      <option>Mystery</option>
-								      <option>History</option>
-								      <option>Poetry</option>
-								      <option>Economics</option>
-								    </select>
-								</label>
+								   	<fancy-select
+		                              header-text="Choose genres"
+		                              allow-empty='true'
+		                              value="vm.selectedGenres"
+		                              text="'Choose'"
+		                              items="vm.genres"
+		                              multi-select="true">
+				                	</fancy-select>
+								</div>
 								<label class="item-input margin-10">
 								    <span class="input-label">Groups</span>
 								    <input type="text">
 								</label>
 								<div class="register-buttons text-center">
 									<button type="submit" ng-class="form2.$valid ? 'link' : 'disable'">
-										Done
+										Next
 									</button>
 								</div>
 							</form>
+						</div>
+						<div ng-if="vm.stepThree">
+							<div class="horizontally-center">
+								<button class="button button-small button-dark" ng-click="vm.takePhoto()">
+									Take Photo
+								</button>
+								<button class="button button-small button-dark" ng-click="vm.choosePhoto()">
+									Choose Photo
+								</button>
+							</div>
+							<div class="margin-top-10 user-image horizontally-center">
+								<img ng-if="!vm.imgURI" ng-src="{{'resources/img/user_icon.png'}}" class="horizontally-center">
+								<img ng-if="vm.imgURI" ng-src="{{vm.imgURI}}" class="horizontally-center">
+							</div>
+							<div class="register-buttons text-center">
+								<button class="link" ng-click="vm.register()">
+									Done
+								</button>
+							</div>
 						</div>
 					</div>
 				</div>

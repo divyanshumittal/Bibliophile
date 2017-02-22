@@ -5,46 +5,109 @@
             .controller('RegisterController', RegisterController);
 
         // @ngInject
-        function RegisterController(userService, $state, $ionicPopup) {
+        function RegisterController(userService, $state, $ionicPopup, $cordovaCamera) {
             var vm = this;
 
+            vm.genres = [
+              {id: 1, text: 'Business', checked: false, icon: null}, 
+              {id: 2, text: 'Science', checked: false, icon: null}, 
+              {id : 3, text: 'Mystery', checked: false, icon: null},
+              {id : 4, text: 'History', checked: false, icon: null},
+              {id : 5, text: 'Economics', checked: false, icon: null},
+              {id : 6, text: 'Poetry', checked: false, icon: null}];
+
+            vm.stepOne = true;
+            vm.wrongPasswords = false;
             vm.register = register;
             vm.validatePasswords = validatePasswords;
+            vm.takePhoto = takePhoto;
+            vm.choosePhoto = choosePhoto;
+            vm.nextStep = nextStep;
+
 
             function validatePasswords(form) {
                 if (form.$valid) {
                     if (vm.password === vm.confirmPassword) {
-                        vm.steptwo = true;
+                        vm.stepOne = false;
+                        vm.stepTwo = true;
                     } else {
                         vm.wrongPasswords = true;
                     }
                 }
             }
 
-            function register(form) {
-                if (form.$valid) {
-                    var user = {  
-                       emailId: vm.email,
-                       favorites:[  
-                          "business",
-                          "economics",
-                          "politics"
-                       ],
-                       name: vm.name,
-                       organization: vm.company,
-                       password: vm.password,
-                       username: vm.username
-                    }
-                    userService.register(user).then(function() {
-                        var alertPopup = $ionicPopup.alert({
-                             title: 'Registration successful'
-                        });
+            function nextStep(form) {
+              if (form.$valid) {
+                vm.stepTwo = false;
+                vm.stepThree = true;
+              }
+            }
 
-                        alertPopup.then(function(res) {
-                            $state.go('app.login');
-                        });
-                    });
-                }
+            function register() {
+              var genres;
+
+              if (vm.selectedGenres) {
+                genres = _.map(vm.selectedGenres.split(';'), function(selectedId) {
+                    return _.find(vm.genres, {id: parseInt(selectedId)}).text;
+                });
+              }
+              var user = {  
+                 emailId: vm.email,
+                 name: vm.name,
+                 organization: vm.company,
+                 password: vm.password,
+                 username: vm.username,
+                 favorites: genres
+              };
+              userService.register(user).then(function() {
+                  var alertPopup = $ionicPopup.alert({
+                       title: 'Registration successful'
+                  });
+
+                  alertPopup.then(function(res) {
+                      $state.go('app.login');
+                  });
+              });
+            }
+
+            function takePhoto() {
+              var options = {
+                  quality: 75,
+                  destinationType: Camera.DestinationType.DATA_URL,
+                  sourceType: Camera.PictureSourceType.CAMERA,
+                  allowEdit: true,
+                  encodingType: Camera.EncodingType.JPEG,
+                  targetWidth: 300,
+                  targetHeight: 300,
+                  popoverOptions: CameraPopoverOptions,
+                  saveToPhotoAlbum: false
+              };
+ 
+              $cordovaCamera.getPicture(options).then(function (imageData) {
+                  vm.imgURI = "data:image/jpeg;base64," + imageData;
+              }, function (err) {
+                  // An error occured. Show a message to the user
+              });
+            }
+
+            function choosePhoto() {
+              var options = {
+                  quality: 75,
+                  destinationType: Camera.DestinationType.DATA_URL,
+                  sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+                  allowEdit: true,
+                  encodingType: Camera.EncodingType.JPEG,
+                  targetWidth: 300,
+                  targetHeight: 300,
+                  popoverOptions: CameraPopoverOptions,
+                  saveToPhotoAlbum: false
+              };
+ 
+              $cordovaCamera.getPicture(options).then(function (imageData) {
+                  vm.imgURI = "data:image/jpeg;base64," + imageData;
+              }, function (err) {
+                  // An error occured. Show a message to the user
+              });
             }
         }
         

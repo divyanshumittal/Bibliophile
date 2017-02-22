@@ -15,6 +15,7 @@
 	.input-label {
 		font-size: 12px;
 		opacity: 0.7;
+		min-height: 34px;
 	}
 
 	.margin-10 {
@@ -45,4 +46,44 @@
 	.padding-left-10 {
 		padding-left: 10px;
 	}
+
+	.label-feel {
+		background-color: white;
+    	border-radius: 25px;
+	}
+
+	.horizontally-center {
+		text-align: center;
+	}
+
+	.margin-top-10 {
+		margin-top: 10%;
+	}
+ 
+	.user-image {
+		img {
+			max-width: 70%;
+			max-height: 70%;
+			border-radius: 50%;
+		}
+	}
+
+	.timeline-circle {
+		border: 2px solid black ;
+		float: left;
+		border-radius: 25px;
+		margin: 10%;
+      	width: 20px;
+      	height: 20px;
+      	background: white;
+	}
+
+	.done {
+  		background: gray;
+  	}
+
+  	.center-timeline {
+  		margin: auto;
+  		width: 50%;
+  	}
 }

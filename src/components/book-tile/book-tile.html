@@ -11,10 +11,10 @@
         <div class="text-center">
             <b class="large-font-size">{{vm.book.title}}</b>
             <div class="small-font-size">{{vm.book.authorName}}</div>
-            <div ng-if="vm.book.status === 'activity'" class="row no-padding button-bar button-feel">
+       <!--      <div ng-if="vm.book.status === 'activity'" class="row no-padding button-bar button-feel">
                 <a class="col" ng-click="vm.updateStatus('QUEUE')">Add</a>
                 <a class="col" ng-click="vm.updateStatus('RECOMMENDED')">Recommend</a>
-            </div>
+            </div> -->
             <div ng-if="vm.book.status === 'QUEUE'" class="row no-padding button-bar button-feel">
                 <a class="col" ng-click="vm.updateStatus('STARTED_READING')">Start</a>
                 <a class="col" ng-click="vm.updateStatus('READ')">Remove</a>
@@ -25,12 +25,25 @@
             <div ng-if="vm.book.status === 'RECOMMENDED'" class="row no-padding button-bar button-feel single-button">
                 <a class="col" ng-click="vm.updateStatus('STARTED_READING')">Start</a>
             </div>
-            <div ng-if="vm.book.status === 'STARTED_READING'" class="row no-padding button-bar button-feel single-button">
-                <a class="col" ng-if="vm.myBook" ng-click="vm.updateStatus('READ')">Finish</a>
+            <div ng-if="vm.book.status === 'STARTED_READING'" class="row no-padding button-bar button-feel">
+                <div class="single-button" ng-if="vm.myBook">
+                    <a class="col" ng-click="vm.updateStatus('READ')">Finish</a>
+                </div>
                 <div ng-if="!vm.myBook" class="button-bar">
                     <a class="col" ng-click="vm.updateStatus('QUEUE')">Add</a>
-                    <a class="col" ng-click="vm.updateStatus('READ')">Start</a>
-                    <a class="col" ng-click="vm.updateStatus('RECOMMENDED')">Recommend</a>
+                    <a class="col" ng-click="vm.updateStatus('STARTED_READING')">Start</a>
+                    <div class="col">
+                         <fancy-select
+                          header-text="Recommend"
+                          allow-empty='true'
+                          value="vm.selectedUsers"
+                          text="'Recommend'"
+                          items="vm.users"
+                          multi-select="true"
+                          callback="vm.bookRecommended()"
+                          update-text="'Recommend'">
+                        </fancy-select>
+                    </div>
                 </div>
             </div>
     </div>
