@@ -8,7 +8,7 @@
     function homeConfig($stateProvider, $urlRouterProvider) {
         $stateProvider
             .state('app.home', {
-                url: '/home',
+                url: '/home?registerForPush',
                 abstract: true,
                 views: {
                     'appView': {
@@ -17,7 +17,7 @@
                     }
                 },
                 data: {
-                    authenticate: false
+                    authenticate: true
                 }
             });
 

@@ -5,12 +5,10 @@
         .run(runConfig);
 
     // @ngInject
-    function runConfig($ionicAnalytics, $ionicPlatform,
-                       $timeout, $cordovaStatusbar, $window, $rootScope,
-                       ionicMaterialInk, CONFIG) {
+    function runConfig($ionicPlatform, $cordovaStatusbar, $window, $rootScope, $cordovaDialogs) {
         $ionicPlatform.ready(function () {
-            // register for analytics
-            if(!CONFIG.devMode) $ionicAnalytics.register();
+            // register for analytics when not dev mode
+            // if(!CONFIG.devMode) { }
 
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
@@ -28,7 +26,10 @@
 
            $rootScope.$on('cloud:push:notification', function(event, data) {
                 var msg = data.message;
-                alert(msg.title + ': ' + msg.text);
+                $cordovaDialogs.alert(msg.text, msg.title, 'M\'Kay').
+                    then(function() {
+
+                    });
             });
 
         });

@@ -4,7 +4,7 @@
             <div class="col col-20 pos-relative">
                 <img class="round-image" ng-src="{{vm.bookFeed.userImgUrl}}" />
             </div>
-            <div class="col col-70 margin-auto">
+            <div class="col col-60 margin-auto">
                 <b>{{vm.bookFeed.name}}</b>
                 <span ng-if="vm.bookFeed.status === 'QUEUE'">  added to queue</span>
                 <span ng-if="vm.bookFeed.status === 'READ'">  finished reading</span>
@@ -12,9 +12,12 @@
                 <span ng-if="vm.bookFeed.status === 'RECOMMENDED'">  recommended</span>
                 
             </div>
-            <div class="col-10 ion-thumbsup thumbsup"></div>
+            <div class="col-20 thumbsup">
+                <div class="ion-thumbsup"></div>
+                <div class="ion-android-notifications" ng-click="vm.addReminder()"></div>
+            </div>
         </div>
-        <book-tile book="vm.bookFeed" book-status="'activity'" my-book="false"></book-tile>
+        <book-tile book="vm.bookFeed" my-book="false"></book-tile>
         </div>
     </div>
 </div>
