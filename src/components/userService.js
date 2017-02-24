@@ -8,6 +8,15 @@
         function userService($http, $q) {
             var self = this;  
 
+            self.allGenres = [
+              {id: 1, text: 'Business', checked: false, icon: null}, 
+              {id: 2, text: 'Science', checked: false, icon: null}, 
+              {id : 3, text: 'Mystery', checked: false, icon: null},
+              {id : 4, text: 'History', checked: false, icon: null},
+              {id : 5, text: 'Economics', checked: false, icon: null},
+              {id : 6, text: 'Poetry', checked: false, icon: null}];
+              
+            self.notificationTime = 10;
             self.login = login;
             self.register = register;
             self.getAllUsers = getAllUsers;

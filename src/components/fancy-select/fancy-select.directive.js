@@ -13,6 +13,7 @@ function fancySelect($ionicModal) {
 
               /* Attributes to set */
               scope: {
+                  'showText'     : '=', /* show text or the edit icon*/
                   'items'        : '=', /* Items list is mandatory */
                   'text'         : '=', /* Displayed text is mandatory */
                   'value'        : '=', /* Selected value binding is mandatory */
@@ -112,7 +113,9 @@ function fancySelect($ionicModal) {
                       
                       // Execute callback function
                       if (typeof scope.callback == 'function') {
-                          scope.callback();
+                          scope.callback({
+                            value: scope.value
+                          });
                       }
                   }
 

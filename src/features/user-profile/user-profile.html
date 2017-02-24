@@ -20,14 +20,39 @@
 				<div class="blue-font">{{vm.user.booksRead}}</div>
 			</div>
 		</div>
-		<div class="row medium-font margin-5">
-			<div class="col col-33">
+		<div class="row margin-3">
+			<div class="col-33">
 				<b>Categories:</b>
 			</div>
-			<div class="col">
+			<div class="col-50">
 				<span ng-repeat="cat in vm.user.categories" class="tag">
-					<b>{{cat}}</b>  <i class="ion-ios-close-empty" ng-click="vm.removeCategory(cat)"></i>
+					<b>{{cat}}</b>
 				</span>
+			</div>
+			<div class="col-10">
+				<fancy-select
+				  show-text="false"
+                  header-text="Choose genres"
+                  allow-empty='false'
+                  value="vm.selectedGenres"
+                  text= "''"
+                  items="vm.genres"
+                  callback="vm.genresSelected(value)"
+                  multi-select="true">
+            	</fancy-select>
+			</div>
+		</div>
+		<div class="row margin-3">
+			<div class="col-33">
+				<b>Reminder (sec):</b>
+			</div>
+			<div class="col-50">
+				<input ng-if="vm.editTime" value="vm.notificationTime" ng-model="vm.notificationTime" />
+				<span ng-if="!vm.editTime">{{vm.notificationTime}}</span>
+			</div>
+			<div class="col-10">
+				<i class="ion-edit" ng-if="!vm.editTime" ng-click="vm.editTime = !vm.editTime"></i>
+				<i class="ion-checkmark-round" ng-if="vm.editTime" ng-click="vm.editTime = !vm.editTime"></i>
 			</div>
 		</div>
 		<div class="text-center margin-top-10">

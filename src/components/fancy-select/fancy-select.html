@@ -1,3 +1,4 @@
 <div ng-click="showItems($event)">
-	{{text}}
+	<span ng-if="showText">{{text}}</span>
+	<span ng-if="!showText"><i class="ion-edit"></i></span>
 </div>

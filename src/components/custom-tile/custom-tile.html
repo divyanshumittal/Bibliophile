@@ -13,8 +13,8 @@
                 
             </div>
             <div class="col-20 thumbsup">
-                <div class="ion-thumbsup"></div>
-                <div class="ion-android-notifications" ng-click="vm.addReminder()"></div>
+                <i class="ion-thumbsup padding-right-15" ng-click="vm.liked = !vm.liked" ng-class="{'tapped' : vm.liked}"></i>
+                <i class="ion-android-notifications" ng-click="vm.addReminder()" ng-class="{'tapped' : vm.tapped}"></i>
             </div>
         </div>
         <book-tile book="vm.bookFeed" my-book="false"></book-tile>

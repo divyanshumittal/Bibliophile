@@ -5,8 +5,13 @@
             .controller('UserProfileController', UserProfileController);
 
         // @ngInject
-        function UserProfileController($ionicHistory) {
+        function UserProfileController($ionicHistory, userService) {
             var vm = this;  
+
+            vm.notificationTime = userService.notificationTime;
+            vm.genres = angular.copy(userService.allGenres);
+            vm.genresSelected = genresSelected;
+            vm.goBack = goBack;
 
             vm.user = {
                 name: 'John Doe',
@@ -15,7 +20,7 @@
                 booksRead: 3,
                 title: 'Recruiter',
                 org: 'Egen',
-                categories: ['Crime', 'Fiction']
+                categories: ['Mystery', 'History']
             };
 
             vm.currentBooks = [{
@@ -27,16 +32,20 @@
                 status: 'STARTED_READING'
             }];
 
-            vm.goBack = goBack;
-            vm.removeCategory = removeCategory;
+            _.map(vm.genres, function(genre) {
+                if (vm.user.categories.indexOf(genre.text) > -1) {
+                    genre.checked = true;
+                }
+            });
 
             function goBack() {
                 $ionicHistory.goBack();
             }
 
-            function removeCategory(cat) {
-                vm.user.categories.splice(vm.user.categories.indexOf(cat) , 1);
-                // update user object at backend
+            function genresSelected(value) {
+                vm.user.categories = _.map(value.split(';'), function(selectedId) {
+                    return _.find(vm.genres, {id: parseInt(selectedId)}).text;
+                });
             }
         }
 

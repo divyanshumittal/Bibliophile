@@ -45,7 +45,7 @@
 		background-color: #444;
 		font-size: 0.7em;
 		border-radius: 25px;
-		margin-top: 10%;
+		margin-top: 15%;
 		cursor: pointer;
 
 		a {
@@ -90,5 +90,13 @@
 
 	fancy-select {
 		color: white;
+	}
+
+	.padding-right-15 {
+		padding-right: 15px;
+	}
+
+	.tapped {
+		color: #56cbec;
 	}
 }
