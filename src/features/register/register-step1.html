@@ -1,0 +1,40 @@
+<form name="form1" ng-submit="vm.validatePasswords(form1)">
+	<label class="item-input margin-10">
+	    <span class="input-label">
+	    	<i class="ion-asterisk asterick"></i> 
+	    	<span class="padding-left-10"> Name</span>		
+	    </span>
+	    <input type="text" ng-model="vm.name" required />
+	  </label>
+	<label class="item-input margin-10">
+	    <span class="input-label">
+	    	<i class="ion-asterisk asterick"></i> 
+	    	<span class="padding-left-10"> Username</span>		
+	    </span>
+	    <input type="text" ng-model="vm.username" required />
+	</label>
+	<label class="item-input margin-10">
+	   <span class="input-label">
+	    	<i class="ion-asterisk asterick"></i> 
+	    	<span class="padding-left-10"> Password</span>		
+	    </span>
+	    <input type="password" ng-model="vm.password" ng-change="vm.wrongPasswords = false"
+	    		required />
+	</label>
+	<label class="item-input margin-10">
+	    <span class="input-label">
+	    	<i class="ion-asterisk asterick"></i> 
+	    	<span class="padding-left-10"> Confirm</span>		
+	    </span>
+	    <input type="password" ng-model="vm.confirmPassword" 
+	    		ng-change="vm.wrongPasswords = false" required />
+	</label>
+	<div class="text-danger" ng-if="vm.wrongPasswords">
+		Passwords do not match
+	</div>
+	<div class="register-buttons text-center">
+		<button type="submit" ng-class="form1.$valid ? 'link' : 'disable'">
+			Next
+		</button>
+	</div>
+</form>

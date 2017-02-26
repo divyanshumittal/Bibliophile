@@ -1,6 +1,6 @@
 <ion-header class="bar bar-header bar-dark row search">
     <div class="col col-20 text-center pos-relative"  ui-sref="app.userProfile">
-        <img class="vertically-center" src="resources/img/user_icon.png" /> 
+        <img class="vertically-center" ng-src="{{vm.user.imageUrl}}" />
     </div>
     <div class="col col-80 no-padding">
         <input ion-autocomplete type="text" readonly="readonly" class="ion-autocomplete width-100 padding-left" 

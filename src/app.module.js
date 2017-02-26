@@ -110,10 +110,15 @@
 
     }
 
-    function pushConfig($ionicCloudProvider) {
+    function pushConfig($ionicCloudProvider)  {
         $ionicCloudProvider.init({
             "core": {
                 "app_id": "f91779ba"
+            },
+            "auth": {
+                "google": {
+                  "webClientId": "504292416203-lev95rntka1ki9npsqcg283nmb4qldtn.apps.googleusercontent.com"
+                }
             },
             "push": {
                 "sender_id": "315672071336",

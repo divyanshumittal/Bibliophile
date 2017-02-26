@@ -4,4 +4,10 @@
 		padding: 12px;
 		font-size: 1.1em;
 	}
+
+	ion-content {
+		background-image: url("../resources/img/book.jpeg");
+		background-size: cover;
+		opacity: 0.4;
+	}
 }

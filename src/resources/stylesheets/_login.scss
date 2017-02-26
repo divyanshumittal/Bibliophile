@@ -32,4 +32,23 @@
 	.text-danger {
 		color: red;
 	}
+
+	.google-btn {
+		background-color: #db4437;
+		color: white;
+		font-size: 1.2em;
+    	font-weight: 500;
+    	margin-top: 5%;
+
+    	.ion-social-googleplus {
+    		float: left;
+		    padding: 0 10px;
+		    border-right: solid lightgray 1px;
+    	}
+	}
+
+	button {
+		background-color: #ece9e9;
+		border: none;
+	}
 }

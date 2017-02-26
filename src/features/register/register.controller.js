@@ -11,12 +11,13 @@
             vm.genres = angular.copy(userService.allGenres);
             vm.stepOne = true;
             vm.wrongPasswords = false;
+            vm.imgURI = 'resources/img/user_icon.png';
+
             vm.register = register;
             vm.validatePasswords = validatePasswords;
             vm.takePhoto = takePhoto;
             vm.choosePhoto = choosePhoto;
             vm.nextStep = nextStep;
-
 
             function validatePasswords(form) {
                 if (form.$valid) {
@@ -44,13 +45,15 @@
                     return _.find(vm.genres, {id: parseInt(selectedId)}).text;
                 });
               }
+              
               var user = {  
                  emailId: vm.email,
                  name: vm.name,
                  organization: vm.company,
                  password: vm.password,
                  username: vm.username,
-                 favorites: genres
+                 favorites: genres,
+                 imageUrl: vm.imgURI
               };
               userService.register(user).then(function() {
                   var alertPopup = $ionicPopup.alert({

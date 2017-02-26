@@ -5,10 +5,13 @@
         .controller('LoginController', LoginController);
 
     // @ngInject
-    function LoginController($ionicAuth, $state, $ionicPush, userService) {
+    function LoginController($state, $ionicAuth, $ionicPush, $ionicGoogleAuth, userService, $ionicUser) {
         var vm = this;
-       
+
+        vm.genres = angular.copy(userService.allGenres);
         vm.login = login;
+        vm.googleSignIn = googleSignIn;
+        vm.signupWithBackend = signupWithBackend;
 
         init();
 
@@ -16,34 +19,67 @@
             $ionicPush.unregister();
         }
 
+        function googleSignIn() {
+            $ionicGoogleAuth.login().then(function(result) {
+                vm.username = $ionicUser.social.google.data.username;
+                vm.signUpWithGoogle = true;
+            },function() {
+                console.log('error');
+            });
+        }
+
+        //signup user with our backend and then login even if signup fails
+        //if signup fails means user has already signed up
+        function signupWithBackend() {
+            var user = {
+                 emailId: $ionicUser.social.google.data.email,
+                 name: $ionicUser.social.google.data.full_name,
+                 organization: vm.company,
+                 password: vm.password,
+                 username: $ionicUser.social.google.data.username,
+                 favorites: [],
+                 imageUrl: $ionicUser.social.google.data.profile_picture
+            };
+
+            vm.email = user.emailId;
+           
+            backendLogin();              //temp
+            userService.user = user;     //temp
+            // userService.register(user).then(backendLogin, backendLogin);
+        }
+
         function login() {
-            var details = {'email': vm.username, 'password': vm.password};
+            var details = {'email': vm.email, 'password': vm.password};
             
-            if (vm.username && vm.password) {
+            //signup user with ionicAuth and then login even if signup fails
+            //if signup fails means user has already signed up
+            if (vm.email && vm.password) {
                 $ionicAuth.signup(details)
-                 .then(loginUser, loginUser);
+                 .then(ionicLogin, ionicLogin);
             } else {
                 vm.invalidLogin = true;
             }
         }
 
-        function loginUser() {
-            var details = {'email': vm.username, 'password': vm.password};
+        function ionicLogin() {
+            var details = {'email': vm.email, 'password': vm.password};
 
-            $ionicAuth.login('basic', details).then(function() {
-                userService.login(vm.username, vm.password).then(function(result) {
-                    if (_.get(result, 'data')) {
-                        userService.user = result.data;
-                        $state.go('app.home.activity', {registerForPush : true});
-                    } else {
-                        vm.invalidLogin = true;
-                    }
-                        
-                    }, function() {
-                    vm.invalidLogin = true;
-                    console.log('login failed');
-                });
-            });
+            $ionicAuth.login('basic', details).then(backendLogin);
+        }
+
+        function backendLogin() {
+            // userService.login(vm.email, vm.password).then(function(result) {
+            //     if (_.get(result, 'data')) {
+            //         userService.user = result.data;
+                    $state.go('app.home.activity', {registerForPush : true});
+            //     } else {
+            //         vm.invalidLogin = true;
+            //     }
+                    
+            //     }, function() {
+            //         vm.invalidLogin = true;
+            //         console.log('login failed');
+            // });
         }
     }
 })(angular);

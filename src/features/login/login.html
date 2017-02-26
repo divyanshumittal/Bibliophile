@@ -12,30 +12,8 @@
 					<small>Grow your people grow your company</small>
 				</div>
 			</div>
-			<div class="margin-top-15">
-				<div class="row">
-					<div class="col col-offset-10 col-80">
-						<div ng-if="vm.invalidLogin" class="text-danger text-center">
-							Invalid credentials
-						</div>
-						<small>Email</small>
-						<input type="email" class="form-input" ng-model="vm.username">
-						<small>Password</small>
-						<input type="password" class="form-input" ng-model="vm.password">
-					</div>
-					<div class="col-10"></div>
-				</div>
-				<div class="row">
-					<div class="col col-offset-20 col-60 text-center">
-						<button class="button button-positive button-small sign-in" ng-click="vm.login()">Sign in</button>
-						<div class="register-btn">
-							<a ui-sref="app.register"/>
-								First time users, Register here
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
+			<div class="margin-top-15" ng-if="!vm.signUpWithGoogle" ng-include="'features/login/login-or-register.html'"></div>
+			<div class="margin-top-15" ng-if="vm.signUpWithGoogle" ng-include="'features/login/signup-with-google.html'"></div>
 		</div>
 	</ion-content>
 </ion-view>
