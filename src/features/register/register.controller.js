@@ -55,7 +55,7 @@
                  favorites: genres,
                  imageUrl: vm.imgURI
               };
-              userService.register(user).then(function() {
+              // userService.register(user).then(function() {
                   var alertPopup = $ionicPopup.alert({
                        title: 'Registration successful'
                   });
@@ -63,7 +63,7 @@
                   alertPopup.then(function(res) {
                       $state.go('app.login');
                   });
-              });
+              // });
             }
 
             function takePhoto() {

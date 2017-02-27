@@ -1,7 +1,7 @@
-<div class="padding">Hi {{vm.username}}, lets complete your profile</div>
+<div class="padding horizontally-center">Hi <b>{{vm.username}}</b>, lets complete your profile</div>
 <div class="row">
 	<div class="col col-offset-10 col-80">
-		<form name="form1" ng-submit="vm.signupWithBackend()" class="register">
+		<form name="googleForm" ng-submit="vm.signupWithBackend(googleForm)" class="register">
 			<label class="item-input margin-10">
 			   <span class="input-label">
 			    	<i class="ion-asterisk asterick"></i> 
@@ -36,7 +36,7 @@
 			    <input type="text">
 			</label>
 			<div class="register-buttons text-center">
-				<button type="submit" ng-class="form1.$valid ? 'link' : 'disable'">
+				<button type="submit" ng-class="googleForm.$valid ? 'link' : 'disable'">
 					Done
 				</button>
 			</div>

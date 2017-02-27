@@ -5,7 +5,9 @@
         .controller('LoginController', LoginController);
 
     // @ngInject
-    function LoginController($state, $ionicAuth, $ionicPush, $ionicGoogleAuth, userService, $ionicUser) {
+    function LoginController($state, $ionicAuth, $ionicPush, $ionicGoogleAuth, userService, $ionicUser,
+                                loaderService) 
+    {
         var vm = this;
 
         vm.genres = angular.copy(userService.allGenres);
@@ -20,18 +22,22 @@
         }
 
         function googleSignIn() {
+            loaderService.showLoader();
             $ionicGoogleAuth.login().then(function(result) {
                 vm.username = $ionicUser.social.google.data.username;
                 vm.signUpWithGoogle = true;
-            },function() {
-                console.log('error');
+            },function(err) {
+                console.log('error', err);
+            }).finally(function() {
+                loaderService.hideLoader();
             });
         }
 
         //signup user with our backend and then login even if signup fails
         //if signup fails means user has already signed up
-        function signupWithBackend() {
-            var user = {
+        function signupWithBackend(googleForm) {
+            if (googleForm.$valid) {
+                var user = {
                  emailId: $ionicUser.social.google.data.email,
                  name: $ionicUser.social.google.data.full_name,
                  organization: vm.company,
@@ -39,13 +45,14 @@
                  username: $ionicUser.social.google.data.username,
                  favorites: [],
                  imageUrl: $ionicUser.social.google.data.profile_picture
-            };
+                };
 
-            vm.email = user.emailId;
-           
-            backendLogin();              //temp
-            userService.user = user;     //temp
-            // userService.register(user).then(backendLogin, backendLogin);
+                vm.email = user.emailId;
+               
+                backendLogin();              //temp
+                userService.user = user;     //temp
+                // userService.register(user).then(backendLogin, backendLogin);
+            }
         }
 
         function login() {
@@ -54,6 +61,7 @@
             //signup user with ionicAuth and then login even if signup fails
             //if signup fails means user has already signed up
             if (vm.email && vm.password) {
+                loaderService.showLoader();
                 $ionicAuth.signup(details)
                  .then(ionicLogin, ionicLogin);
             } else {
@@ -79,6 +87,8 @@
             //     }, function() {
             //         vm.invalidLogin = true;
             //         console.log('login failed');
+            // }).finally(function() {
+                loaderService.hideLoader();
             // });
         }
     }

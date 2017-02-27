@@ -5,14 +5,7 @@ angular.module('app')
  function BookTileController($ionicPopup, bookfeedService, userService, $timeout) {
  	var vm = this;     
 
- 	vm.users = 
-            vm.genres = [
-              {id: 1, text: 'Business', checked: false, icon: null}, 
-              {id: 2, text: 'Science', checked: false, icon: null}, 
-              {id : 3, text: 'Mystery', checked: false, icon: null},
-              {id : 4, text: 'History', checked: false, icon: null},
-              {id : 5, text: 'Economics', checked: false, icon: null},
-              {id : 6, text: 'Poetry', checked: false, icon: null}];
+ 	vm.users = userService.getAllUsers();
 
  	vm.updateStatus = updateStatus;
  	vm.bookRecommended = bookRecommended;
@@ -22,7 +15,6 @@ angular.module('app')
  			updateStatus('RECOMMENDED');
  		}, 500);
  	}
-
 
  	function updateStatus(status) {
  		var statusStr = '';

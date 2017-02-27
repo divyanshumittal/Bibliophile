@@ -2,7 +2,7 @@
     <div class="col col-20 text-center pos-relative"  ui-sref="app.userProfile">
         <img class="vertically-center" ng-src="{{vm.user.imageUrl}}" />
     </div>
-    <div class="col col-80 no-padding">
+    <div class="col col-70 no-padding">
         <input ion-autocomplete type="text" readonly="readonly" class="ion-autocomplete width-100 padding-left" 
                    autocomplete="off"
                    ng-model="vm.selectedBook"
@@ -16,5 +16,8 @@
                    external-model="vm.emptyArray"
                    ng-model-options="{debounce:1100}"
                    cancel-label="X"/>
+    </div>
+    <div class="col-10 horizontally-center" ng-click="vm.openSettings($event)">
+        <i class="ion-gear-b"></i>
     </div>
 </ion-header>

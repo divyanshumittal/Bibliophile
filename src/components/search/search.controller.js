@@ -2,13 +2,30 @@ angular.module('app')
 
 .controller('SearchController', SearchController);
 
- function SearchController($state, goodReadsService, userService) {
+ function SearchController(goodReadsService, userService, $ionicPopover, $scope, $state, $ionicAuth, $ionicGoogleAuth, $ionicUser) {
    	var vm = this;    
 
+    vm.user = userService.user;
    	vm.getResults = getResults;
     vm.itemSelected = itemSelected;
-    vm.user = userService.user;
-      
+    vm.openSettings = openSettings;
+    vm.logout = logout;
+
+    init();
+
+    function init() {
+      $ionicPopover.fromTemplateUrl('components/search/logout-pop-over.html', {
+        scope: $scope
+      }).then(function(popover) {
+        vm.popover = popover;
+      });
+
+      //Cleanup the popover when we're done with it!
+      $scope.$on('$destroy', function() {
+        vm.popover.remove();
+      });
+    }
+    
       // var queryData = [
       //       {
       //         "id": "80abd054-64b1-478f-82f7-de0b8a7678fb",
@@ -51,4 +68,20 @@ angular.module('app')
             id: callback.item.goodReadsId
         });
     }   
+
+    function openSettings(event) {
+      vm.popover.show(event);
+    }
+
+    function logout() {
+      vm.popover.hide();
+
+      if ($ionicUser.social.google) {
+        $ionicGoogleAuth.logout();
+      } else {
+        $ionicAuth.logout();
+      }
+      
+      $state.go('app.login');
+    }
  };

@@ -24,11 +24,7 @@
 	.register-btn {
 		margin-top: 15%
 	}
-
-	input {
-		padding-left: 10px;
-	}
-
+	
 	.text-danger {
 		color: red;
 	}
@@ -50,5 +46,9 @@
 	button {
 		background-color: #ece9e9;
 		border: none;
+	}
+
+	fancy-select {
+		width: 100%;
 	}
 }

@@ -18,14 +18,14 @@
             });
 
 
-            // vm.userFeed = [{
-            //     name: 'Dave',
-            //     imageUrl: 'resources/img/user_icon.png',
-            //     title: 'Red Dog',
-            //     authorName: 'XYZ',
-            //     bookImg: 'resources/img/red_Dog_book_cover.jpg',
-            //     bookPoints: 200,
-            //     status: 'STARTED_READING'
-            // }];
+            vm.userFeed = [{
+                name: 'Dave',
+                imageUrl: 'resources/img/user_icon.png',
+                title: 'Red Dog',
+                authorName: 'XYZ',
+                bookImg: 'resources/img/red_Dog_book_cover.jpg',
+                bookPoints: 200,
+                status: 'STARTED_READING'
+            }];
         }
     }(angular));
