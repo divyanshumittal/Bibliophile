@@ -5,9 +5,25 @@
 		font-size: 1.1em;
 	}
 
-	ion-content {
-		background-image: url("../resources/img/book.jpeg");
+	.img-container {
+		position: relative;
+		height: 100%;
+	    width: 100%;
+	    display: block;
+	}
+
+	.img-container:before {
+	    content: ' ';
+	    display: block;
+	    position: absolute;
+	    left: 0;
+	    top: 0;
+	    width: 100%;
+	    height: 100%;
+	    opacity: 0.3;
+	    background-image: url("../resources/img/book.jpeg");
 		background-size: cover;
-		opacity: 0.4;
+	    background-repeat: no-repeat;
+	    background-position: 50% 0;
 	}
 }

@@ -5,46 +5,52 @@
             .controller('UserProfileController', UserProfileController);
 
         // @ngInject
-        function UserProfileController($ionicHistory, userService) {
-            var vm = this;  
+        function UserProfileController($ionicHistory, userService, $ionicDB) {
+            var vm = this;
+            var bookfeeds = $ionicDB.collection('bookfeeds');
 
+            vm.user = userService.user;
             vm.notificationTime = userService.notificationTime;
             vm.genres = angular.copy(userService.allGenres);
             vm.genresSelected = genresSelected;
             vm.goBack = goBack;
 
-            vm.user = {
-                name: 'John Doe',
-                points: 230,
-                img: 'resources/img/user_icon.png',
-                booksRead: 3,
-                title: 'Recruiter',
-                org: 'Egen',
-                categories: ['Mystery', 'History']
-            };
+            init();
 
-            vm.currentBooks = [{
-                imageUrl: 'resources/img/red_Dog_book_cover.jpg',
-                title: 'Red Dog',
-                authorName: 'XYZ',
-                bookImg: 'resources/img/red_Dog_book_cover.jpg',
-                bookPoints: 200,
-                status: 'STARTED_READING'
-            }];
+            function init() {
+                bookfeeds.findAll({
+                    userUUID: _.get(userService.user, 'id'),
+                    status: 'STARTED_READING',
+                    isDeprecated: false
+                }).watch().subscribe(function(books) {
+                    vm.books = books;
+                });
 
-            _.map(vm.genres, function(genre) {
-                if (vm.user.categories.indexOf(genre.text) > -1) {
-                    genre.checked = true;
-                }
-            });
+                _.map(vm.genres, function(genre) {
+                    if (_.get(vm.user, 'favorites', []).indexOf(genre.text) > -1) {
+                        genre.checked = true;
+                    }
+                });
+
+                calcBooksRead();
+            }
 
             function goBack() {
                 $ionicHistory.goBack();
             }
 
             function genresSelected(value) {
-                vm.user.categories = _.map(value.split(';'), function(selectedId) {
+                vm.user.favorites = _.map(value.split(';'), function(selectedId) {
                     return _.find(vm.genres, {id: parseInt(selectedId)}).text;
+                });
+            }
+
+            function calcBooksRead() {
+                bookfeeds.findAll({
+                    userUUID: _.get(userService.user, 'id'),
+                    status: 'READ'
+                }).watch().subscribe(function(books) {
+                    vm.booksRead = _.size(books);
                 });
             }
         }

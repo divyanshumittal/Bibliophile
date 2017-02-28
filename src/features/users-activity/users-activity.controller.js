@@ -5,27 +5,16 @@
             .controller('ActivityController', ActivityController);
 
         // @ngInject
-        function ActivityController(bookfeedService, userService) {
+        function ActivityController(bookfeedService, userService, $ionicDB) {
             var vm = this;
+            var bookfeeds = $ionicDB.collection('bookfeeds');
 
             vm.user = userService.user;
 
-            bookfeedService.getAllFeeds(_.get(vm.user, 'username')).then(function(res) {
-                vm.userFeed = _.get(res, 'data');
-                _.forEach(vm.userFeed, function(user) {
-                    user.userImgUrl = 'resources/img/user_icon.png';
-                });
+            bookfeeds.order('createdDate', 'descending').findAll({ organization: _.get(userService.user, 'organization')}).
+                watch().subscribe(function(feeds) {
+                    vm.feeds = feeds;
+                    vm.feeds = _.reject(vm.feeds, { userUUID:  _.get(userService.user, 'id')});
             });
-
-
-            vm.userFeed = [{
-                name: 'Dave',
-                imageUrl: 'resources/img/user_icon.png',
-                title: 'Red Dog',
-                authorName: 'XYZ',
-                bookImg: 'resources/img/red_Dog_book_cover.jpg',
-                bookPoints: 200,
-                status: 'STARTED_READING'
-            }];
         }
     }(angular));

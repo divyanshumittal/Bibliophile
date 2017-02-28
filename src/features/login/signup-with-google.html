@@ -1,7 +1,7 @@
 <div class="padding horizontally-center">Hi <b>{{vm.username}}</b>, lets complete your profile</div>
 <div class="row">
 	<div class="col col-offset-10 col-80">
-		<form name="googleForm" ng-submit="vm.signupWithBackend(googleForm)" class="register">
+		<form name="googleForm" ng-submit="vm.signup(googleForm)" class="register">
 			<label class="item-input margin-10">
 			   <span class="input-label">
 			    	<i class="ion-asterisk asterick"></i> 
@@ -24,7 +24,7 @@
 			   	<fancy-select
 			   	  show-text="true"
 		          header-text="Choose genres"
-		          allow-empty='false'
+		          allow-empty='true'
 		          value="vm.selectedGenres"
 		          text="'Choose'"
 		          items="vm.genres"
@@ -33,7 +33,7 @@
 			</div>
 			<label class="item-input margin-10">
 			    <span class="input-label">Groups</span>
-			    <input type="text">
+			    <input type="text" ng-model="vm.groups">
 			</label>
 			<div class="register-buttons text-center">
 				<button type="submit" ng-class="googleForm.$valid ? 'link' : 'disable'">

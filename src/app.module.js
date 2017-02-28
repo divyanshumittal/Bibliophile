@@ -69,9 +69,10 @@
             var state = $injector.get('$state');
             var user = $injector.get('$ionicUser');
             
+            console.log('user', user);
             if (user.id) {
                 state.go('app.home.activity', { registerForPush: true });
-            } else {                   
+            } else {                
                 state.go('app.login');
             }
            

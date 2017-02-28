@@ -17,9 +17,10 @@
                 },
                 resolve: {
                     book: function($stateParams, goodReadsService) {
-                        return goodReadsService.getBook($stateParams.id).then(function(result) {
-                                return _.get(result, 'data');
-                            });
+                        return {};
+                        // return goodReadsService.getBook($stateParams.id).then(function(result) {
+                        //         return _.get(result, 'data');
+                        //     });
                         }
                 },
                 data: {

@@ -5,8 +5,11 @@
             .service('userService', userService);
 
         // @ngInject
-        function userService($http, $q) {
+        function userService($ionicAuth, $ionicPopup, $ionicDB, $state, $ionicGoogleAuth) {
             var self = this;  
+            var users = $ionicDB.collection('customUsers');
+
+            $ionicDB.connect();
 
             self.allGenres = [
               {id: 1, text: 'Business', checked: false, icon: null}, 
@@ -17,69 +20,48 @@
               {id : 6, text: 'Poetry', checked: false, icon: null}];
               
             self.notificationTime = 10;
+            self.signup = signup;
             self.login = login;
-            self.register = register;
             self.getAllUsers = getAllUsers;
 
-            function login(username, password) {
-                var defer = $q.defer();
-
-                $http({
-                    method: 'GET',
-                    url: '/api/v1/user/oauth',
-                    params: {
-                        username: username,
-                        password: password
-                    }
-                }).then(function(res) {
-                    defer.resolve(res);
-                }, function(err) {
-                    console.log('error', err);
-                    defer.reject(err);
-                });
-
-                return defer.promise;
+            function signup(user, details, googleSignUp) {
+              if (googleSignUp) {
+                saveCustomUser(user, googleSignUp);
+              } else {
+                $ionicAuth.signup(details)
+                 .then(function() {
+                   saveCustomUser(user, googleSignUp);
+                 });
+              }
             }
 
-            function register(user) {
-            	var defer = $q.defer();
+            function saveCustomUser(user, googleSignUp) {
+              var alertPopup = $ionicPopup.alert({
+                     title: 'Registration successful'
+              });
 
-                $http({
-                    method: 'POST',
-                    url: '/api/v1/user',
-                    params: {
-                        username: user.username,
-                        password: user.password
-                    },
-                    data: user
-                }).then(function(res) {
-                    defer.resolve(res);
-                }, function(err) {
-                    console.log('error', err);
-                    defer.reject(err);
-                });
+              alertPopup.then(function(res) {
+                  if (googleSignUp) {
+                    $ionicGoogleAuth.logout();
+                  }
+                  $state.go('app.login');
+              });
 
-                return defer.promise;
+              users.store(user);
             }
 
-            function getAllUsers(organization) {
-                var defer = $q.defer();
-
-                $http({
-                    method: 'GET',
-                    url: '/api/v1/user',
-                    params: {
-                        organization: organization,
-                        sortBy: 'bookPoints'
-                    }
-                }).then(function(res) {
-                    defer.resolve(res);
-                }, function(err) {
-                    console.log('error', err);
-                    defer.reject(err);
+            function login(details) {
+                users.find({email: details.email}).fetch().subscribe(function(user) {
+                    self.user = user;
+                    getAllUsers();
+                    $state.go('app.home.activity', { registerForPush : true });
                 });
+            }
 
-                return defer.promise;
+            function getAllUsers() {
+              users.order("score").findAll({ organization: _.get(self.user, 'organization')}).fetch().subscribe(function(users) {
+                  self.users = users;
+              });
             }
         }
     }(angular));

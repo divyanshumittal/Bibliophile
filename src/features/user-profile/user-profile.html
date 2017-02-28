@@ -8,16 +8,16 @@
 		<div class="row text-center">
 			<div class="col col-33 medium-font">
 				<div><b>My points</b></div>
-				<div class="blue-font">{{vm.user.points}}</div>
+				<div class="blue-font">{{vm.user.score}}</div>
 			</div>
 			<div class="col col-33">
-				<img ng-src="{{vm.user.img}}" class="user-img" />
+				<img ng-src="{{vm.user.imageUrl}}" class="user-img" />
 				<div>{{vm.user.name}}</div>
-				<div>{{vm.user.title}}, {{vm.user.org}}</div>
+				<div>{{vm.user.organization}}</div>
 			</div>
 			<div class="col col-33 medium-font">
 				<div><b>Books Read</b></div>
-				<div class="blue-font">{{vm.user.booksRead}}</div>
+				<div class="blue-font">{{vm.booksRead}}</div>
 			</div>
 		</div>
 		<div class="row margin-3">
@@ -25,9 +25,10 @@
 				<b>Categories:</b>
 			</div>
 			<div class="col-50">
-				<span ng-repeat="cat in vm.user.categories" class="tag">
+				<span ng-repeat="cat in vm.user.favorites" class="tag">
 					<b>{{cat}}</b>
 				</span>
+				<span ng-if="!vm.user.favorites.length">None selected</span>
 			</div>
 			<div class="col-10">
 				<fancy-select
@@ -57,8 +58,11 @@
 		</div>
 		<div class="text-center margin-top-10">
 			<div class="large-font">CURRENTLY READING</div>
-			<div ng-repeat="bookObj in vm.currentBooks">
-				<book-tile book=bookObj book-status="'CURRENT'"></book-tile>
+			<div ng-repeat="bookObj in vm.books">
+				<book-tile book=bookObj book-status="'STARTED_READING'" my-book="true"></book-tile>
+			</div>
+			<div ng-if="!vm.books.length" class="margin-top-15">
+				May be, you should read more
 			</div>
 		</div>
 	</ion-content>

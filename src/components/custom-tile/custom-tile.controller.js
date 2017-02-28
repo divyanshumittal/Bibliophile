@@ -15,7 +15,9 @@ angular.module('app')
  		if (vm.tapped) {
  			popTitle = 'Reminder cancelled';
  			$cordovaLocalNotification.cancel(id).then(function (result) {
-		        // ...
+		        console.log('cancelled');
+		    }, function(err) {
+		    	console.log('cant', err);
 		    });
  		} else {
  			$cordovaLocalNotification.schedule({

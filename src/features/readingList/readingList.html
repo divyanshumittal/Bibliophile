@@ -5,10 +5,10 @@
 	      Reading List
 	    </ion-nav-title>
     </ion-nav-bar>
-	<ion-content class="has-header" scroll="true">
+	<ion-content class="has-header img-container" scroll="true">
 		<div class="heading">{{vm.status}}</div>
 		<div ng-repeat="book in vm.books">
-			<book-tile book="book" book-status="vm.status" callback="vm.updateBooks"></book-tile>
+			<book-tile book="book" book-status="vm.status" callback="vm.updateBooks" my-book="true"></book-tile>
 		</div>
 	</ion-content>
 	<ion-tabs class="tabs-dark tabs-icon-top">

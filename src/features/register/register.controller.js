@@ -5,7 +5,7 @@
             .controller('RegisterController', RegisterController);
 
         // @ngInject
-        function RegisterController(userService, $state, $ionicPopup, $cordovaCamera) {
+        function RegisterController($state, $cordovaCamera, userService) {
             var vm = this;
 
             vm.genres = angular.copy(userService.allGenres);
@@ -47,23 +47,25 @@
               }
               
               var user = {  
-                 emailId: vm.email,
+                 email: vm.email,
                  name: vm.name,
                  organization: vm.company,
                  password: vm.password,
                  username: vm.username,
                  favorites: genres,
-                 imageUrl: vm.imgURI
+                 imageUrl: vm.imgURI,
+                 groups: vm.groups,
+                 score: 0,
+                 ionicId:  '',
+                 createdDate: new Date(),
+                 isAdmin: false
               };
-              // userService.register(user).then(function() {
-                  var alertPopup = $ionicPopup.alert({
-                       title: 'Registration successful'
-                  });
+              var details = {
+                email: vm.email,
+                password: vm.password
+              };
 
-                  alertPopup.then(function(res) {
-                      $state.go('app.login');
-                  });
-              // });
+              userService.signup(user, details);
             }
 
             function takePhoto() {

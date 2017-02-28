@@ -31,27 +31,11 @@
             init();
 
             function init() {
-                userService.getAllUsers(_.get(userService.user, 'organization')).then(function(result) {
-                    // set data for list and chart here
-                    vm.users = result.data;
-                    vm.chartData = [{
-                        key: "Cumulative Points",
-                        values: result.data.slice(1, 6)
-                    }];
-                    _.forEach(vm.users, function(user) {
-                        user.img = 'resources/img/user_icon.png';
-                    });
-                });
+                vm.users = userService.users;
+                vm.chartData = [{
+                    key: "Cumulative Points",
+                    values: vm.users.slice(0, 6)
+                }];
             }
-
-            // vm.users = [{
-            //     name: 'John Doe',
-            //     img: '../resources/img/user_icon.png',
-            //     score: 900
-            // }, {
-            //     name: 'Tom Riddles',
-            //     img: '../resources/img/user_icon.png',
-            //     score: 700
-            // }];
         }
     }(angular));

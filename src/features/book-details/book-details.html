@@ -29,14 +29,24 @@
 	</ion-content>
 	<div class="bar bar-dark bar-footer button-bar">
 		<div class="row">
-			<div class="col-33 text-center">
+			<div class="col-33 text-center" ng-click="vm.createBookfeed('QUEUE')">
 				<a class="white-font">Add</a>
 			</div>
-			<div class="col-33 text-center">
+			<div class="col-33 text-center" ng-click="vm.createBookfeed('STARTED_READING')">
 				<a class="white-font">Start</a>
 			</div>
 			<div class="col-33 text-center">
-				<a class="white-font">Recommend</a>
+				 <fancy-select
+				    show-text="true"
+				    header-text="Recommend"
+				    allow-empty='true'
+				    value="vm.selectedUsers"
+				    text="'Recommend'"
+				    items="vm.users"
+				    multi-select="true"
+				    callback="vm.createRecommendation(value)"
+				    update-text="'Recommend'">
+				  </fancy-select>
 			</div>
 		</div>
 	</div>

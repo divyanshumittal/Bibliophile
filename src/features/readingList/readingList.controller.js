@@ -5,25 +5,41 @@
             .controller('ReadingListController', ReadingListController);
 
         // @ngInject
-        function ReadingListController(bookfeedService, userService) {
-            var vm = this;  
+        function ReadingListController(userService, $ionicDB) {
+            var vm = this;
+            var bookfeeds = $ionicDB.collection('bookfeeds');
+            var recommendations = $ionicDB.collection('recommendations');
 
-            vm.status = 'RECOMMENDED';
-
-            // vm.books = [{
-            //     title: 'Red Dog',
-            //     authorName: 'XYZ',
-            //     imageUrl: 'resources/img/red_Dog_book_cover.jpg',
-            //     bookPoints: 200,
-            //     status: 'RECOMMENDED'
-            // }];
             vm.getBooks = getBooks;
 
+            init();
+
+            function init() {
+                if (!vm.status) {
+                     vm.status = 'RECOMMENDED';
+                     getBooks(vm.status);
+                }
+            }
+
             function getBooks(status) {
-                vm.status = status || vm.status;
-                bookfeedService.getBooks(_.get(userService.user, 'id'), status).then(function(result) {
-                    vm.books = _.get(result, 'content');
-                });
+                vm.status = status; 
+                
+                if (status === 'RECOMMENDED') {
+                    recommendations.findAll({
+                        recommendedTo: _.get(userService.user, 'id'),
+                        isDeprecated: false
+                    }).watch().subscribe(function(books) {
+                        vm.books = books;
+                    });
+                } else {
+                    bookfeeds.findAll({
+                        userUUID: _.get(userService.user, 'id'),
+                        status: status,
+                        isDeprecated: false
+                    }).watch().subscribe(function(books) {
+                        vm.books = books;
+                    });
+                }
             }
         }
     }(angular));

@@ -25,7 +25,19 @@
             </div>
             <div ng-if="vm.book.status === 'READ'" class="row no-padding button-bar button-feel">
                 <div ng-if="vm.myBook" class="single-button">
-                    <a class="col" ng-click="vm.updateStatus('RECOMMENDED')">Recommend</a>
+                    <div class="col">
+                        <fancy-select
+                            show-text="true"
+                            header-text="Recommend"
+                            allow-empty='true'
+                            value="vm.selectedUsers"
+                            text="'Recommend'"
+                            items="vm.users"
+                            multi-select="true"
+                            callback="vm.bookRecommended()"
+                            update-text="'Recommend'">
+                        </fancy-select>
+                     </div>
                 </div>
                 <div ng-if="!vm.myBook" class="button-bar" ng-include="'components/book-tile/template1.html'"></div>
             </div>

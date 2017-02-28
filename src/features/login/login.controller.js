@@ -5,15 +5,16 @@
         .controller('LoginController', LoginController);
 
     // @ngInject
-    function LoginController($state, $ionicAuth, $ionicPush, $ionicGoogleAuth, userService, $ionicUser,
-                                loaderService) 
+    function LoginController($ionicAuth, $ionicPush, $ionicGoogleAuth, $ionicUser, loaderService, userService, 
+                                $ionicDB, $state) 
     {
         var vm = this;
+        var users = $ionicDB.collection('customUsers');
 
         vm.genres = angular.copy(userService.allGenres);
         vm.login = login;
         vm.googleSignIn = googleSignIn;
-        vm.signupWithBackend = signupWithBackend;
+        vm.signup =  signup;
 
         init();
 
@@ -24,72 +25,76 @@
         function googleSignIn() {
             loaderService.showLoader();
             $ionicGoogleAuth.login().then(function(result) {
-                vm.username = $ionicUser.social.google.data.username;
-                vm.signUpWithGoogle = true;
+                users.find({email: $ionicUser.social.google.data.email}).fetch().subscribe(function(user) {
+                    if (user) {
+                        userService.user = user;
+                        userService.getAllUsers();
+                        $state.go('app.home.activity', { registerForPush : true });
+                    } else {
+                        vm.username = $ionicUser.social.google.data.username;
+                        vm.signUpWithGoogle = true;
+                    }
+                });
             },function(err) {
-                console.log('error', err);
+                // already signed up
+                userService.login({email: $ionicUser.social.google.data.email});
             }).finally(function() {
                 loaderService.hideLoader();
             });
         }
 
-        //signup user with our backend and then login even if signup fails
-        //if signup fails means user has already signed up
-        function signupWithBackend(googleForm) {
+        function signup(googleForm) {
             if (googleForm.$valid) {
-                var user = {
-                 emailId: $ionicUser.social.google.data.email,
-                 name: $ionicUser.social.google.data.full_name,
-                 organization: vm.company,
-                 password: vm.password,
-                 username: $ionicUser.social.google.data.username,
-                 favorites: [],
-                 imageUrl: $ionicUser.social.google.data.profile_picture
-                };
+                var genres;
 
-                vm.email = user.emailId;
+                if (vm.selectedGenres) {
+                    genres = _.map(vm.selectedGenres.split(';'), function(selectedId) {
+                        return _.find(vm.genres, {id: parseInt(selectedId)}).text;
+                    });
+                }
+
+                var user = {
+                    email: $ionicUser.social.google.data.email,
+                    name: $ionicUser.social.google.data.full_name,
+                    organization: vm.company,
+                    password: vm.password,
+                    username: $ionicUser.social.google.data.username,
+                    favorites: genres,
+                    imageUrl: $ionicUser.social.google.data.profile_picture,
+                    groups: vm.groups,
+                    score: 0,
+                    ionicId:  '',
+                    createdDate: new Date(),
+                    isAdmin: false
+                };
+                var details = {
+                    email: $ionicUser.social.google.data.email,
+                    password: vm.password
+                };
                
-                backendLogin();              //temp
-                userService.user = user;     //temp
-                // userService.register(user).then(backendLogin, backendLogin);
+                userService.signup(user, details, true);
+                vm.signUpWithGoogle = false;
+                vm.password = '';
             }
         }
 
         function login() {
             var details = {'email': vm.email, 'password': vm.password};
             
-            //signup user with ionicAuth and then login even if signup fails
-            //if signup fails means user has already signed up
             if (vm.email && vm.password) {
                 loaderService.showLoader();
-                $ionicAuth.signup(details)
-                 .then(ionicLogin, ionicLogin);
+                $ionicAuth.login('basic', details)
+                    .then(function() {
+                        userService.login(details);
+                    }, function() {
+                        vm.invalidLogin = true;
+                    })
+                    .finally(function() {
+                        loaderService.hideLoader();
+                    });
             } else {
                 vm.invalidLogin = true;
             }
-        }
-
-        function ionicLogin() {
-            var details = {'email': vm.email, 'password': vm.password};
-
-            $ionicAuth.login('basic', details).then(backendLogin);
-        }
-
-        function backendLogin() {
-            // userService.login(vm.email, vm.password).then(function(result) {
-            //     if (_.get(result, 'data')) {
-            //         userService.user = result.data;
-                    $state.go('app.home.activity', {registerForPush : true});
-            //     } else {
-            //         vm.invalidLogin = true;
-            //     }
-                    
-            //     }, function() {
-            //         vm.invalidLogin = true;
-            //         console.log('login failed');
-            // }).finally(function() {
-                loaderService.hideLoader();
-            // });
         }
     }
 })(angular);

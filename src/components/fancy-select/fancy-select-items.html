@@ -17,7 +17,7 @@
                   ng-checked="item.checked"
                   ng-model="item.checked"
                   class="item item-text-wrap">
-        <div class="fancy-select-icon" ng-if="item.icon != null">
+        <div class="fancy-select-icon" ng-if="item.icon">
           <img src="{{item.icon}}" />
         </div>
         {{item.text}}

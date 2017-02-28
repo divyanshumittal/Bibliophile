@@ -5,71 +5,36 @@
             .service('bookfeedService', bookfeedService);
 
         // @ngInject
-        function bookfeedService($http, $q) {
-            var self = this;  
+        function bookfeedService($http, $q, $ionicPopup, $ionicDB, userService) {
+            var self = this;
+            var bookfeeds = $ionicDB.collection('bookfeeds');
+            var recommendations = $ionicDB.collection('recommendations');
 
-            self.getAllFeeds = getAllFeeds;
-            self.getBooks = getBooks;
             self.createBookfeed = createBookfeed;
-
-            function getAllFeeds(userId) {
-                var defer = $q.defer();
-
-                $http({
-                    method: 'GET',
-                    url: '/api/v1/bookfeed/showfeed',
-                    params: {
-                        userId: userId
-                    }
-                }).then(function(res) {
-                    defer.resolve(res);
-                }, function(err) {
-                    console.log('error', err);
-                    defer.reject(err);
-                });
-
-                return defer.promise;
-            }
-
-            function getBooks(userId, status) {
-                var defer = $q.defer();
-
-                $http({
-                    method: 'GET',
-                    url: '/api/v1/bookfeed/_search',
-                    params: {
-                        userId: userId,
-                        status: status,
-                        page: 0,
-                        size: 1000,
-                        sortOrder: 'desc',
-                        sortBy: 'createdDate'
-                    }
-                }).then(function(res) {
-                    defer.resolve(res);
-                }, function(err) {
-                    console.log('error', err);
-                    defer.reject(err);
-                });
-
-                return defer.promise;
-            }
+            self.createRecommendation = createRecommendation;
 
             function createBookfeed(bookfeedObj) {
-                var defer = $q.defer();
+                var statusStr = '';
 
-                $http({
-                    method: 'POST',
-                    url: '/api/v1/bookfeed',
-                    data: bookfeedObj
-                }).then(function(res) {
-                    defer.resolve(res);
-                }, function(err) {
-                    console.log('error', err);
-                    defer.reject(err);
+                if (bookfeedObj.status === 'READ') {
+                    statusStr = ' moved to Read';
+                } else if (bookfeedObj.status === 'QUEUE') {
+                    statusStr = ' added to Queue';
+                } else if (bookfeedObj.status === 'STARTED_READING') {
+                    statusStr = ' moved to Currently reading list';
+                } else if(bookfeedObj.status === 'RECOMMENDED') {
+                    statusStr = ' recommended';
+                }
+
+                $ionicPopup.alert({
+                     title: bookfeedObj.title + statusStr
                 });
 
-                return defer.promise;
+                bookfeeds.store(bookfeedObj);
+            }
+
+            function createRecommendation(recommendation) {
+                recommendations.store(recommendation);
             }
         }
     }(angular));
