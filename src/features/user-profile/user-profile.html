@@ -60,6 +60,7 @@
 			<div class="large-font">CURRENTLY READING</div>
 			<div ng-repeat="bookObj in vm.books">
 				<book-tile book=bookObj book-status="'STARTED_READING'" my-book="true"></book-tile>
+				<rating ng-model="vm.rating.rate" max="vm.rating.max" ng-click="vm.ratingsClicked(bookObj)"></rating>
 			</div>
 			<div ng-if="!vm.books.length" class="margin-top-15">
 				May be, you should read more

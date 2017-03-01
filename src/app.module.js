@@ -15,6 +15,7 @@
         'nvd3',
         'ion-autocomplete',
         'ngMessages',
+        'ionic.rating',
 
         // services
         'app.auth',

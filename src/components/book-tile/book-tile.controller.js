@@ -83,13 +83,15 @@ angular.module('app')
             userImgUrl:  _.get(userService.user, 'imageUrl'),
             createdDate: new Date(),
             organization: _.get(userService.user, 'organization'),
-			isDeprecated: false
+			isDeprecated: false,
+            ratings: vm.book.ratings
 		};
 		
-		//deprecate old feeds for same user
+		//deprecate old feeds for same user for the same book
 		bookfeeds.findAll({
             userUUID: _.get(userService.user, 'id'),
-            isDeprecated: false
+            isDeprecated: false,
+            title: vm.book.title
         }).fetch().subscribe(function(books) {
             _.forEach(books, function(book) {
             	book.isDeprecated = true;
@@ -105,7 +107,7 @@ angular.module('app')
             });
 		}
 
-        //increment users score 
+        //increment users score
         if (status === 'READ') {
             userService.user.score += vm.book.bookPoints;
             users.update(userService.user);

@@ -9,11 +9,17 @@
             var vm = this;
             var bookfeeds = $ionicDB.collection('bookfeeds');
 
+            vm.rating = {
+                rate: 0,
+                max: 5
+            };
+
             vm.user = userService.user;
             vm.notificationTime = userService.notificationTime;
             vm.genres = angular.copy(userService.allGenres);
             vm.genresSelected = genresSelected;
             vm.goBack = goBack;
+            vm.ratingsClicked = ratingsClicked;
 
             init();
 
@@ -52,6 +58,10 @@
                 }).watch().subscribe(function(books) {
                     vm.booksRead = _.size(books);
                 });
+            }
+
+            function ratingsClicked(bookObj) {
+                bookObj.ratings = vm.rating.rate;
             }
         }
 

@@ -44,3 +44,14 @@
 		padding-left: 10px;
 	}
 }
+
+ul.rating li {
+  display: inline;
+  border: 0px;
+  background: none;
+  padding: 3px;
+}
+
+ul.rating li i {
+  font-size: 30px;
+}

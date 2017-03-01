@@ -10,8 +10,10 @@
     <div class="col col-60">
         <div class="text-center">
             <b class="large-font-size">{{vm.book.title}}</b>
-
             <div class="small-font-size">{{vm.book.authorName}}</div>
+            <div ng-if="vm.book.status === 'READ' && vm.book.ratings">
+                <rating ng-model="vm.book.ratings" max="5" readonly="true"></rating>
+            </div>
             <div ng-if="vm.book.status === 'QUEUE'" class="row no-padding button-bar button-feel" 
                  ng-class="{'single-button': vm.myBook}">
                 <div ng-if="vm.myBook" class="single-button">
