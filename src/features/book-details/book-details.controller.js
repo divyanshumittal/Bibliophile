@@ -85,9 +85,8 @@
                              title: vm.book.title + ' recommended'
                         });
 
-                        console.log('recommendedIonicIds', recommendedIonicIds);
-
-                        bookfeedService.sendNotification(vm.book.title, recommendedIonicIds);
+                        // console.log('recommendedIonicIds', recommendedIonicIds);
+                        // bookfeedService.sendNotification(vm.book.title, recommendedIonicIds);
                     }
                 }, 500);
             }

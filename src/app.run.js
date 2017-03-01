@@ -24,9 +24,18 @@
                 $window.cordova.logger.__onDeviceReady();
             }
 
-           $rootScope.$on('cloud:push:notification', function(event, data) {
-                var msg = data.message;
-                $cordovaDialogs.alert(msg.text, msg.title, 'Okay').
+            // $rootScope.$on('cloud:push:notification', function(event, data) {
+            //     var msg = data.message;
+            //     $cordovaDialogs.alert(msg.text, msg.title, 'Okay').
+            //         then(function() {
+
+            //         });
+            // });
+
+            $window.cordova.plugins.notification.local.on("trigger", function (notification, state) {
+                console.log(notification, state);
+                
+                $cordovaDialogs.alert('Book nameeee', 'recommendedddddd', 'Okay').
                     then(function() {
 
                     });

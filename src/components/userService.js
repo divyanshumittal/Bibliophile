@@ -5,9 +5,10 @@
             .service('userService', userService);
 
         // @ngInject
-        function userService($ionicAuth, $ionicPopup, $ionicDB, $state, $ionicGoogleAuth) {
+        function userService($ionicAuth, $ionicPopup, $ionicDB, $state, $ionicGoogleAuth, bookfeedService) {
             var self = this;  
             var users = $ionicDB.collection('customUsers');
+            var recommendations = $ionicDB.collection('recommendations');
 
             $ionicDB.connect();
 
@@ -23,6 +24,7 @@
             self.signup = signup;
             self.login = login;
             self.getAllUsers = getAllUsers;
+            self.setupRecommendationWatcher = setupRecommendationWatcher;
 
             function signup(user, details, googleSignUp) {
               if (googleSignUp) {
@@ -63,6 +65,19 @@
             function getAllUsers() {
               users.order("score").findAll({ organization: _.get(self.user, 'organization')}).fetch().subscribe(function(users) {
                   self.users = users;
+              });
+            }
+
+            function setupRecommendationWatcher(callback) {
+              recommendations.order('createdDate', 'descending').findAll({
+                  recommendedTo: _.get(userService.user, 'id'),
+                  isDeprecated: false
+              }).watch().subscribe(function(recommendations) {
+                  if (_.isFunction(callback)) {
+                    callback(recommendations);
+                  } else {
+                    bookfeedService.sendCordovaNotification(recommendations[0].title);
+                  }
               });
             }
         }

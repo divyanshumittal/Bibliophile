@@ -1,11 +1,13 @@
 <div class="row container tile">
-    <div class="col col-offset-10 col-30 pos-relative">
-        <div class="points-badge">
-            <div class="vertically-center text-center">
-                <b class="purple-font">{{vm.book.bookPoints}}</b> <div class="very-small-font-size">POINTS</div>
+    <div class="col col-offset-10 col-30">
+        <div class="pos-relative">
+            <div class="points-badge">
+                <div class="vertically-center text-center">
+                    <b class="purple-font">{{vm.book.bookPoints}}</b> <div class="very-small-font-size">POINTS</div>
+                </div>
             </div>
+            <img ng-src="{{vm.book.imageUrl}}" />
         </div>
-        <img ng-src="{{vm.book.imageUrl}}" />
     </div>
     <div class="col col-60">
         <div class="text-center">

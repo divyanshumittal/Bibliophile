@@ -5,7 +5,7 @@
             .controller('ReadingListController', ReadingListController);
 
         // @ngInject
-        function ReadingListController(userService, $ionicDB) {
+        function ReadingListController(userService, $ionicDB, bookfeedService) {
             var vm = this;
             var bookfeeds = $ionicDB.collection('bookfeeds');
             var recommendations = $ionicDB.collection('recommendations');
@@ -21,20 +21,13 @@
                      vm.status = 'RECOMMENDED';
                      getBooks(vm.status);
                 }
+                userService.setupRecommendationWatcher(getRecommendedBooksCallback);
             }
 
             function getBooks(status) {
                 vm.status = status; 
                 
-                if (status === 'RECOMMENDED') {
-                    recommendations.findAll({
-                        recommendedTo: _.get(userService.user, 'id'),
-                        isDeprecated: false
-                    }).watch().subscribe(function(recommendations) {
-                        vm.books = _.reject(recommendations, { createdByAdmin: true});
-                        vm.adminRecommendedBooks = _.filter(recommendations, { createdByAdmin: true});
-                    });
-                } else {
+                if (status !== 'RECOMMENDED') {
                     bookfeeds.findAll({
                         userUUID: _.get(userService.user, 'id'),
                         status: status,
@@ -51,6 +44,11 @@
                     bookObj.isDeprecated = true;
                     recommendations.update(bookObj);
                 }
+            }
+
+            function getRecommendedBooksCallback(recommendations) {
+                vm.books = _.reject(recommendations, { createdByAdmin: true});
+                vm.adminRecommendedBooks = _.filter(recommendations, { createdByAdmin: true});
             }
         }
     }(angular));

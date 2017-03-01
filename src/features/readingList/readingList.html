@@ -2,13 +2,13 @@
 	<ion-nav-bar class="bar-dark">
         <ion-nav-back-button></ion-nav-back-button>
         <ion-nav-title align-title="center">
-	      Reading List
+	      Home
 	    </ion-nav-title>
     </ion-nav-bar>
 	<ion-content class="has-header img-container" scroll="true">
 		<div class="heading">{{vm.status}}</div>
 		<div ng-if="vm.status === 'RECOMMENDED'" class="recommended-section">
-			<div>{{vm.user.organization}}'s suggested books</div>
+			<div ng-if="vm.adminRecommendedBooks.length">{{vm.user.organization}}'s suggested books</div>
 			<div ng-repeat="book in vm.adminRecommendedBooks" class="border-left">
 				<book-tile book="book" book-status="vm.status" callback="vm.updateRecommendation(bookObj, status)" my-book="true">
 					

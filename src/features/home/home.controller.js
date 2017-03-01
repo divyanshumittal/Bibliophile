@@ -19,6 +19,8 @@
                     userService.getAllUsers();
                     AuthService.registerForPushNotifications();
                 });
+
+                userService.setupRecommendationWatcher();
             }
         }
     }(angular));

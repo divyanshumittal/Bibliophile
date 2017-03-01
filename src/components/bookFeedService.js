@@ -5,14 +5,16 @@
             .service('bookfeedService', bookfeedService);
 
         // @ngInject
-        function bookfeedService($ionicPopup, $ionicDB, $http, $q, userService) {
+        function bookfeedService($ionicPopup, $ionicDB, $http, $q, $window) {
             var self = this;
             var bookfeeds = $ionicDB.collection('bookfeeds');
             var recommendations = $ionicDB.collection('recommendations');
+            var id = Math.random();
 
             self.createBookfeed = createBookfeed;
             self.createRecommendation = createRecommendation;
             self.sendNotification = sendNotification;
+            self.sendCordovaNotification = sendCordovaNotification;
 
             function createBookfeed(bookfeedObj) {
                 var statusStr = '';
@@ -72,6 +74,17 @@
               });
 
               return defer.promise;
+            }
+
+            function sendCordovaNotification(title) {
+              $window.cordova.plugins.notification.local.schedule({
+                id         : id,
+                title      : title,
+                text       : 'recommended',
+                sound      : null,
+                autoClear  : false,
+                at         : new Date(new Date().getTime())
+              });
             }
         }
     }(angular));

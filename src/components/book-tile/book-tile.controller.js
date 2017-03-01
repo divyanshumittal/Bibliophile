@@ -65,7 +65,7 @@ angular.module('app')
                      title: vm.book.title + ' recommended'
                 });
 
-                bookfeedService.sendNotification(vm.book.title, recommendedIonicIds);
+                // bookfeedService.sendNotification(vm.book.title, recommendedIonicIds);
             }
         }, 500);
     }
