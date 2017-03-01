@@ -19,6 +19,8 @@
             $ionicPush.register()
                 .then(function(t) {
                     return $ionicPush.saveToken(t);
+                }, function (err) {
+                    console.log('err', err);
                 }).then(function(t) {
                     console.log('ionic id', $ionicUser.id);
                     // might need to copy $ionicUser to userService.user when the app is reloaded if userService.user is undefined

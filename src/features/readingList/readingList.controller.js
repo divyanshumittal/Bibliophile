@@ -10,7 +10,9 @@
             var bookfeeds = $ionicDB.collection('bookfeeds');
             var recommendations = $ionicDB.collection('recommendations');
 
+            vm.user = userService.user;
             vm.getBooks = getBooks;
+            vm.updateRecommendation = updateRecommendation;
 
             init();
 
@@ -28,8 +30,9 @@
                     recommendations.findAll({
                         recommendedTo: _.get(userService.user, 'id'),
                         isDeprecated: false
-                    }).watch().subscribe(function(books) {
-                        vm.books = books;
+                    }).watch().subscribe(function(recommendations) {
+                        vm.books = _.reject(recommendations, { createdByAdmin: true});
+                        vm.adminRecommendedBooks = _.filter(recommendations, { createdByAdmin: true});
                     });
                 } else {
                     bookfeeds.findAll({
@@ -39,6 +42,14 @@
                     }).watch().subscribe(function(books) {
                         vm.books = books;
                     });
+                }
+            }
+
+            function updateRecommendation(bookObj, status) {
+                // update recommendation
+                if (bookObj.status === 'RECOMMENDED' && status === 'STARTED_READING') {
+                    bookObj.isDeprecated = true;
+                    recommendations.update(bookObj);
                 }
             }
         }

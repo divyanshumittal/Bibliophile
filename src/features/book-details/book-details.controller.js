@@ -47,6 +47,7 @@
             function createRecommendation(value) {
                 $timeout(function() {
                     var recommendedTo = [];
+                    var recommendedIonicIds = [];
 
                     if (value) {
                         if (value.includes(';')) {
@@ -54,6 +55,10 @@
                         } else {
                             recommendedTo = [value];
                         }
+
+                        recommendedIonicIds = _.map(recommendedTo, function(userId) {
+                           return _.find(vm.users, { id: userId}).ionicId;
+                        });
 
                         _.forEach(recommendedTo, function(recommendedUserID) {
                             var recommendation = {
@@ -69,6 +74,7 @@
                                 bookPoints: vm.book.bookPoints,
                                 createdDate: new Date(),
                                 organization: userService.user.organization,
+                                createdByAdmin: userService.user.isAdmin,
                                 isDeprecated: false
                             };
 
@@ -78,6 +84,10 @@
                         $ionicPopup.alert({
                              title: vm.book.title + ' recommended'
                         });
+
+                        console.log('recommendedIonicIds', recommendedIonicIds);
+
+                        bookfeedService.sendNotification(vm.book.title, recommendedIonicIds);
                     }
                 }, 500);
             }
@@ -86,7 +96,7 @@
                 "id": "88e23dbd-a996-4a5f-bbe2-e0d57d434b65",
                 "title": "Harry Potter and the Sorcerer's Stone (Harry Potter, #1)",
                 "authorName": "J.K. Rowling",
-                "bookPoints": 4.43,
+                "bookPoints": 400,
                 "averageRating": 0,
                 "imageUrl": "https://images.gr-assets.com/books/1474154022m/3.jpg",
                 "smallImageUrl": "https://images.gr-assets.com/books/1474154022s/3.jpg",

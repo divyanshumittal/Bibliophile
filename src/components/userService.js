@@ -26,6 +26,7 @@
 
             function signup(user, details, googleSignUp) {
               if (googleSignUp) {
+                self.user = user;
                 saveCustomUser(user, googleSignUp);
               } else {
                 $ionicAuth.signup(details)
@@ -42,9 +43,10 @@
 
               alertPopup.then(function(res) {
                   if (googleSignUp) {
-                    $ionicGoogleAuth.logout();
+                    $state.go('app.home.activity', { registerForPush : true, googleSignIn: true });
+                  } else {
+                    $state.go('app.login');
                   }
-                  $state.go('app.login');
               });
 
               users.store(user);

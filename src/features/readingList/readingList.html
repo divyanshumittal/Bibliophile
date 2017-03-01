@@ -1,4 +1,4 @@
-<ion-view name="readingList" class="readingList">
+<ion-view name="readingList" class="readingList" cache-view="false">
 	<ion-nav-bar class="bar-dark">
         <ion-nav-back-button></ion-nav-back-button>
         <ion-nav-title align-title="center">
@@ -7,8 +7,18 @@
     </ion-nav-bar>
 	<ion-content class="has-header img-container" scroll="true">
 		<div class="heading">{{vm.status}}</div>
+		<div ng-if="vm.status === 'RECOMMENDED'" class="recommended-section">
+			<div>{{vm.user.organization}}'s suggested books</div>
+			<div ng-repeat="book in vm.adminRecommendedBooks" class="border-left">
+				<book-tile book="book" book-status="vm.status" callback="vm.updateRecommendation(bookObj, status)" my-book="true">
+					
+				</book-tile>
+			</div>
+		</div>
 		<div ng-repeat="book in vm.books">
-			<book-tile book="book" book-status="vm.status" callback="vm.updateBooks" my-book="true"></book-tile>
+			<book-tile book="book" book-status="vm.status" callback="vm.updateRecommendation(bookObj, status)" my-book="true">
+				
+			</book-tile>
 		</div>
 	</ion-content>
 	<ion-tabs class="tabs-dark tabs-icon-top">

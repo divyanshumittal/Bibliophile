@@ -29,7 +29,7 @@
                     if (user) {
                         userService.user = user;
                         userService.getAllUsers();
-                        $state.go('app.home.activity', { registerForPush : true });
+                        $state.go('app.home.activity', { registerForPush : true, googleSignIn: true });
                     } else {
                         vm.username = $ionicUser.social.google.data.username;
                         vm.signUpWithGoogle = true;
@@ -74,7 +74,6 @@
                
                 userService.signup(user, details, true);
                 vm.signUpWithGoogle = false;
-                vm.password = '';
             }
         }
 

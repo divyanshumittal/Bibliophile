@@ -5,8 +5,9 @@
             .controller('LeaderboardController', LeaderboardController);
 
         // @ngInject
-        function LeaderboardController($window, userService) {
+        function LeaderboardController($window, userService, $ionicDB) {
             var vm = this;
+            var users = $ionicDB.collection('customUsers');
 
             vm.toggleChart = false;
             vm.options = {
@@ -31,11 +32,13 @@
             init();
 
             function init() {
-                vm.users = userService.users;
-                vm.chartData = [{
-                    key: "Cumulative Points",
-                    values: vm.users.slice(0, 6)
-                }];
+                users.order('score', 'descending').findAll({ organization: _.get(userService.user, 'organization')}).watch().subscribe(function(users) {
+                    vm.users = users;
+                    vm.chartData = [{
+                        key: "Cumulative Points",
+                        values: vm.users.slice(0, 6)
+                    }];
+                });
             }
         }
     }(angular));

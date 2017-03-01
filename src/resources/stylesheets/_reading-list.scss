@@ -2,7 +2,7 @@
 	.heading {
 		color: gray;
 		padding: 12px;
-		font-size: 1.1em;
+		font-size: 1.2em;
 	}
 
 	.img-container {
@@ -25,5 +25,14 @@
 		background-size: cover;
 	    background-repeat: no-repeat;
 	    background-position: 50% 0;
+	}
+
+	.recommended-section {
+		padding: 12px;
+		font-size: 1.2em;
+	}
+
+	.border-left {
+		border-left: solid red 3px;
 	}
 }

@@ -27,7 +27,7 @@
         }
 
         function isExternalRequest(url) {
-            return url.indexOf('http') > -1;
+            return url.indexOf('http') > -1 && !(url.indexOf('push/notifications') > -1);
         }
 
         function isApiRequest(path) {

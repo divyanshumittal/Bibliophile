@@ -5,6 +5,7 @@ angular.module('app')
  function BookTileController($ionicPopup, bookfeedService, userService, $timeout, $ionicDB) {
  	var vm = this;     
 	var bookfeeds = $ionicDB.collection('bookfeeds');
+    var users = $ionicDB.collection('customUsers');
 
  	vm.updateStatus = updateStatus;
  	vm.createRecommendation = createRecommendation;
@@ -26,6 +27,7 @@ angular.module('app')
     function createRecommendation(value) {
         $timeout(function() {
             var recommendedTo = [];
+            var recommendedIonicIds = [];
 
             if (value) {
                 if (value.includes(';')) {
@@ -34,10 +36,14 @@ angular.module('app')
                     recommendedTo = [value];
                 }
 
+                recommendedIonicIds = _.map(recommendedTo, function(userId) {
+                   return _.find(vm.users, { id: userId}).ionicId;
+                });
+
                 _.forEach(recommendedTo, function(recommendedUserID) {
                     var recommendation = {
                         status: 'RECOMMENDED',
-                    	imageUrl: vm.book.imageUrl,
+                        imageUrl: vm.book.imageUrl,
                         recommendedTo: recommendedUserID,
                         title: vm.book.title,
                         authorName: vm.book.authorName,
@@ -48,6 +54,7 @@ angular.module('app')
                         bookPoints: vm.book.bookPoints,
                         createdDate: new Date(),
                         organization: userService.user.organization,
+                        createdByAdmin: userService.user.isAdmin,
                         isDeprecated: false
                     };
 
@@ -57,6 +64,8 @@ angular.module('app')
                 $ionicPopup.alert({
                      title: vm.book.title + ' recommended'
                 });
+
+                bookfeedService.sendNotification(vm.book.title, recommendedIonicIds);
             }
         }, 500);
     }
@@ -90,7 +99,16 @@ angular.module('app')
         });
 		
 		if (vm.callback) {
-			vm.callback();
+			vm.callback({
+                bookObj: vm.book,
+                status: status
+            });
 		}
+
+        //increment users score 
+        if (status === 'READ') {
+            userService.user.score += vm.book.bookPoints;
+            users.update(userService.user);
+        }
  	}  
  };

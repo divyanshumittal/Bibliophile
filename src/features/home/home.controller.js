@@ -12,8 +12,9 @@
             if ($stateParams.registerForPush) {
                 // if the root state is being reloaded (i.e after login or app restart),
                 // register for push again
+                var email = $stateParams.googleSignIn ? $ionicUser.social.google.data.email : $ionicUser.details.email;
 
-                users.find({email: $ionicUser.details.email}).fetch().subscribe(function(user) {
+                users.find({email: email}).fetch().subscribe(function(user) {
                     userService.user = user;
                     userService.getAllUsers();
                     AuthService.registerForPushNotifications();

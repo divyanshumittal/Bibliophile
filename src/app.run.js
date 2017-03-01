@@ -26,7 +26,7 @@
 
            $rootScope.$on('cloud:push:notification', function(event, data) {
                 var msg = data.message;
-                $cordovaDialogs.alert(msg.text, msg.title, 'M\'Kay').
+                $cordovaDialogs.alert(msg.text, msg.title, 'Okay').
                     then(function() {
 
                     });

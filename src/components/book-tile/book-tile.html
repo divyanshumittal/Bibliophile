@@ -12,10 +12,6 @@
             <b class="large-font-size">{{vm.book.title}}</b>
 
             <div class="small-font-size">{{vm.book.authorName}}</div>
-       <!--      <div ng-if="vm.book.status === 'activity'" class="row no-padding button-bar button-feel">
-                <a class="col" ng-click="vm.updateStatus('QUEUE')">Add</a>
-                <a class="col" ng-click="vm.updateStatus('RECOMMENDED')">Recommend</a>
-            </div> -->
             <div ng-if="vm.book.status === 'QUEUE'" class="row no-padding button-bar button-feel" 
                  ng-class="{'single-button': vm.myBook}">
                 <div ng-if="vm.myBook" class="single-button">
@@ -34,7 +30,7 @@
                             text="'Recommend'"
                             items="vm.users"
                             multi-select="true"
-                            callback="vm.bookRecommended()"
+                            callback="vm.createRecommendation(value)"
                             update-text="'Recommend'">
                         </fancy-select>
                      </div>

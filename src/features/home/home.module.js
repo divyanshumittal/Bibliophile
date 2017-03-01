@@ -8,7 +8,7 @@
     function homeConfig($stateProvider, $urlRouterProvider) {
         $stateProvider
             .state('app.home', {
-                url: '/home?registerForPush',
+                url: '/home?registerForPush&googleSignIn',
                 abstract: true,
                 views: {
                     'appView': {
