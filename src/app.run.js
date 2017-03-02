@@ -33,14 +33,11 @@
             // });
 
             $window.cordova.plugins.notification.local.on("trigger", function (notification, state) {
-                console.log(notification, state);
-                
-                $cordovaDialogs.alert('Book nameeee', 'recommendedddddd', 'Okay').
+               $cordovaDialogs.alert(notification.text, notification.title, 'Okay').
                     then(function() {
 
                     });
             });
-
         });
 
         $window.addEventListener('native.keyboardshow', function(){

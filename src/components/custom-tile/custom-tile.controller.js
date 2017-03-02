@@ -2,9 +2,8 @@ angular.module('app')
 
 .controller('CustomTileController', CustomTileController);
 
- function CustomTileController($cordovaLocalNotification, $ionicPopup, userService) {
- 	var vm = this;       
- 	var id = Math.random();
+ function CustomTileController($cordovaLocalNotification, $ionicPopup, userService, $window, $timeout) {
+ 	var vm = this;
 
  	vm.tapped = false;
  	vm.addReminder = addReminder;
@@ -14,20 +13,20 @@ angular.module('app')
 
  		if (vm.tapped) {
  			popTitle = 'Reminder cancelled';
- 			$cordovaLocalNotification.cancel(id).then(function (result) {
-		        console.log('cancelled');
-		    }, function(err) {
-		    	console.log('cant', err);
-		    });
+ 			$window.cordova.plugins.notification.local.cancel(1, function() {});
  		} else {
- 			$cordovaLocalNotification.schedule({
-		        id: id,
-		        title: 'Time to Read',
-		        text: vm.bookFeed.title,
-		        at: new Date(new Date().getTime() + userService.notificationTime*1000)
-		    }).then(function (result) {
-		      	console.log('yo');
-		    });
+ 			$window.cordova.plugins.notification.local.schedule({
+                id         : 1,
+                title      : 'Time to Read',
+                text       : vm.bookFeed.title,
+                sound      : null,
+                autoClear  : false,
+                at         : new Date(new Date().getTime() + userService.notificationTime*1000)
+            });
+
+            $timeout(function() {
+            	vm.tapped = false;
+            }, userService.notificationTime*1000);
  		}
 
 	    vm.tapped = !vm.tapped;

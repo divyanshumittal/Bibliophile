@@ -1,14 +1,10 @@
 <ion-view class="leaderboard" cache-view="false">
     <ion-content scroll="true">
         <div class="row">
-          <div class="heading col col-80">LEADERBOARD</div>
+          <div class="heading col col-75">LEADERBOARD</div>
           <div class="col">
-            <label class="toggle toggle-dark">
-            <input type="checkbox" ng-model="vm.toggleChart">
-            <div class="track">
-              <div class="handle"></div>
-            </div>
-          </label>
+            <i class="ion-ios-list xlarge" ng-click="vm.toggleChart = !vm.toggleChart" ng-class="{'largest' : !vm.toggleChart}"></i>
+            <i class="ion-arrow-graph-up-right xlarge" ng-click="vm.toggleChart = !vm.toggleChart" ng-class="{'largest' : vm.toggleChart}"></i>
           </div>
         </div>
         <div ng-if="vm.toggleChart">

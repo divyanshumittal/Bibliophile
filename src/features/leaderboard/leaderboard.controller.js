@@ -36,7 +36,7 @@
                     vm.users = users;
                     vm.chartData = [{
                         key: "Cumulative Points",
-                        values: vm.users.slice(0, 6)
+                        values: vm.users.slice(0, 5)
                     }];
                 });
             }

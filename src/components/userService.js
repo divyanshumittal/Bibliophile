@@ -9,6 +9,7 @@
             var self = this;  
             var users = $ionicDB.collection('customUsers');
             var recommendations = $ionicDB.collection('recommendations');
+            var myOldRecommendationsObjs = undefined;
 
             $ionicDB.connect();
 
@@ -70,14 +71,17 @@
 
             function setupRecommendationWatcher(callback) {
               recommendations.order('createdDate', 'descending').findAll({
-                  recommendedTo: _.get(userService.user, 'id'),
+                  recommendedTo: _.get(self.user, 'id'),
                   isDeprecated: false
-              }).watch().subscribe(function(recommendations) {
-                  if (_.isFunction(callback)) {
-                    callback(recommendations);
-                  } else {
-                    bookfeedService.sendCordovaNotification(recommendations[0].title);
-                  }
+              }).watch().subscribe(function(newRecommendations) {
+                if (myOldRecommendationsObjs && (newRecommendations.length !== myOldRecommendationsObjs.length)) {
+                  bookfeedService.sendCordovaNotification(newRecommendations[0].title);
+                }
+                if (_.isFunction(callback)) {
+                  callback(newRecommendations);
+                }
+              
+                myOldRecommendationsObjs = newRecommendations;
               });
             }
         }

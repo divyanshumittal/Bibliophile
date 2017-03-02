@@ -58,7 +58,8 @@
                     "notification": {
                         "message": title + ' recommended',
                         "ios": {
-                            "message": title + ' recommended'
+                            "message": title + ' recommended',
+                            "badge": 1
                         },
                         "android": {
                             "message": title + ' recommended',
