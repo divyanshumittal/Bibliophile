@@ -3,9 +3,9 @@ angular.module('app')
 .controller('BookTileController', BookTileController);
 
  function BookTileController($ionicPopup, bookfeedService, userService, $timeout, $ionicDB) {
- 	var vm = this;     
+ 	var vm = this;
 	var bookfeeds = $ionicDB.collection('bookfeeds');
-    var users = $ionicDB.collection('customUsers');
+  var users = $ionicDB.collection('customUsers');
 
  	vm.updateStatus = updateStatus;
  	vm.createRecommendation = createRecommendation;
@@ -15,15 +15,17 @@ angular.module('app')
  	function init() {
  		vm.users = angular.copy(userService.users);
  		//remove the logged in user
-        vm.users = _.reject(vm.users, {id : userService.user.id});
- 		
+    vm.users = _.reject(vm.users, {id : userService.user.id});
+
  		_.forEach(vm.users, function(user) {
  			user.text = user.username;
  			user.checked = false;
  		});
+
+    vm.createdDate = moment(vm.book.createdDate, "ddd MMM YYYY hh:mm:ss").format("MMM Do YY, hh:mm:ss a");
  	}
 
- 
+
     function createRecommendation(value) {
         $timeout(function() {
             var recommendedTo = [];
@@ -35,10 +37,6 @@ angular.module('app')
                 } else {
                     recommendedTo = [value];
                 }
-
-                recommendedIonicIds = _.map(recommendedTo, function(userId) {
-                   return _.find(vm.users, { id: userId}).ionicId;
-                });
 
                 _.forEach(recommendedTo, function(recommendedUserID) {
                     var recommendation = {
@@ -65,6 +63,9 @@ angular.module('app')
                      title: vm.book.title + ' recommended'
                 });
 
+                // recommendedIonicIds = _.map(recommendedTo, function(userId) {
+                //    return _.find(vm.users, { id: userId}).ionicId;
+                // });
                 // bookfeedService.sendNotification(vm.book.title, recommendedIonicIds);
             }
         }, 500);
@@ -86,7 +87,7 @@ angular.module('app')
 			isDeprecated: false,
             ratings: vm.book.ratings
 		};
-		
+
 		//deprecate old feeds for same user for the same book
 		bookfeeds.findAll({
             userUUID: _.get(userService.user, 'id'),
@@ -99,7 +100,7 @@ angular.module('app')
             });
             bookfeedService.createBookfeed(bookfeed);
         });
-		
+
 		if (vm.callback) {
 			vm.callback({
                 bookObj: vm.book,
@@ -112,5 +113,5 @@ angular.module('app')
             userService.user.score += vm.book.bookPoints;
             users.update(userService.user);
         }
- 	}  
+ 	}
  };

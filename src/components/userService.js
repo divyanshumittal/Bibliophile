@@ -5,8 +5,9 @@
             .service('userService', userService);
 
         // @ngInject
-        function userService($ionicAuth, $ionicPopup, $ionicDB, $state, $ionicGoogleAuth, bookfeedService) {
-            var self = this;  
+        function userService($ionicAuth, $ionicPopup, $ionicDB, $state, $ionicGoogleAuth, bookfeedService,
+                              loaderService) {
+            var self = this;
             var users = $ionicDB.collection('customUsers');
             var recommendations = $ionicDB.collection('recommendations');
             var myOldRecommendationsObjs = undefined;
@@ -14,13 +15,13 @@
             $ionicDB.connect();
 
             self.allGenres = [
-              {id: 1, text: 'Business', checked: false, icon: null}, 
-              {id: 2, text: 'Science', checked: false, icon: null}, 
+              {id: 1, text: 'Business', checked: false, icon: null},
+              {id: 2, text: 'Science', checked: false, icon: null},
               {id : 3, text: 'Mystery', checked: false, icon: null},
               {id : 4, text: 'History', checked: false, icon: null},
               {id : 5, text: 'Economics', checked: false, icon: null},
               {id : 6, text: 'Poetry', checked: false, icon: null}];
-              
+
             self.notificationTime = 10;
             self.signup = signup;
             self.login = login;
@@ -56,10 +57,12 @@
             }
 
             function login(details) {
+              loaderService.showLoader();
                 users.find({email: details.email}).fetch().subscribe(function(user) {
                     self.user = user;
                     getAllUsers();
                     $state.go('app.home.activity', { registerForPush : true });
+                    loaderService.hideLoader();
                 });
             }
 
@@ -80,7 +83,7 @@
                 if (_.isFunction(callback)) {
                   callback(newRecommendations);
                 }
-              
+
                 myOldRecommendationsObjs = newRecommendations;
               });
             }

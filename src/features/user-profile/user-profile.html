@@ -13,7 +13,10 @@
 			<div class="col col-33">
 				<img ng-src="{{vm.user.imageUrl}}" class="user-img" />
 				<div>{{vm.user.name}}</div>
-				<div>{{vm.user.organization}}</div>
+				<div>
+					<span ng-if="vm.user.title">{{vm.user.title}}, </span>
+					<span>{{vm.user.organization}}</span>
+				</div>
 			</div>
 			<div class="col col-33 medium-font">
 				<div><b>Books Read</b></div>

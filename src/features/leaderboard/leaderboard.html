@@ -3,8 +3,8 @@
         <div class="row">
           <div class="heading col col-75">LEADERBOARD</div>
           <div class="col">
-            <i class="ion-ios-list xlarge" ng-click="vm.toggleChart = !vm.toggleChart" ng-class="{'largest' : !vm.toggleChart}"></i>
-            <i class="ion-arrow-graph-up-right xlarge" ng-click="vm.toggleChart = !vm.toggleChart" ng-class="{'largest' : vm.toggleChart}"></i>
+            <i class="ion-ios-list" ng-click="vm.toggleChart = !vm.toggleChart" ng-class="!vm.toggleChart ? 'largest' : 'xlarge'"></i>
+            <i class="ion-arrow-graph-up-right" ng-click="vm.toggleChart = !vm.toggleChart" ng-class="vm.toggleChart ? 'largest' : 'xlarge'"></i>
           </div>
         </div>
         <div ng-if="vm.toggleChart">
@@ -17,7 +17,7 @@
                 <b>{{$index + 1}}</b>
               </div>
               <div class="col col-20">
-                <img ng-src={{user.imageUrl}} /> 
+                <img ng-src={{user.imageUrl}} />
               </div>
                <div class="col col-40">
                 {{user.name}}

@@ -4,10 +4,14 @@
 		<form name="googleForm" ng-submit="vm.signup(googleForm)" class="register">
 			<label class="item-input margin-10">
 			    <span class="input-label">
-			    	<i class="ion-asterisk asterick"></i> 
-			    	<span class="padding-left-10"> Company</span>		
+			    	<i class="ion-asterisk asterick"></i>
+			    	<span class="padding-left-10"> Company</span>
 			    </span>
 			    <input type="text" ng-model="vm.company" required />
+			</label>
+			<label class="item-input margin-10">
+			    <span class="input-label">Title</span>
+			    <input type="text" ng-model="vm.title">
 			</label>
 			<div class="item-input margin-10 label-feel">
 				<div class="input-label">
@@ -23,10 +27,6 @@
 		          multi-select="true">
 		    	</fancy-select>
 			</div>
-			<label class="item-input margin-10">
-			    <span class="input-label">Groups</span>
-			    <input type="text" ng-model="vm.groups">
-			</label>
 			<div class="register-buttons text-center">
 				<button type="submit" ng-class="googleForm.$valid ? 'link' : 'disable'">
 					Done

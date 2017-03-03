@@ -45,8 +45,8 @@
                     return _.find(vm.genres, {id: parseInt(selectedId)}).text;
                 });
               }
-              
-              var user = {  
+
+              var user = {
                  email: vm.email,
                  name: vm.name,
                  organization: vm.company,
@@ -54,9 +54,8 @@
                  username: vm.username,
                  favorites: genres,
                  imageUrl: vm.imgURI,
-                 groups: vm.groups,
+                 title: vm.title,
                  score: 0,
-                 ionicId:  '',
                  createdDate: new Date(),
                  isAdmin: false
               };
@@ -80,7 +79,7 @@
                   popoverOptions: CameraPopoverOptions,
                   saveToPhotoAlbum: false
               };
- 
+
               $cordovaCamera.getPicture(options).then(function (imageData) {
                   vm.imgURI = "data:image/jpeg;base64," + imageData;
               }, function (err) {
@@ -100,7 +99,7 @@
                   popoverOptions: CameraPopoverOptions,
                   saveToPhotoAlbum: false
               };
- 
+
               $cordovaCamera.getPicture(options).then(function (imageData) {
                   vm.imgURI = "data:image/jpeg;base64," + imageData;
               }, function (err) {
@@ -108,5 +107,5 @@
               });
             }
         }
-        
+
     }(angular));

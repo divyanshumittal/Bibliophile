@@ -18,7 +18,7 @@
                 vm.users = angular.copy(userService.users);
                 //remove the logged in user
                 vm.users = _.reject(vm.users, {id : userService.user.id});
-                
+
                 _.forEach(vm.users, function(user) {
                     user.text = user.username;
                     user.checked = false;
@@ -56,10 +56,6 @@
                             recommendedTo = [value];
                         }
 
-                        recommendedIonicIds = _.map(recommendedTo, function(userId) {
-                           return _.find(vm.users, { id: userId}).ionicId;
-                        });
-
                         _.forEach(recommendedTo, function(recommendedUserID) {
                             var recommendation = {
                                 status: 'RECOMMENDED',
@@ -85,7 +81,9 @@
                              title: vm.book.title + ' recommended'
                         });
 
-                        // console.log('recommendedIonicIds', recommendedIonicIds);
+                        // recommendedIonicIds = _.map(recommendedTo, function(userId) {
+                        //    return _.find(vm.users, { id: userId}).ionicId;
+                        // });
                         // bookfeedService.sendNotification(vm.book.title, recommendedIonicIds);
                     }
                 }, 500);

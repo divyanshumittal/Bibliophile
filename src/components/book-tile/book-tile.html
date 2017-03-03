@@ -7,6 +7,7 @@
                 </div>
             </div>
             <img ng-src="{{vm.book.imageUrl}}" />
+            <!-- <div class="padding-top-10">{{vm.createdDate}}</div> -->
         </div>
     </div>
     <div class="col col-60">
@@ -16,7 +17,7 @@
             <div ng-if="vm.book.status === 'READ' && vm.book.ratings">
                 <rating ng-model="vm.book.ratings" max="5" readonly="true"></rating>
             </div>
-            <div ng-if="vm.book.status === 'QUEUE'" class="row no-padding button-bar button-feel" 
+            <div ng-if="vm.book.status === 'QUEUE'" class="row no-padding button-bar button-feel"
                  ng-class="{'single-button': vm.myBook}">
                 <div ng-if="vm.myBook" class="single-button">
                     <a class="col" ng-click="vm.updateStatus('STARTED_READING')">Start</a>

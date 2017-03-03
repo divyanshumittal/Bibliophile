@@ -5,8 +5,8 @@
         .controller('LoginController', LoginController);
 
     // @ngInject
-    function LoginController($ionicAuth, $ionicPush, $ionicGoogleAuth, $ionicUser, loaderService, userService, 
-                                $ionicDB, $state) 
+    function LoginController($ionicAuth, $ionicPush, $ionicGoogleAuth, $ionicUser, loaderService, userService,
+                                $ionicDB, $state)
     {
         var vm = this;
         var users = $ionicDB.collection('customUsers');
@@ -61,9 +61,8 @@
                     username: $ionicUser.social.google.data.username,
                     favorites: genres,
                     imageUrl: $ionicUser.social.google.data.profile_picture,
-                    groups: vm.groups,
+                    title: vm.title,
                     score: 0,
-                    ionicId:  '',
                     createdDate: new Date(),
                     isAdmin: false
                 };
@@ -71,7 +70,7 @@
                     email: $ionicUser.social.google.data.email,
                     password: vm.password
                 };
-               
+
                 userService.signup(user, details, true);
                 vm.signUpWithGoogle = false;
             }
@@ -79,7 +78,7 @@
 
         function login() {
             var details = {'email': vm.email, 'password': vm.password};
-            
+
             if (vm.email && vm.password) {
                 loaderService.showLoader();
                 $ionicAuth.login('basic', details)
