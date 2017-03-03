@@ -12,21 +12,25 @@
             var recommendations = $ionicDB.collection('recommendations');
             var myOldRecommendationsObjs = undefined;
 
-            $ionicDB.connect();
-
-            self.allGenres = [
-              {id: 1, text: 'Business', checked: false, icon: null},
-              {id: 2, text: 'Science', checked: false, icon: null},
-              {id : 3, text: 'Mystery', checked: false, icon: null},
-              {id : 4, text: 'History', checked: false, icon: null},
-              {id : 5, text: 'Economics', checked: false, icon: null},
-              {id : 6, text: 'Poetry', checked: false, icon: null}];
-
-            self.notificationTime = 10;
             self.signup = signup;
             self.login = login;
             self.getAllUsers = getAllUsers;
             self.setupRecommendationWatcher = setupRecommendationWatcher;
+
+            init();
+
+            function init() {
+              $ionicDB.connect();
+              self.allGenres = [
+                {id: 1, text: 'Business', checked: false, icon: null},
+                {id: 2, text: 'Science', checked: false, icon: null},
+                {id : 3, text: 'Mystery', checked: false, icon: null},
+                {id : 4, text: 'History', checked: false, icon: null},
+                {id : 5, text: 'Economics', checked: false, icon: null},
+                {id : 6, text: 'Poetry', checked: false, icon: null}];
+
+              self.notificationTime = 10;
+            }
 
             function signup(user, details, googleSignUp) {
               if (googleSignUp) {

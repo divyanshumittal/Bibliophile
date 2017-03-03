@@ -68,14 +68,21 @@
 
         $urlRouterProvider.otherwise(function ($injector, $location) {
             var state = $injector.get('$state');
-            var user = $injector.get('$ionicUser');
-            
-            // if (user.id) {
-            //     state.go('app.home.activity', { registerForPush: true });
-            // } else {                
+            var ionicUser = $injector.get('$ionicUser');
+            var userService = $injector.get('userService');
+            var usersCollection = $injector.get('$ionicDB').collection('customUsers');
+            var email = _.get(ionicUser, ['social', 'google', 'data', 'email'], ionicUser.details.email);
+
+            if (email && ionicUser.id) {
+              usersCollection.find({email: email}).fetch()
+                .subscribe(function(ionicDbUser) {
+                  userService.user = ionicDbUser;
+                  state.go('app.home.activity', { registerForPush: true });
+              });
+            } else {
                 state.go('app.login');
-            // }
-           
+            }
+
             return $location.path();
         });
     }
@@ -136,4 +143,3 @@
         });
     }
 }(angular));
-
