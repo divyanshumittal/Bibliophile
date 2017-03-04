@@ -7,6 +7,7 @@ angular.module('app')
 
  	vm.tapped = false;
  	vm.addReminder = addReminder;
+  vm.createdDate = moment(vm.bookFeed.createdDate).format('MM-DD-YYYY HH:mm:ss a');
 
  	function addReminder() {
  		var popTitle = 'Reminder scheduled';
@@ -34,6 +35,6 @@ angular.module('app')
 		    title: popTitle,
 		    template: vm.bookFeed.title
 		});
-	    
+
  	}
  }

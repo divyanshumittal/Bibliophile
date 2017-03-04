@@ -45,7 +45,7 @@
 		background-color: #444;
 		font-size: 0.7em;
 		border-radius: 25px;
-		margin-top: 15%;
+		margin-top: 10%;
 		cursor: pointer;
 
 		a {
@@ -102,5 +102,9 @@
 
 	.padding-top-10 {
 		padding-top: 10px;
+	}
+
+	.custom-padding {
+		padding: 15px 5px 0 20px;
 	}
 }

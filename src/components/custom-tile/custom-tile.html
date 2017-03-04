@@ -10,7 +10,7 @@
                 <span ng-if="vm.bookFeed.status === 'READ'">  finished reading</span>
                 <span ng-if="vm.bookFeed.status === 'STARTED_READING'">  is currently reading</span>
                 <span ng-if="vm.bookFeed.status === 'RECOMMENDED'">  recommended</span>
-                
+                <div class="small-font-size">{{vm.createdDate}}</div>
             </div>
             <div class="col-20 thumbsup">
                 <i class="ion-thumbsup padding-right-15" ng-click="vm.liked = !vm.liked" ng-class="{'tapped' : vm.liked}"></i>
