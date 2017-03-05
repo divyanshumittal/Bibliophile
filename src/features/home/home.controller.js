@@ -9,7 +9,7 @@
             var vm = this;
             var users = $ionicDB.collection('customUsers');
 
-            if ($stateParams.registerForPush) {
+            if ($stateParams.registerForPush && !userService.isRegistered) {
                 // if the root state is being reloaded (i.e after login or app restart),
                 // register for push again
                 var email = $stateParams.googleSignIn ? $ionicUser.social.google.data.email : $ionicUser.details.email;
@@ -21,6 +21,7 @@
                 });
 
                 userService.setupRecommendationWatcher();
+                userService.isRegistered = true;
             }
         }
     }(angular));

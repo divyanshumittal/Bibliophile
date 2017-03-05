@@ -20,17 +20,19 @@
 		</div>
 		<div class="padding">
 			<div class="image-container">
-				<img ng-src="{{vm.book.imageUrl}}" />
+				<img ng-src="{{vm.book.imageUrl}}" class="book-img"/>
 				<div class="margin-top-10 bold-font">{{vm.book.authorName}}</div>
 				<div>{{vm.book.releaseDate}}</div>
 			</div>
-			<div ng-bind-html="vm.book.description"></div>
-			<div ng-if="vm.pastReaders.length">
-				<div class="readers-title">Co-workers who have read this book:</div>
-				<div ng-repeat="reader in vm.pastReaders">
-					<img class="reader-image" ng-src="{{reader.userImgUrl}}" />
-					<span class="reader-name">{{reader.name}}</span>
-				</div>
+			<div ng-if="vm.book.description" ng-bind-html="vm.book.description"></div>
+			<div ng-if="!vm.book.description">Sorry, no description available</div>
+			<div class="readers-title row">Co-workers who have read this book:</div>
+			<div ng-repeat="reader in vm.pastReaders" class="padding-top-bottom-10 row">
+				<img class="reader-image" ng-src="{{reader.userImgUrl}}" />
+				<span class="reader-name">{{reader.name}}</span>
+			</div>
+			<div ng-if="!vm.pastReaders.length">
+				None
 			</div>
 		</div>
 	</ion-content>

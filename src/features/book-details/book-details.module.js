@@ -8,7 +8,7 @@
     function BookDetailsConfig($stateProvider) {
         $stateProvider
             .state('app.bookDetails', {
-                url: '/bookDetails/:id',
+                url: '/bookDetails?id&title',
                 views: {
                     'appView': {
                         templateUrl: 'features/book-details/book-details.html',
@@ -17,10 +17,10 @@
                 },
                 resolve: {
                     book: function($stateParams, goodReadsService) {
-                        return {};
-                        // return goodReadsService.getBook($stateParams.id).then(function(result) {
-                        //         return _.get(result, 'data');
-                        //     });
+                        return goodReadsService.getBook($stateParams.id, $stateParams.title)
+                                  .then(function(result) {
+                                      return result;
+                                  });
                         }
                 },
                 data: {

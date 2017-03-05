@@ -25,8 +25,8 @@
             }
 
             function getBooks(status) {
-                vm.status = status; 
-                
+                vm.status = status;
+
                 if (status !== 'RECOMMENDED') {
                     bookfeeds.findAll({
                         userUUID: _.get(userService.user, 'id'),
@@ -47,8 +47,10 @@
             }
 
             function getRecommendedBooksCallback(recommendations) {
-                vm.books = _.reject(recommendations, { createdByAdmin: true});
-                vm.adminRecommendedBooks = _.filter(recommendations, { createdByAdmin: true});
+                var activeRecommendations = _.reject(recommendations, {isDeprecated: true});
+
+                vm.books = _.reject(activeRecommendations, { createdByAdmin: true});
+                vm.adminRecommendedBooks = _.filter(activeRecommendations, { createdByAdmin: true});
             }
         }
     }(angular));

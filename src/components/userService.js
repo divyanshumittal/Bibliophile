@@ -83,8 +83,7 @@
 
             function setupRecommendationWatcher(callback) {
               recommendations.order('createdDate', 'descending').findAll({
-                  recommendedTo: _.get(self.user, 'id'),
-                  isDeprecated: false
+                  recommendedTo: _.get(self.user, 'id')
               }).watch().subscribe(function(newRecommendations) {
                 if (myOldRecommendationsObjs && (newRecommendations.length !== myOldRecommendationsObjs.length)) {
                   bookfeedService.sendCordovaNotification(newRecommendations[0].title);
