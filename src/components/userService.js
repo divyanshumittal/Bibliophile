@@ -32,7 +32,7 @@
               self.notificationTime = 10;
             }
 
-            function signup(user, details, googleSignUp) {
+            function signup(user, details, googleSignUp, errorCallback) {
               if (googleSignUp) {
                 self.user = user;
                 saveCustomUser(user, googleSignUp);
@@ -40,6 +40,11 @@
                 $ionicAuth.signup(details)
                  .then(function() {
                    saveCustomUser(user, googleSignUp);
+                 }, function(err) {
+                   console.log(err);
+                   if (_.get(err, ['details', 0]) === 'conflict_email' && _.isFunction(errorCallback)) {
+                     errorCallback();
+                   }
                  });
               }
             }

@@ -1,10 +1,13 @@
 <form name="form2" ng-submit="vm.nextStep(form2)">
-	<label class="item-input margin-10">
+	<div ng-if="vm.duplicateEmail" class="horizontally-center" ng-class="{'error-text': vm.duplicateEmail}">
+		Duplicate email
+	</div>
+	<label class="item-input margin-10" ng-class="{'error': vm.duplicateEmail}">
 	   <span class="input-label">
 	    	<i class="ion-asterisk asterick"></i>
 	    	<span class="padding-left-10"> Email</span>
 	    </span>
-	    <input type="email" ng-model="vm.email" required>
+	    <input type="email" ng-model="vm.email" required ng-change="vm.duplicateEmail = false">
 	</label>
 	<label class="item-input margin-10">
 	    <span class="input-label">

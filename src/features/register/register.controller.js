@@ -18,6 +18,24 @@
             vm.takePhoto = takePhoto;
             vm.choosePhoto = choosePhoto;
             vm.nextStep = nextStep;
+            vm.goTo = goTo;
+
+            function goTo(step) {
+              if (step === 1) {
+                vm.stepOne = true;
+                vm.stepTwo = false;
+                vm.stepThree = false;
+              } else if ((step === 2) && vm.password && vm.name && vm.username && vm.confirmPassword) {
+                vm.stepOne = false;
+                vm.stepTwo = true;
+                vm.stepThree = false;
+              } else if ((step === 3) && vm.password && vm.email
+                      && vm.name && vm.username && vm.company && vm.confirmPassword) {
+                vm.stepOne = false;
+                vm.stepTwo = false;
+                vm.stepThree = true;
+              }
+            }
 
             function validatePasswords(form) {
                 if (form.$valid) {
@@ -64,7 +82,13 @@
                 password: vm.password
               };
 
-              userService.signup(user, details);
+              userService.signup(user, details, false, errorCallback);
+            }
+
+            function errorCallback() {
+              vm.stepTwo = true;
+              vm.stepThree = false;
+              vm.duplicateEmail = true;
             }
 
             function takePhoto() {

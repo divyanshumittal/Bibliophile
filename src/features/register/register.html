@@ -13,16 +13,18 @@
 				</div>
 			</div>
 			<div class="center-timeline">
-				<div class="timeline-circle done"></div>
-				<div class="timeline-circle" ng-class = "{'done' : vm.stepTwo || vm.stepThree}"></div>
-				<div class="timeline-circle" ng-class = "{'done' : vm.stepThree}"></div>
+				<div class="timeline-circle done" ng-click="vm.goTo(1)"></div>
+				<div class="timeline-circle" ng-click="vm.goTo(2)"
+							ng-class = "{'done' : vm.stepTwo || vm.stepThree}"></div>
+				<div class="timeline-circle" ng-click="vm.goTo(3)"
+							ng-class = "{'done' : vm.stepThree}"></div>
 			</div>
 			<div class="margin-top-10">
 				<div class="row">
 					<div class="col col-offset-10 col-80">
-						<div ng-if="vm.stepOne" ng-include="'features/register/register-step1.html'"></div>
-						<div ng-if="vm.stepTwo" ng-include="'features/register/register-step2.html'"></div>
-						<div ng-if="vm.stepThree" ng-include="'features/register/register-step3.html'"></div>
+						<div ng-show="vm.stepOne" ng-include="'features/register/register-step1.html'"></div>
+						<div ng-show="vm.stepTwo" ng-include="'features/register/register-step2.html'"></div>
+						<div ng-show="vm.stepThree" ng-include="'features/register/register-step3.html'"></div>
 					</div>
 				</div>
 			</div>

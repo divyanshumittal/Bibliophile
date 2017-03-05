@@ -45,6 +45,21 @@
 		font-size: 0.5em;
 	}
 
+	.readers-title {
+		font-size: 1.2em;
+		font-weight: bold;
+		padding-top: 5px;
+	}
+
+	.reader-image {
+		max-width:40px;
+		border-radius: 50%;
+	}
+
+	.reader-name {
+		padding-left: 15px;
+	}
+
 	.image-container {
 		float: left;
 		padding: 5px;

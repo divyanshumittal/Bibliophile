@@ -5,8 +5,10 @@
             .controller('BookDetailsController', BookDetailsController);
 
         // @ngInject
-        function BookDetailsController(book, bookfeedService, userService, $timeout, $ionicPopup) {
+        function BookDetailsController(book, bookfeedService, userService, $timeout, $ionicPopup, $ionicDB) {
             var vm = this;
+
+            var bookfeeds = $ionicDB.collection('bookfeeds');
 
             vm.book = book;
             //needs to be removed
@@ -39,6 +41,15 @@
                     user.text = user.username;
                     user.checked = false;
                 });
+
+                getPastReaders();
+            }
+
+            function getPastReaders() {
+              bookfeeds.findAll({ title: vm.book.email, authorName: vm.book.authorName, status: 'READ'})
+                .fetch().subscribe(function(result) {
+                  vm.pastReaders = result;
+              });
             }
 
             function createBookfeed(status) {

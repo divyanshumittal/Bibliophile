@@ -5,7 +5,7 @@
 	      Home
 	    </ion-nav-title>
     </ion-nav-bar>
-	<ion-content class="has-header" scroll="true">
+	<ion-content class="has-header has-footer" scroll="true">
 		<div class="row">
 			<div class="col col-20 pos-relative">
 		        <div class="points-badge">
@@ -25,6 +25,13 @@
 				<div>{{vm.book.releaseDate}}</div>
 			</div>
 			<div ng-bind-html="vm.book.description"></div>
+			<div ng-if="vm.pastReaders.length">
+				<div class="readers-title">Co-workers who have read this book:</div>
+				<div ng-repeat="reader in vm.pastReaders">
+					<img class="reader-image" ng-src="{{reader.userImgUrl}}" />
+					<span class="reader-name">{{reader.name}}</span>
+				</div>
+			</div>
 		</div>
 	</ion-content>
 	<div class="bar bar-dark bar-footer button-bar">

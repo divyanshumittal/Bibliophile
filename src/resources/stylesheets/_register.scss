@@ -3,6 +3,14 @@
 		margin-top: 15%
 	}
 
+	.error {
+		border: solid 2px orangered;
+	}
+
+	.error-text {
+		color: orangered;
+	}
+
 	.large-font {
 		font: 1.5em;
 	}
@@ -59,7 +67,7 @@
 	.margin-top-10 {
 		margin-top: 10%;
 	}
- 
+
 	.user-image {
 		img {
 			max-width: 70%;
