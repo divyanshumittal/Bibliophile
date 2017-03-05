@@ -5,19 +5,20 @@
                 <img class="round-image" ng-src="{{vm.bookFeed.userImgUrl}}" />
             </div>
             <div class="col col-60 margin-auto">
-                <b>{{vm.bookFeed.name}}</b>
+                <b ng-if="vm.myBook">You</b>
+                <b ng-if="!vm.myBook">{{vm.bookFeed.username}}</b>
                 <span ng-if="vm.bookFeed.status === 'QUEUE'">  added to queue</span>
                 <span ng-if="vm.bookFeed.status === 'READ'">  finished reading</span>
-                <span ng-if="vm.bookFeed.status === 'STARTED_READING'">  is currently reading</span>
+                <span ng-if="vm.bookFeed.status === 'STARTED_READING'">  started reading</span>
                 <span ng-if="vm.bookFeed.status === 'RECOMMENDED'">  recommended</span>
                 <div class="small-font-size">{{vm.createdDate}}</div>
             </div>
-            <div class="col-20 thumbsup">
+            <div class="col-20 thumbsup" ng-if="!vm.myBook">
                 <i class="ion-thumbsup padding-right-15" ng-click="vm.liked = !vm.liked" ng-class="{'tapped' : vm.liked}"></i>
                 <i class="ion-android-notifications" ng-click="vm.addReminder()" ng-class="{'tapped' : vm.tapped}"></i>
             </div>
         </div>
-        <book-tile book="vm.bookFeed" my-book="false"></book-tile>
+        <book-tile book="vm.bookFeed" my-book="vm.myBook"></book-tile>
         </div>
     </div>
 </div>

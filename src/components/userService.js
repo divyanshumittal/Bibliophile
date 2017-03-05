@@ -14,7 +14,6 @@
 
             self.signup = signup;
             self.login = login;
-            self.getAllUsers = getAllUsers;
             self.setupRecommendationWatcher = setupRecommendationWatcher;
 
             init();
@@ -69,16 +68,12 @@
               loaderService.showLoader();
                 users.find({email: details.email}).fetch().subscribe(function(user) {
                     self.user = user;
-                    getAllUsers();
-                    $state.go('app.home.activity', { registerForPush : true });
-                    loaderService.hideLoader();
+                    users.order("score").findAll({ organization: _.get(self.user, 'organization')}).watch().subscribe(function(users) {
+                        self.users = users;
+                        $state.go('app.home.activity', { registerForPush : true });
+                        loaderService.hideLoader();
+                    });
                 });
-            }
-
-            function getAllUsers() {
-              users.order("score").findAll({ organization: _.get(self.user, 'organization')}).fetch().subscribe(function(users) {
-                  self.users = users;
-              });
             }
 
             function setupRecommendationWatcher(callback) {

@@ -5,6 +5,7 @@ angular.module('app')
  function CustomTileController($cordovaLocalNotification, $ionicPopup, userService, $window, $timeout) {
  	var vm = this;
 
+  vm.myBook = vm.bookFeed.userUUID === userService.user.id;
  	vm.tapped = false;
  	vm.addReminder = addReminder;
   vm.createdDate = moment(vm.bookFeed.createdDate).format('MM-DD-YYYY HH:mm:ss a');

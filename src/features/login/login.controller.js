@@ -28,7 +28,6 @@
                 users.find({email: $ionicUser.social.google.data.email}).fetch().subscribe(function(user) {
                     if (user) {
                         userService.user = user;
-                        userService.getAllUsers();
                         $state.go('app.home.activity', { registerForPush : true, googleSignIn: true });
                     } else {
                         vm.username = $ionicUser.social.google.data.username;

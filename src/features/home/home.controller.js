@@ -16,7 +16,9 @@
 
                 users.find({email: email}).fetch().subscribe(function(user) {
                     userService.user = user;
-                    userService.getAllUsers();
+                    users.order("score").findAll({ organization: _.get(userService.user, 'organization')}).watch().subscribe(function(users) {
+                        userService.users = users;
+                    });
                     AuthService.registerForPushNotifications();
                 });
 

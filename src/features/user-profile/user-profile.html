@@ -5,7 +5,7 @@
 				<i class="ion-ios-close-outline" ng-click="vm.goBack()"></i>
 			</div>
 		</div>
-		<div class="row text-center">
+		<div class="row text-center padding-bottom-0">
 			<div class="col col-33 medium-font">
 				<div><b>My points</b></div>
 				<div class="blue-font">{{vm.user.score}}</div>
@@ -13,15 +13,15 @@
 			<div class="col col-33">
 				<img ng-src="{{vm.user.imageUrl}}" class="user-img" />
 				<div>{{vm.user.name}}</div>
-				<div>
-					<span ng-if="vm.user.title">{{vm.user.title}}, </span>
-					<span>{{vm.user.organization}}</span>
-				</div>
 			</div>
 			<div class="col col-33 medium-font">
 				<div><b>Books Read</b></div>
 				<div class="blue-font">{{vm.booksRead}}</div>
 			</div>
+		</div>
+		<div class="text-center">
+			<span ng-if="vm.user.title">{{vm.user.title}}, </span>
+			<span>{{vm.user.organization}}</span>
 		</div>
 		<div class="row margin-3">
 			<div class="col-33">

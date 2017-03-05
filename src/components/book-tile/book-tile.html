@@ -18,13 +18,14 @@
             </div>
             <div ng-if="vm.book.status === 'QUEUE'" class="row no-padding button-bar button-feel"
                  ng-class="{'single-button': vm.myBook}">
-                <div ng-if="vm.myBook" class="single-button">
+                <div ng-if="vm.myBook" class="margin-auto">
                     <a class="col" ng-click="vm.updateStatus('STARTED_READING')">Start</a>
                 </div>
                 <div ng-if="!vm.myBook" class="button-bar" ng-include="'components/book-tile/template1.html'"></div>
             </div>
-            <div ng-if="vm.book.status === 'READ'" class="row no-padding button-bar button-feel">
-                <div ng-if="vm.myBook" class="single-button">
+            <div ng-if="vm.book.status === 'READ'" class="row no-padding button-bar button-feel"
+                 ng-class="{'single-button': vm.myBook}">
+                <div ng-if="vm.myBook" class="margin-auto">
                     <div class="col">
                         <fancy-select
                             show-text="true"
@@ -42,15 +43,18 @@
                 <div ng-if="!vm.myBook" class="button-bar" ng-include="'components/book-tile/template1.html'"></div>
             </div>
             <div ng-if="vm.book.status === 'RECOMMENDED'" class="row no-padding button-bar button-feel"
-                ng-class="{'single-button': vm.myBook}">
-                <div ng-if="vm.myBook" class="single-button">
+                 ng-class="{'single-button': vm.myBook}">
+                <div ng-if="vm.myBook" class="margin-auto">
                     <a class="col" ng-click="vm.updateStatus('STARTED_READING')">Start</a>
                 </div>
-                <div ng-if="!vm.myBook" class="button-bar" ng-include="'components/book-tile/template1.html'"></div>
+                <!-- <div ng-if="!vm.myBook" class="button-bar" ng-include="'components/book-tile/template1.html'"></div> -->
+            </div>
+            <div ng-if="vm.book.status === 'RECOMMENDED' && !vm.book.createdByAdmin" class="padding-top-5">
+              Recommended by: {{vm.book.username}}
             </div>
             <div ng-if="vm.book.status === 'STARTED_READING'" class="row no-padding button-bar button-feel"
                  ng-class="{'single-button': vm.myBook}">
-                <div ng-if="vm.myBook" class="single-button">
+                <div ng-if="vm.myBook" class="margin-auto">
                     <a class="col" ng-click="vm.updateStatus('READ')">Finish</a>
                 </div>
                 <div ng-if="!vm.myBook" class="button-bar" ng-include="'components/book-tile/template1.html'"></div>

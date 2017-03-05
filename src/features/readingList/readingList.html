@@ -7,8 +7,8 @@
     </ion-nav-bar>
 	<ion-content class="has-header img-container has-footer" scroll="true">
 		<div class="heading">{{vm.status}}</div>
-		<div ng-if="vm.status === 'RECOMMENDED'" class="recommended-section">
-			<div ng-if="vm.adminRecommendedBooks.length">{{vm.user.organization}}'s suggested books</div>
+		<div ng-if="vm.status === 'RECOMMENDED' && vm.adminRecommendedBooks.length" class="recommended-section">
+			<div>{{vm.user.organization}}'s suggested books</div>
 			<div ng-repeat="book in vm.adminRecommendedBooks" class="border-left">
 				<book-tile book="book" book-status="vm.status" callback="vm.updateRecommendation(bookObj, status)" my-book="true">
 
