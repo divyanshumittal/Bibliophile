@@ -1,11 +1,5 @@
 .tile {
 
-	img {
-	  max-width: 75%;
-	  max-height: 74%;
-	  box-shadow: 5px 5px 5px #888888;
-	}
-
 	.white-bckgrnd {
 		background-color: white;
 	}
@@ -26,26 +20,12 @@
 		padding: 0;
 		margin: 0;
 	}
-
-	.points-badge {
-		z-index: 100;
-		position: absolute;
-		top: 20%;
-		height: 45%;
-		width: 55%;
-		background-color: black;
-		opacity: .9;
-		color: white;
-		border-radius: 50%;
-		border: 3px solid white;
-		left: -20%;
-	}
-
+	
 	.button-feel {
 		background-color: #444;
 		font-size: 0.7em;
 		border-radius: 25px;
-		margin-top: 10%;
+		margin-top: 15%;
 		cursor: pointer;
 
 		a {
@@ -86,6 +66,9 @@
 
 	.round-image {
 		border-radius: 50%;
+		max-width: 75%;
+	  max-height: 75%;
+	  box-shadow: 5px 5px 5px #888888;
 	}
 
 	fancy-select {
@@ -123,25 +106,42 @@
 	}
 
 	.book-image-wrapper {
-  position: relative;
+	  position: relative;
 
-  &:after {
-    padding-top: 133%;
-    display: block;
-    content: '';
-  }
+		&:after {
+		  padding-top: 133%;
+		  display: block;
+		  content: '';
+		}
+	}
 
-  .book-image-main {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
+	.book-image-parent {
+	  position: absolute;
+	  top: 0;
+	  bottom: 0;
+	  right: 0;
+	  left: 0;
 
-    img {
-      height: 100%;
-      width: 100%;
-    }
-  }
-}
+		img {
+		  height: 100%;
+		  width: 90%;
+		  z-index: 10;
+			box-shadow: 5px 5px 5px #888888;
+		}
+	}
+
+	.points-badge  {
+	  z-index: 11;
+	  position: absolute;
+	  top: 50%;
+	  left: 0%;
+	  transform: translate(-50%, -50%);
+	  color: tomato;
+	  background-color: black;
+	  padding: 10px;
+		opacity: .9;
+		color: white;
+		border-radius: 50%;
+		border: 3px solid white;
+	}
 }

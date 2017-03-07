@@ -4,14 +4,15 @@
   </div>
   <div class="row padding-bottom-15">
       <div class="col col-33 custom-padding">
-          <div class="pos-relative">
-              <div class="points-badge">
-                  <div class="vertically-center text-center">
-                      <b class="purple-font">{{vm.book.bookPoints}}</b> <div class="very-small-font-size">POINTS</div>
-                  </div>
-              </div>
-              <img ng-src="{{vm.book.imageUrl}}" />
-          </div>
+        <div class="book-image-wrapper">
+           <div class="book-image-parent">
+             <img ng-src="{{vm.book.imageUrl}}">
+           </div>
+           <div class="points-badge">
+             <b class="purple-font">{{vm.book.bookPoints}}</b>
+             <div class="very-small-font-size">POINTS</div>
+           </div>
+        </div>
       </div>
       <div class="col col-67">
           <div class="text-center">
