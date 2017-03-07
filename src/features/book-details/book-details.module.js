@@ -17,7 +17,7 @@
                 },
                 resolve: {
                     book: function($stateParams, goodReadsService) {
-                        return goodReadsService.getBook($stateParams.id, $stateParams.title)
+                        return goodReadsService.getBook($stateParams.id, $stateParams.title, true)
                                   .then(function(result) {
                                       return result;
                                   });

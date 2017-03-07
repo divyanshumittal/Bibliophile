@@ -30,7 +30,7 @@
                 return defer.promise;
             }
 
-            function getBook(bookId, title) {
+            function getBook(bookId, title, getSimilarBooks) {
                 var defer = $q.defer();
 
                 $http({
@@ -38,7 +38,7 @@
                     url: "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D'https%3A%2F%2Fwww.goodreads.com%2Fbook%2Fshow.xml%3Fid%3D"
                     + bookId + "%26key%3D" + self.devKey + "'&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys"
                 }).then(function(res) {
-                    defer.resolve(parseSingleBookJSON(res, title));
+                    defer.resolve(parseSingleBookJSON(res, title, getSimilarBooks));
                 }, function(err) {
                     console.log('error', err);
                     defer.reject(err);
@@ -54,7 +54,7 @@
               _.map(booksObjs, function(bookObj) {
                 var book = {
                   goodReadsId: _.get(bookObj, ['best_book', 'id', 'content']),
-                  title: _.get(bookObj, ['best_book', 'content'], '').replace(/^\s*[\r\n]/gm, "")
+                  title: _.get(bookObj, ['best_book', 'content'], '').replace(/\r?\n|\r/g,"").trim()
                 }
 
                 if (book.goodReadsId && book.title) {
@@ -65,11 +65,10 @@
               return books;
             }
 
-            function parseSingleBookJSON(res, title) {
+            function parseSingleBookJSON(res, title, getSimilarBooks) {
               var bookObj = _.get(res, ['data', 'query', 'results', 'body', 'goodreadsresponse', 'book']);
-              console.log(res);
               var book = {
-                  title: title,
+                  title: title || _.get(bookObj, ['work', 'original_title']),
                   authorName: _.get(bookObj, ['authors', 'author', 'name'],
                               _.get(bookObj, ['authors', 'author', '0', 'name'], 'N/A')),
                   bookPoints: bookPointCalculator(bookObj.average_rating),
@@ -79,7 +78,17 @@
                     + '/' + bookObj.publication_year
               };
 
-              return book;
+              if (getSimilarBooks) {
+                var similar_book = _.get(bookObj, ['similar_books', 'book', '0']);
+
+                return getBook(similar_book.id, similar_book.title_without_series, false).then(function(result) {
+                  book['similar_book'] = result;
+
+                  return book;
+                });
+              } else {
+                return book;
+              }
             }
 
             function bookPointCalculator(average_rating) {

@@ -1,6 +1,6 @@
 .book-details {
 	.heading {
-		padding: 12px;
+		padding: 10px;
 		font-size: 1.4em;
 	}
 
@@ -12,11 +12,7 @@
 	}
 
 	.points-badge {
-		z-index: 100;
-		position: absolute;
-		top: 20%;
-		height: 90%;
-		width: 100%;
+		position: relative;
 		background-color: black;
 		opacity: .9;
 		color: white;

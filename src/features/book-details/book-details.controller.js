@@ -5,12 +5,32 @@
             .controller('BookDetailsController', BookDetailsController);
 
         // @ngInject
-        function BookDetailsController(book, bookfeedService, userService, $timeout, $ionicPopup, $ionicDB) {
+        function BookDetailsController(book, bookfeedService, userService, $timeout, $ionicPopup, $ionicDB, $scope, goodReadsService) {
             var vm = this;
-
             var bookfeeds = $ionicDB.collection('bookfeeds');
 
             vm.book = book;
+            vm.options = {
+              loop: false,
+              direction: 'horizontal',
+              effect: 'fade',
+              speed: 500
+            };
+            vm.sliderData= {};
+
+            $scope.$on("$ionicSlides.slideChangeStart", function(event, data){
+              if (data.slider.activeIndex === 1) {
+                vm.originalBook = vm.book;
+                vm.book = vm.book.similar_book;
+                getPastReaders();
+                $scope.$apply();
+              } else {
+                vm.book = vm.originalBook;
+                getPastReaders();
+                $scope.$apply();
+              }
+            });
+
             //needs to be removed
             // vm.book = {
             //     "id": "88e23dbd-a996-4a5f-bbe2-e0d57d434b65",
@@ -28,7 +48,6 @@
             // };
             vm.createBookfeed = createBookfeed;
             vm.createRecommendation = createRecommendation;
-            vm.book.releaseDate = moment(vm.book.releaseDate).format('MM-DD-YYYY');
 
             init();
 

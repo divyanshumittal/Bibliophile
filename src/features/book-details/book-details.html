@@ -6,35 +6,14 @@
 	    </ion-nav-title>
     </ion-nav-bar>
 	<ion-content class="has-header has-footer" scroll="true">
-		<div class="row">
-			<div class="col col-20 pos-relative">
-		        <div class="points-badge">
-		        	<div class="text-center vertically-center">
-		        		<b class="purple-font">{{vm.book.bookPoints}}</b> <div class="very-small-font-size">POINTS</div>
-		        	</div>
-		        </div>
-	    	</div>
-	    	<b class="heading text-center">
-				{{vm.book.title}}
-			</b>
-		</div>
-		<div class="padding">
-			<div class="image-container">
-				<img ng-src="{{vm.book.imageUrl}}" class="book-img"/>
-				<div class="margin-top-10 bold-font">{{vm.book.authorName}}</div>
-				<div>{{vm.book.releaseDate}}</div>
-			</div>
-			<div ng-if="vm.book.description" class="justify-text" ng-bind-html="vm.book.description"></div>
-			<div ng-if="!vm.book.description">Sorry, no description available</div>
-			<div class="readers-title row">Co-workers who have read this book:</div>
-			<div ng-repeat="reader in vm.pastReaders" class="padding-top-bottom-10 row">
-				<img class="reader-image" ng-src="{{reader.userImgUrl}}" />
-				<span class="reader-name">{{reader.name}}</span>
-			</div>
-			<div ng-if="!vm.pastReaders.length">
-				None
-			</div>
-		</div>
+		<ion-slides options="vm.options" slider="vm.sliderData.sliderDelegate">
+	    <ion-slide-page>
+	      <div ng-include="'features/book-details/details.html'"></div>
+	    </ion-slide-page>
+			<ion-slide-page>
+	      <!-- <div ng-include="'features/book-details/details.html'"></div> -->
+	    </ion-slide-page>
+	  </ion-slides>
 	</ion-content>
 	<div class="bar bar-dark bar-footer button-bar">
 		<div class="row">
