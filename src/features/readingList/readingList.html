@@ -5,33 +5,20 @@
 	      Home
 	    </ion-nav-title>
     </ion-nav-bar>
-	<ion-content class="has-header img-container has-footer" scroll="true">
-		<div class="heading">{{vm.status}}</div>
-		<div ng-if="vm.status === 'RECOMMENDED' && vm.adminRecommendedBooks.length" class="recommended-section">
-			<div>{{vm.user.organization}}'s suggested books</div>
-			<div ng-repeat="book in vm.adminRecommendedBooks" class="border-left">
-				<book-tile book="book" book-status="vm.status" callback="vm.updateRecommendation(bookObj, status)" my-book="true">
+	<ion-content class="has-header has-footer" scroll="false">
 
-				</book-tile>
-			</div>
-		</div>
-		<div ng-repeat="book in vm.books">
-			<book-tile book="book" book-status="vm.status" callback="vm.updateRecommendation(bookObj, status)" my-book="true">
-
-			</book-tile>
-		</div>
 	</ion-content>
 	<ion-tabs class="tabs-dark tabs-icon-top">
 
-	  <ion-tab title="Recommended" icon-on="ion-lightbulb" icon-off="ion-android-bulb" on-select="vm.getBooks('RECOMMENDED')">
-
-	  </ion-tab>
-	  <ion-tab title="Read" icon-on="ion-android-menu" icon-off="ion-android-menu" on-select="vm.getBooks('READ')">
-
-	  </ion-tab>
-	  <ion-tab title="Queue" icon-on="ion-android-time" icon-off="ion-android-time" on-select="vm.getBooks('QUEUE')">
-
-	  </ion-tab>
+		<ion-tab title="Recommended" icon-on="ion-lightbulb" icon-off="ion-android-bulb" on-select="vm.getBooks('RECOMMENDED')">
+			<div ng-include="'features/readingList/readingListTemplate.html'"></div>
+		</ion-tab>
+		<ion-tab title="Read" icon-on="ion-android-menu" icon-off="ion-android-menu" on-select="vm.getBooks('READ')">
+			<div ng-include="'features/readingList/readingListTemplate.html'"></div>
+		</ion-tab>
+		<ion-tab title="Queue" icon-on="ion-android-time" icon-off="ion-android-time" on-select="vm.getBooks('QUEUE')">
+			<div ng-include="'features/readingList/readingListTemplate.html'"></div>
+		</ion-tab>
 
 	</ion-tabs>
 </ion-view>

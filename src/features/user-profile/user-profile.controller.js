@@ -19,7 +19,6 @@
             vm.genres = angular.copy(userService.allGenres);
             vm.genresSelected = genresSelected;
             vm.goBack = goBack;
-            vm.ratingsClicked = ratingsClicked;
 
             init();
 
@@ -58,10 +57,6 @@
                 }).watch().subscribe(function(books) {
                     vm.booksRead = _.size(books);
                 });
-            }
-
-            function ratingsClicked(bookObj) {
-                bookObj.ratings = vm.rating.rate;
             }
         }
 

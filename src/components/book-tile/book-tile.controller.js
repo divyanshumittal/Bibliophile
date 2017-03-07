@@ -7,6 +7,7 @@ angular.module('app')
 	var bookfeeds = $ionicDB.collection('bookfeeds');
   var users = $ionicDB.collection('customUsers');
 
+  vm.createdDate = moment(vm.book.createdDate).format('MM-DD-YYYY HH:mm:ss a');
  	vm.updateStatus = updateStatus;
  	vm.createRecommendation = createRecommendation;
 

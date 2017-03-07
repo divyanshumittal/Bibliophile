@@ -6,7 +6,7 @@
 
         // @ngInject
         function userService($ionicAuth, $ionicPopup, $ionicDB, $state, $ionicGoogleAuth, bookfeedService,
-                              loaderService) {
+                              loaderService, $window) {
             var self = this;
             var users = $ionicDB.collection('customUsers');
             var recommendations = $ionicDB.collection('recommendations');
@@ -77,9 +77,22 @@
             }
 
             function setupRecommendationWatcher(callback) {
-              recommendations.order('createdDate', 'descending').findAll({
-                  recommendedTo: _.get(self.user, 'id')
-              }).watch().subscribe(function(newRecommendations) {
+              setup(callback);
+
+              $window.cordova.plugins.backgroundMode.enable();
+              // Called when background mode has been activated
+              $window.cordova.plugins.backgroundMode.onactivate = function() {
+                  setup(callback);
+              }
+            }
+
+            function setup(callback) {
+              recommendations.findAll({
+                  recommendedTo: self.user.id
+              }).order('createdDate', 'descending')
+                .watch().subscribe(function(newRecommendations) {
+                  //findAll filter not workng
+                newRecommendations = _.filter(newRecommendations, { recommendedTo: self.user.id });
                 if (myOldRecommendationsObjs && (newRecommendations.length !== myOldRecommendationsObjs.length)) {
                   bookfeedService.sendCordovaNotification(newRecommendations[0].title);
                 }

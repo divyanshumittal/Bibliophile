@@ -27,12 +27,14 @@
             function getBooks(status) {
                 vm.status = status;
 
+                //recommendation are being set by getRecommendedBooksCallback()
                 if (status !== 'RECOMMENDED') {
                     bookfeeds.findAll({
                         userUUID: _.get(userService.user, 'id'),
                         status: status,
                         isDeprecated: false
-                    }).watch().subscribe(function(books) {
+                    }).order('createdDate', 'descending')
+                      .watch().subscribe(function(books) {
                         vm.books = books;
                     });
                 }
@@ -49,7 +51,7 @@
             function getRecommendedBooksCallback(recommendations) {
                 var activeRecommendations = _.reject(recommendations, {isDeprecated: true});
 
-                vm.books = _.reject(activeRecommendations, { createdByAdmin: true});
+                vm.otherRecommendations = _.reject(activeRecommendations, { createdByAdmin: true});
                 vm.adminRecommendedBooks = _.filter(activeRecommendations, { createdByAdmin: true});
             }
         }

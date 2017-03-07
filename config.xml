@@ -112,4 +112,5 @@
         <variable name="SENDER_ID" value="315672071336" />
     </plugin>
     <plugin name="de.appplant.cordova.plugin.local-notification" spec="https://github.com/Telerik-Verified-Plugins/LocalNotification" />
+    <plugin name="cordova-plugin-background-mode" spec="https://github.com/katzer/cordova-plugin-background-mode.git" />
 </widget>

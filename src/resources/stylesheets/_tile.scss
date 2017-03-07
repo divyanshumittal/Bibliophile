@@ -1,8 +1,8 @@
 .tile {
 
 	img {
-	  max-width: 80%;
-	  max-height: 80%;
+	  max-width: 75%;
+	  max-height: 74%;
 	  box-shadow: 5px 5px 5px #888888;
 	}
 
@@ -111,4 +111,37 @@
 	.padding-top-5 {
 		padding-top: 5px;
 	}
+
+	.created-date {
+		font-size: 0.9em;
+    font-weight: bold;
+		text-align: center;
+	}
+
+	.padding-bottom-15 {
+		padding-bottom: 15px;
+	}
+
+	.book-image-wrapper {
+  position: relative;
+
+  &:after {
+    padding-top: 133%;
+    display: block;
+    content: '';
+  }
+
+  .book-image-main {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+
+    img {
+      height: 100%;
+      width: 100%;
+    }
+  }
+}
 }

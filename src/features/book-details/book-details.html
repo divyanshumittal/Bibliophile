@@ -24,7 +24,7 @@
 				<div class="margin-top-10 bold-font">{{vm.book.authorName}}</div>
 				<div>{{vm.book.releaseDate}}</div>
 			</div>
-			<div ng-if="vm.book.description" ng-bind-html="vm.book.description"></div>
+			<div ng-if="vm.book.description" class="justify-text" ng-bind-html="vm.book.description"></div>
 			<div ng-if="!vm.book.description">Sorry, no description available</div>
 			<div class="readers-title row">Co-workers who have read this book:</div>
 			<div ng-repeat="reader in vm.pastReaders" class="padding-top-bottom-10 row">
