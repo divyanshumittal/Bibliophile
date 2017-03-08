@@ -63,6 +63,7 @@
                     title: vm.title,
                     score: 0,
                     createdDate: new Date(),
+                    notificationTime: 10,
                     isAdmin: false
                 };
                 var details = {

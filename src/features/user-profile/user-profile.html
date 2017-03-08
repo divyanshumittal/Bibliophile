@@ -10,8 +10,9 @@
 				<div><b>My points</b></div>
 				<div class="blue-font">{{vm.user.score}}</div>
 			</div>
-			<div class="col col-33">
+			<div class="col col-33 pos-relative">
 				<img ng-src="{{vm.user.imageUrl}}" class="user-img" />
+				<i class="ion-edit edit-image" ng-click="vm.openActionSheet()"></i>
 				<div>{{vm.user.name}}</div>
 			</div>
 			<div class="col col-33 medium-font">
@@ -51,7 +52,7 @@
 				<b>Reminder (sec):</b>
 			</div>
 			<div class="col-50">
-				<input ng-if="vm.editTime" value="vm.notificationTime" ng-model="vm.notificationTime" />
+				<input ng-if="vm.editTime" value="vm.notificationTime" ng-model="vm.user.notificationTime" />
 				<span ng-if="!vm.editTime">{{vm.notificationTime}}</span>
 			</div>
 			<div class="col-10">

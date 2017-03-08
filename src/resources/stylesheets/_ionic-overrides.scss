@@ -17,3 +17,18 @@ $input-color-placeholder: $gray !default;
 * {
     font-family: 'Lato', "Helvetica Neue", Helvetica, Arial, sans-serif
 }
+
+.tab-nav {
+  a {
+    :hover {
+      color: white !important;
+    }
+    :focus {
+      color: white !important;
+    }
+  }
+
+  .tab-title {
+    color: white !important;
+  }
+}

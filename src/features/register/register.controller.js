@@ -16,7 +16,6 @@
             vm.register = register;
             vm.validatePasswords = validatePasswords;
             vm.takePhoto = takePhoto;
-            vm.choosePhoto = choosePhoto;
             vm.nextStep = nextStep;
             vm.goTo = goTo;
 
@@ -75,6 +74,7 @@
                  title: vm.title,
                  score: 0,
                  createdDate: new Date(),
+                 notificationTime: 10,
                  isAdmin: false
               };
               var details = {
@@ -91,11 +91,10 @@
               vm.duplicateEmail = true;
             }
 
-            function takePhoto() {
+            function takePhoto(take) {
               var options = {
                   quality: 75,
                   destinationType: Camera.DestinationType.DATA_URL,
-                  sourceType: Camera.PictureSourceType.CAMERA,
                   allowEdit: true,
                   encodingType: Camera.EncodingType.JPEG,
                   targetWidth: 300,
@@ -104,25 +103,7 @@
                   saveToPhotoAlbum: false
               };
 
-              $cordovaCamera.getPicture(options).then(function (imageData) {
-                  vm.imgURI = "data:image/jpeg;base64," + imageData;
-              }, function (err) {
-                  // An error occured. Show a message to the user
-              });
-            }
-
-            function choosePhoto() {
-              var options = {
-                  quality: 75,
-                  destinationType: Camera.DestinationType.DATA_URL,
-                  sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-                  allowEdit: true,
-                  encodingType: Camera.EncodingType.JPEG,
-                  targetWidth: 300,
-                  targetHeight: 300,
-                  popoverOptions: CameraPopoverOptions,
-                  saveToPhotoAlbum: false
-              };
+              options.sourceType = take ? Camera.PictureSourceType.CAMERA : Camera.PictureSourceType.PHOTOLIBRARY;
 
               $cordovaCamera.getPicture(options).then(function (imageData) {
                   vm.imgURI = "data:image/jpeg;base64," + imageData;

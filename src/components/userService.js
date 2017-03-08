@@ -27,8 +27,6 @@
                 {id : 4, text: 'History', checked: false, icon: null},
                 {id : 5, text: 'Economics', checked: false, icon: null},
                 {id : 6, text: 'Poetry', checked: false, icon: null}];
-
-              self.notificationTime = 10;
             }
 
             function signup(user, details, googleSignUp, errorCallback) {
