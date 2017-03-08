@@ -2,13 +2,14 @@
 	.heading {
 		color: gray;
 		padding: 12px;
-		font-size: 1.1em;
+		font-size: 1.2em;
+    font-weight: bold;
 	}
 
 	img {
 		max-width: 50%;
 	    border-radius: 50%;
-	}	
+	}
 
 	.card {
 		margin: 10px;
@@ -21,5 +22,10 @@
 	.xlarge {
 		font-size: x-large;
 		padding: 0 3px;
+	}
+
+	.top-5 {
+		font-size: 1.1em;
+		font-weight: bold;
 	}
 }

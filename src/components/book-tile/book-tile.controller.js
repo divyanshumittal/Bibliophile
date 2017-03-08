@@ -7,7 +7,6 @@ angular.module('app')
 	var bookfeeds = $ionicDB.collection('bookfeeds');
   var users = $ionicDB.collection('customUsers');
 
-  vm.createdDate = moment(vm.book.createdDate).format('MM-DD-YYYY HH:mm:ss a');
  	vm.updateStatus = updateStatus;
  	vm.createRecommendation = createRecommendation;
 
@@ -23,7 +22,12 @@ angular.module('app')
  			user.checked = false;
  		});
 
-    vm.createdDate = moment(vm.book.createdDate, "ddd MMM YYYY hh:mm:ss").format("MMM Do YY, hh:mm:ss a");
+    if (vm.myBook) {
+      vm.createdDate = moment(vm.book.createdDate).format("MMM Do, YYYY");
+    } else {
+      vm.createdDate = moment(vm.book.createdDate).format("MMM Do YY, hh:mm:ss a");
+    }
+
  	}
 
 
@@ -85,7 +89,7 @@ angular.module('app')
             createdDate: new Date(),
             organization: _.get(userService.user, 'organization'),
 			isDeprecated: false,
-            ratings: vm.book.ratings
+            ratings: status === 'STARTED_READING' ? 0 : vm.book.ratings
 		};
 
 		//deprecate old feeds for same user for the same book

@@ -1,8 +1,9 @@
-<div class="row">
+<div class="row padding-bottom-0">
   <div class="col col-20">
     <div class="points-badge">
       <div class="text-center vertically-center">
-        <b class="purple-font">{{vm.book.bookPoints}}</b> <div class="very-small-font-size">POINTS</div>
+        <div class="white-font">{{vm.book.bookPoints}}</div>
+        <div class="very-small-font-size">POINTS</div>
       </div>
     </div>
   </div>
@@ -11,13 +12,13 @@
     <div ng-if="!vm.book.title">Title missing</div>
   </div>
 </div>
-<div class="padding">
+<div class="padding details-container">
   <div class="image-container">
     <img ng-src="{{vm.book.imageUrl}}" class="book-img"/>
     <div class="margin-top-10 bold-font">{{vm.book.authorName}}</div>
     <div>{{vm.book.releaseDate}}</div>
   </div>
-  <div ng-if="vm.book.description" ng-bind-html="vm.book.description"></div>
+  <div ng-if="vm.book.description" class="justify-text" ng-bind-html="vm.book.description"></div>
   <div ng-if="!vm.book.description">Sorry, no description available</div>
   <div class="readers-title row">Co-workers who have read this book:</div>
   <div ng-repeat="reader in vm.pastReaders" class="padding-top-bottom-10 row">

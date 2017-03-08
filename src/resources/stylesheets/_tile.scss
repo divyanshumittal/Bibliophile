@@ -20,13 +20,15 @@
 		padding: 0;
 		margin: 0;
 	}
-	
+
 	.button-feel {
 		background-color: #444;
 		font-size: 0.7em;
 		border-radius: 25px;
-		margin-top: 15%;
 		cursor: pointer;
+		position: absolute;
+		bottom: 0;
+		padding: 2px;
 
 		a {
 			color: white;
@@ -41,6 +43,7 @@
 		width: 50%;
     	margin-left: auto;
     	margin-right: auto;
+			left: 25%;
 	}
 
 	.thumbsup {
@@ -60,8 +63,9 @@
 		font-size: 0.5em;
 	}
 
-	.purple-font {
-		color: #7a4ef5;
+	.white-font {
+		color: white;
+		text-align: center;
 	}
 
 	.round-image {
@@ -98,7 +102,7 @@
 	.created-date {
 		font-size: 0.9em;
     font-weight: bold;
-		text-align: center;
+		padding-left: 10px;
 	}
 
 	.padding-bottom-15 {

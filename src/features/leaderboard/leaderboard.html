@@ -8,6 +8,7 @@
           </div>
         </div>
         <div ng-if="vm.toggleChart">
+            <div class="top-5 padding-left">Top 5 performers</div>
             <nvd3 options="vm.options" data="vm.chartData"></nvd3>
         </div>
         <div ng-if="!vm.toggleChart">
