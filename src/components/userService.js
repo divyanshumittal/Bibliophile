@@ -26,7 +26,8 @@
                 {id : 3, text: 'Mystery', checked: false, icon: null},
                 {id : 4, text: 'History', checked: false, icon: null},
                 {id : 5, text: 'Economics', checked: false, icon: null},
-                {id : 6, text: 'Poetry', checked: false, icon: null}];
+                {id : 6, text: 'Poetry', checked: false, icon: null},
+                {id : 7, text: 'Fantasy', checked: false, icon: null}];
             }
 
             function signup(user, details, googleSignUp, errorCallback) {

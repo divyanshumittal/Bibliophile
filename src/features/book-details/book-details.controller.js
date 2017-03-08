@@ -123,7 +123,7 @@
                         });
 
                         $ionicPopup.alert({
-                             title: vm.book.title + ' recommended'
+                             title: vm.book.title + ' has been recommended'
                         });
 
                         // recommendedIonicIds = _.map(recommendedTo, function(userId) {
