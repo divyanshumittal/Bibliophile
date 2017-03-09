@@ -63,7 +63,7 @@
 		<div class="text-center margin-top-10">
 			<div class="large-font">CURRENTLY READING</div>
 			<div ng-repeat="bookObj in vm.books">
-				<book-tile book=bookObj book-status="'STARTED_READING'" my-book="true"></book-tile>
+				<book-tile book=bookObj book-status="'STARTED_READING'" my-book="true" callback="vm.bookCompleted(bookObj)"></book-tile>
 				<rating ng-model="bookObj.ratings" max="vm.rating.max"></rating>
 			</div>
 			<div ng-if="!vm.books.length" class="margin-top-15">

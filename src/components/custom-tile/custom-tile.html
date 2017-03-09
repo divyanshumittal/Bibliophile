@@ -2,16 +2,16 @@
     <div class="col text-center white-bckgrnd margin-5">
         <div class="row">
             <div class="col col-20 pos-relative">
-                <img class="round-image" ng-src="{{vm.bookFeed.userImgUrl}}" />
+                <img class="round-image" ng-src="{{::vm.bookFeed.userImgUrl}}" />
             </div>
             <div class="col col-60 margin-auto">
                 <b ng-if="vm.myBook">You</b>
-                <b ng-if="!vm.myBook">{{vm.bookFeed.username}}</b>
+                <b ng-if="!vm.myBook">{{::vm.bookFeed.username}}</b>
                 <span ng-if="vm.bookFeed.status === 'QUEUE'">  added to queue</span>
                 <span ng-if="vm.bookFeed.status === 'READ'">  finished reading</span>
                 <span ng-if="vm.bookFeed.status === 'STARTED_READING'">  started reading</span>
                 <span ng-if="vm.bookFeed.status === 'RECOMMENDED'">  recommended</span>
-                <div class="small-font-size">{{vm.createdDate}}</div>
+                <div class="small-font-size">{{::vm.createdDate}}</div>
             </div>
             <div class="col-20 thumbsup" ng-if="!vm.myBook">
                 <i class="ion-thumbsup padding-right-15" ng-click="vm.liked = !vm.liked" ng-class="{'tapped' : vm.liked}"></i>

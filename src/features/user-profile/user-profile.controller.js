@@ -16,11 +16,13 @@
             };
 
             vm.user = userService.user;
+            vm.userCopy = angular.copy(vm.user);
             vm.notificationTime = vm.user.notificationTime || 10;
             vm.genres = angular.copy(userService.allGenres);
             vm.genresSelected = genresSelected;
             vm.goBack = goBack;
             vm.openActionSheet = openActionSheet;
+            vm.bookCompleted = bookCompleted;
 
             init();
 
@@ -29,7 +31,9 @@
                     userUUID: _.get(userService.user, 'id'),
                     status: 'STARTED_READING',
                     isDeprecated: false
-                }).fetch().subscribe(function(books) {
+                })
+                .order('createdDate', 'descending')
+                .watch().subscribe(function(books) {
                     vm.books = books;
                 });
 
@@ -43,6 +47,7 @@
             }
 
             function goBack() {
+              if (vm.userCopy.imageUrl !== vm.user.imageUrl) {
                 bookfeeds.findAll({
                     userUUID: _.get(userService.user, 'id')
                 }).fetch().subscribe(function(books) {
@@ -51,8 +56,13 @@
                       bookfeeds.update(book);
                     });
                 });
+              }
+
+              if (!_.isEqual(vm.userCopy, vm.user)) {
                 users.update(vm.user);
-                $ionicHistory.goBack();
+              }
+
+              $ionicHistory.goBack();
             }
 
             function genresSelected(value) {
@@ -113,6 +123,10 @@
               }, function (err) {
                   // An error occured. Show a message to the user
               });
+            }
+
+            function bookCompleted(bookObj) {
+              vm.user.score += bookObj.bookPoints;
             }
         }
 

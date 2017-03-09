@@ -32,13 +32,15 @@
             init();
 
             function init() {
-                users.order('score', 'descending').findAll({ organization: _.get(userService.user, 'organization')}).watch().subscribe(function(users) {
-                    vm.users = users;
-                    vm.chartData = [{
-                        key: "Cumulative Points",
-                        values: vm.users.slice(0, 5)
-                    }];
-                });
+                users.order('score', 'descending')
+                    .findAll({ organization: _.get(userService.user, 'organization')})
+                    .fetch().subscribe(function(users) {
+                      vm.users = users;
+                      vm.chartData = [{
+                          key: "Cumulative Points",
+                          values: vm.users.slice(0, 5)
+                      }];
+                    });
             }
         }
     }(angular));

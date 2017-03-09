@@ -3,8 +3,8 @@
 		padding-right: 5px;
 	}
 
-	.margin-top-15 {
-		margin-top: 15%
+	.margin-top-5 {
+		margin-top: 5%
 	}
 
 	.large-font {
@@ -24,7 +24,7 @@
 	.register-btn {
 		margin-top: 15%
 	}
-	
+
 	.text-danger {
 		color: red;
 	}
@@ -50,5 +50,15 @@
 
 	fancy-select {
 		width: 100%;
+	}
+
+	.img-bg {
+		background-color: white;
+		border-radius: 10%;
+	}
+
+	.app-logo {
+		width: 100%;
+		padding: 2px;
 	}
 }

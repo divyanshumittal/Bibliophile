@@ -81,11 +81,15 @@
               if (getSimilarBooks) {
                 var similar_book = _.get(bookObj, ['similar_books', 'book', '0']);
 
-                return getBook(similar_book.id, similar_book.title_without_series, false).then(function(result) {
-                  book['similar_book'] = result;
+                if (similar_book) {
+                  return getBook(similar_book.id, similar_book.title_without_series, false).then(function(result) {
+                    book['similar_book'] = result;
 
-                  return book;
-                });
+                    return book;
+                  });
+                } else {
+                  return {};
+                }
               } else {
                 return book;
               }

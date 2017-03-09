@@ -111,11 +111,5 @@ angular.module('app')
                 status: status
             });
 		}
-
-        //increment users score
-        if (status === 'READ') {
-            userService.user.score += vm.book.bookPoints;
-            users.update(userService.user);
-        }
  	}
  };

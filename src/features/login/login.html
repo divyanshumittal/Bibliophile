@@ -1,19 +1,22 @@
 <ion-view class="login" cache-view="false">
 	<ion-content scroll="true">
-		<div class="margin-top-15">
-			<div class="row">
-				<div class="col col-offset-20 col-60 text-center">
-					<span class="ion-ios-book padding-right-5"></span>
-					<b class="large-font">Learning Cloud</b>
-				</div>
+		<div class="row margin-top-5">
+			<div class="col-33 col-offset-33 img-bg">
+				<img ng-src="resources/img/outlearn.png" class="app-logo" />
 			</div>
-			<div class="row">
-				<div class="col col-offset-10 col-80 text-center">
-					<small>Grow your people grow your company</small>
-				</div>
-			</div>
-			<div class="margin-top-15" ng-if="!vm.signUpWithGoogle" ng-include="'features/login/login-or-register.html'"></div>
-			<div class="margin-top-15" ng-if="vm.signUpWithGoogle" ng-include="'features/login/signup-with-google.html'"></div>
 		</div>
+		<div class="row margin-top-5">
+			<div class="col col-offset-20 col-60 text-center">
+				<b class="large-font">Learning Cloud</b>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col col-offset-10 col-80 text-center">
+				<small>Grow your people grow your company</small>
+			</div>
+		</div>
+		<div class="margin-top-5" ng-if="!vm.signUpWithGoogle" ng-include="'features/login/login-or-register.html'"></div>
+		<div class="margin-top-5" ng-if="vm.signUpWithGoogle" ng-include="'features/login/signup-with-google.html'"></div>
+
 	</ion-content>
 </ion-view>
