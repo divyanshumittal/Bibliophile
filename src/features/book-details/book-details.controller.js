@@ -22,12 +22,10 @@
               if (data.slider.activeIndex === 1) {
                 vm.originalBook = vm.book;
                 vm.book = vm.book.similar_book;
-                getPastReaders();
-                $scope.$apply();
+                getPastReaders(true);
               } else {
                 vm.book = vm.originalBook;
-                getPastReaders();
-                $scope.$apply();
+                getPastReaders(true);
               }
             });
 
@@ -64,10 +62,13 @@
                 getPastReaders();
             }
 
-            function getPastReaders() {
+            function getPastReaders(applyScope) {
               bookfeeds.findAll({ title: vm.book.email, authorName: vm.book.authorName, status: 'READ'})
                 .fetch().subscribe(function(result) {
                   vm.pastReaders = result;
+                  if (applyScope) {
+                    $scope.$apply();
+                  }
               });
             }
 

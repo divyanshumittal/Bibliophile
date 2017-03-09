@@ -50,6 +50,8 @@ angular.module('app')
 
     function getResults(query) {
         if (query) {
+          // goodReads api breaks when there is a space
+          query = query.split(' ')[0];
           loaderService.showLoader();
 
           return goodReadsService.getBooks(query)
