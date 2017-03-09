@@ -40,10 +40,25 @@
 
                     });
             });
-        });
 
-        $window.addEventListener('native.keyboardshow', function(){
-            $window.document.body.classList.add('keyboard-open');
+            $rootScope.$on('$stateChangeStart', function() {
+                loaderService.showLoader();
+            });
+
+            $rootScope.$on('$stateChangeSuccess', function() {
+                $timeout(function() {
+                    ionicMaterialInk.displayEffect();
+                    loaderService.hideLoader();
+                });
+            });
+
+            $rootScope.$on('$stateChangeError', function() {
+                loaderService.hideLoader();
+            });
+
+            $window.addEventListener('native.keyboardshow', function(){
+                $window.document.body.classList.add('keyboard-open');
+            });
         });
     }
 }(angular));

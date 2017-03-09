@@ -75,7 +75,8 @@
                   imageUrl: bookObj.image_url,
                   description: _.get(bookObj, ['description', 'content']),
                   releaseDate: bookObj.publication_month + '/' + bookObj.publication_day
-                    + '/' + bookObj.publication_year
+                    + '/' + bookObj.publication_year,
+                  goodReadsId: bookObj.id
               };
 
               if (getSimilarBooks) {

@@ -52,8 +52,8 @@
 				<b>Reminder (sec):</b>
 			</div>
 			<div class="col-50">
-				<input ng-if="vm.editTime" value="vm.notificationTime" ng-model="vm.user.notificationTime" />
-				<span ng-if="!vm.editTime">{{vm.notificationTime}}</span>
+				<input ng-if="vm.editTime" value="vm.user.notificationTime" ng-model="vm.user.notificationTime" />
+				<span ng-if="!vm.editTime">{{vm.user.notificationTime}}</span>
 			</div>
 			<div class="col-10">
 				<i class="ion-edit" ng-if="!vm.editTime" ng-click="vm.editTime = !vm.editTime"></i>

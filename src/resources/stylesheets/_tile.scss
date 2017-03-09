@@ -51,8 +51,12 @@
 	    color: gray;
 	}
 
-	.large-font-size {
+	.book-title {
 		font-size: 1.1em;
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
 	}
 
 	.small-font-size {
@@ -140,12 +144,15 @@
 	  top: 50%;
 	  left: 0%;
 	  transform: translate(-50%, -50%);
-	  color: tomato;
 	  background-color: black;
 	  padding: 10px;
 		opacity: .9;
 		color: white;
 		border-radius: 50%;
 		border: 3px solid white;
+	}
+
+	.underline {
+		text-decoration: underline;
 	}
 }

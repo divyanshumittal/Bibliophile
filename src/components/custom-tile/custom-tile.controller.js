@@ -23,12 +23,12 @@ angular.module('app')
                 text       : vm.bookFeed.title,
                 sound      : null,
                 autoClear  : false,
-                at         : new Date(new Date().getTime() + userService.notificationTime*1000)
+                at         : new Date(new Date().getTime() + userService.user.notificationTime*1000)
             });
 
             $timeout(function() {
             	vm.tapped = false;
-            }, userService.notificationTime*1000);
+            }, userService.user.notificationTime*1000);
  		}
 
 	    vm.tapped = !vm.tapped;

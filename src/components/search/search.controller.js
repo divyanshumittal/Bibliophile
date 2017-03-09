@@ -88,6 +88,7 @@ angular.module('app')
         $ionicAuth.logout();
       }
 
+      userService.isRegistered = false;
       $state.go('app.login');
     }
  };

@@ -17,7 +17,6 @@
 
             vm.user = userService.user;
             vm.userCopy = angular.copy(vm.user);
-            vm.notificationTime = vm.user.notificationTime || 10;
             vm.genres = angular.copy(userService.allGenres);
             vm.genresSelected = genresSelected;
             vm.goBack = goBack;

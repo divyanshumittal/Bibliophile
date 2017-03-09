@@ -83,7 +83,8 @@
                     status: status,
                     createdDate: new Date(),
                     organization: userService.user.organization,
-                    isDeprecated: false
+                    isDeprecated: false,
+                    goodReadsId: vm.book.goodReadsId
                 };
 
                 bookfeedService.createBookfeed(bookfeedObj);

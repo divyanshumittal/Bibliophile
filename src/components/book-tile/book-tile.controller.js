@@ -2,13 +2,14 @@ angular.module('app')
 
 .controller('BookTileController', BookTileController);
 
- function BookTileController($ionicPopup, bookfeedService, userService, $timeout, $ionicDB) {
+ function BookTileController($ionicPopup, bookfeedService, userService, $timeout, $ionicDB, $state) {
  	var vm = this;
 	var bookfeeds = $ionicDB.collection('bookfeeds');
   var users = $ionicDB.collection('customUsers');
 
  	vm.updateStatus = updateStatus;
  	vm.createRecommendation = createRecommendation;
+  vm.goToBookDetails = goToBookDetails;
 
  	init();
 
@@ -89,7 +90,8 @@ angular.module('app')
             createdDate: new Date(),
             organization: _.get(userService.user, 'organization'),
 			isDeprecated: false,
-            ratings: status === 'STARTED_READING' ? 0 : vm.book.ratings
+            ratings: status === 'STARTED_READING' ? 0 : vm.book.ratings,
+            goodReadsId: vm.book.goodReadsId
 		};
 
 		//deprecate old feeds for same user for the same book
@@ -112,4 +114,13 @@ angular.module('app')
             });
 		}
  	}
+
+  function goToBookDetails() {
+    if (!vm.myBook) {
+      $state.go('app.bookDetails', {
+          id: vm.book.goodReadsId,
+          title: vm.book.title
+      });
+    }
+  }
  };
