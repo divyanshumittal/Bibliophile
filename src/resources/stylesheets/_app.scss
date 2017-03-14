@@ -59,3 +59,23 @@ ul.rating li i {
 ion-slides{
   height: 85vh;
 }
+
+ion-modal-view {
+	.close-icon {
+		font-size: x-large;
+		position: absolute;
+		top: 5px;
+		right: 5px;
+		bottom: 5px;
+	}
+
+	.user-image-in-modal {
+			border-radius: 50%;
+			max-width:40px;
+			max-height: 40px;
+	}
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}

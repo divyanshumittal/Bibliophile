@@ -14,8 +14,13 @@
                 <div class="small-font-size">{{::vm.createdDate}}</div>
             </div>
             <div class="col-20 thumbsup" ng-if="!vm.myBook">
-                <i class="ion-thumbsup padding-right-15" ng-click="vm.liked = !vm.liked" ng-class="{'tapped' : vm.liked}"></i>
-                <i class="ion-android-notifications" ng-click="vm.addReminder()" ng-class="{'tapped' : vm.tapped}"></i>
+              <div align="right">
+                <i class="ion-android-notifications padding-right-10" ng-click="vm.addReminder()" ng-class="{'tapped' : vm.tapped}"></i>
+                <i class="ion-thumbsup padding-right-5" ng-click="vm.likeDislikeFeed()" ng-class="{'tapped' : vm.liked}"></i>
+              </div>
+              <div align="right" class="liked-count padding-right-10" ng-if="vm.bookFeed.likedBy.length" ng-click="vm.openModal()">
+                {{vm.bookFeed.likedBy.length}}
+              </div>
             </div>
         </div>
         <book-tile book="vm.bookFeed" my-book="vm.myBook"></book-tile>

@@ -15,12 +15,16 @@
             vm.moredata = false;
             vm.loadMoreData = loadMoreData;
 
-            bookfeeds.findAll({ organization: _.get(userService.user, 'organization')})
-                     .order('createdDate', 'descending')
-                     .watch().subscribe(function(feeds) {
-                        newFeeds = _.reject(feeds, { userUUID:  _.get(userService.user, 'id')});
-                        vm.activeFeeds = newFeeds.slice(0, activeFeedsCount);
-            });
+            init();
+
+            function init() {
+              bookfeeds.findAll({ organization: _.get(userService.user, 'organization')})
+                       .order('createdDate', 'descending')
+                       .watch().subscribe(function(feeds) {
+                          newFeeds = _.reject(feeds, { userUUID:  _.get(userService.user, 'id')});
+                          vm.activeFeeds = newFeeds.slice(0, activeFeedsCount);
+              });
+            }
 
             function loadMoreData() {
               if (vm.activeFeeds) {

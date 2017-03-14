@@ -91,7 +91,8 @@ angular.module('app')
             organization: _.get(userService.user, 'organization'),
 			isDeprecated: false,
             ratings: status === 'STARTED_READING' ? 0 : vm.book.ratings,
-            goodReadsId: vm.book.goodReadsId
+            goodReadsId: vm.book.goodReadsId,
+            likedBy: []
 		};
 
 		//deprecate old feeds for same user for the same book

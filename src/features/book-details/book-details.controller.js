@@ -85,7 +85,8 @@
                     createdDate: new Date(),
                     organization: userService.user.organization,
                     isDeprecated: false,
-                    goodReadsId: vm.book.goodReadsId
+                    goodReadsId: vm.book.goodReadsId,
+                    likedBy: []
                 };
 
                 bookfeedService.createBookfeed(bookfeedObj);

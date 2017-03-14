@@ -83,8 +83,12 @@
 		color: white;
 	}
 
-	.padding-right-15 {
-		padding-right: 15px;
+	.padding-right-10 {
+		padding-right: 10px;
+	}
+
+	.padding-right-5 {
+		padding-right: 5px;
 	}
 
 	.tapped {
@@ -154,5 +158,9 @@
 
 	.underline {
 		text-decoration: underline;
+	}
+
+	.liked-count {
+		font-size: 0.6em;
 	}
 }
