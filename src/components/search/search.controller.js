@@ -54,7 +54,7 @@ angular.module('app')
           query = query.split(' ')[0];
           loaderService.showLoader();
 
-          return goodReadsService.getBooks(query)
+          return goodReadsService.getBooks(query, false)
                     .then(function(res) {
                         return res;
                     }, function(err) {

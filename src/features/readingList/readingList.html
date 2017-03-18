@@ -10,15 +10,16 @@
 	</ion-content>
 	<ion-tabs class="tabs-dark tabs-icon-top">
 
-		<ion-tab title="Recommended" icon-on="ion-lightbulb" icon-off="ion-android-bulb" on-select="vm.getBooks('RECOMMENDED')">
-			<div ng-include="'features/readingList/readingListTemplate.html'"></div>
-		</ion-tab>
-		<ion-tab title="Read" icon-on="ion-android-menu" icon-off="ion-android-menu" on-select="vm.getBooks('READ')">
-			<div ng-include="'features/readingList/readingListTemplate.html'"></div>
-		</ion-tab>
 		<ion-tab title="Queue" icon-on="ion-android-time" icon-off="ion-android-time" on-select="vm.getBooks('QUEUE')">
 			<div ng-include="'features/readingList/readingListTemplate.html'"></div>
 		</ion-tab>
+		<ion-tab title="Reading" icon-on="ion-lightbulb" icon-off="ion-android-bulb" on-select="vm.getBooks('STARTED_READING')">
+			<div ng-include="'features/readingList/readingListTemplate.html'"></div>
+		</ion-tab>
+		<ion-tab title="Already Read" icon-on="ion-android-menu" icon-off="ion-android-menu" on-select="vm.getBooks('READ')">
+			<div ng-include="'features/readingList/readingListTemplate.html'"></div>
+		</ion-tab>
+
 
 	</ion-tabs>
 </ion-view>

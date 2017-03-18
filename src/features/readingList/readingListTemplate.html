@@ -1,27 +1,12 @@
 <ion-view class="img-container">
    <ion-content>
      <div class="heading">{{vm.status}}</div>
-     <div ng-if="vm.status === 'RECOMMENDED'">
-       <div ng-if="vm.adminRecommendedBooks.length" class="recommended-section">
-         {{vm.user.organization}}'s suggested books
-       </div>
-       <div ng-repeat="book in vm.adminRecommendedBooks" class="border-left">
-         <book-tile book="book" book-status="vm.status" callback="vm.updateRecommendation(bookObj, status)" my-book="true">
-
-         </book-tile>
-       </div>
-       <div ng-repeat="book in vm.otherRecommendations">
-         <book-tile book="book" book-status="vm.status" callback="vm.updateRecommendation(bookObj, status)" my-book="true">
-
-         </book-tile>
-       </div>
-     </div>
-     <div ng-if="vm.status !== 'RECOMMENDED'">
-       <div ng-repeat="book in vm.books">
-         <book-tile book="book" book-status="vm.status" callback="vm.updateRecommendation(bookObj, status)" my-book="true">
-
-         </book-tile>
-       </div>
+     <div ng-repeat="book in vm.books">
+       <book-tile book="book" my-book="true" callback="vm.bookCompleted(bookObj, status)"></book-tile>
+       <rating ng-if="book.status === 'STARTED_READING'" class="text-center"
+               ng-model="book.ratings"
+               max="vm.rating.max">
+        </rating>
      </div>
    </ion-content>
 </ion-view>

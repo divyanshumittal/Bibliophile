@@ -10,7 +10,6 @@ angular.module('app')
             scope: true,
             bindToController: {
             	book: '=',
-                bookStatus: '=',
                 callback: '&?',
                 myBook: '=?'
             }

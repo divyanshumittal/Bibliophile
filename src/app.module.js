@@ -25,7 +25,7 @@
         'app.userProfile',
         'app.bookDetails',
         'app.home',
-        'app.home.dashboard',
+        'app.home.recommended',
         'app.home.activity',
         'app.home.leaderboard'
     ])

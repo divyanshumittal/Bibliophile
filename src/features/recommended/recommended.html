@@ -1,0 +1,60 @@
+<ion-view class="readingList" cache-view="false">
+    <ion-content scroll="true" class="has-footer">
+      <div class="row margin-10">
+        <div class="col-80 col-offset-10 button-bar">
+          <div class="row no-padding">
+            <span class="options col-33 text-center" ng-click="vm.optionSelected = 1" ng-class="{'selected' : vm.optionSelected === 1}">
+              Co-workers
+            </span>
+            <span class="options col-33 text-center" ng-click="vm.optionSelected = 2" ng-class="{'selected' : vm.optionSelected === 2}">
+              Admin
+            </span>
+            <span class="options col-33 text-center" ng-click="vm.optionSelected = 3" ng-class="{'selected' : vm.optionSelected === 3}">
+              Favourites
+            </span>
+          </div>
+        </div>
+      </div>
+      <div ng-show="vm.optionSelected === 1">
+        <div class="heading text-center">
+          Recommended by Co-workers
+        </div>
+        <div ng-if="!vm.otherRecommendations.length" class="text-center">
+          You should probably find better co-workers
+        </div>
+        <div ng-repeat="book in vm.otherRecommendations">
+          <book-tile book="book" callback="vm.updateRecommendation(bookObj, status)" my-book="true">
+
+          </book-tile>
+        </div>
+      </div>
+      <div ng-show="vm.optionSelected === 2">
+        <div class="heading text-center">
+          {{vm.user.organization}}'s suggested books
+        </div>
+        <div ng-if="!vm.adminRecommendedBooks.length" class="text-center">
+          Your admin probably needs to be more active
+        </div>
+        <div ng-repeat="book in vm.adminRecommendedBooks">
+          <book-tile book="book" callback="vm.updateRecommendation(bookObj, status)" my-book="true">
+
+          </book-tile>
+        </div>
+      </div>
+      <div ng-show="vm.optionSelected === 3">
+        <div ng-if="!vm.user.favorites.length" class="text-center">
+          You should probably go select some genres right now
+        </div>
+        <div ng-if="vm.user.favorites.length">
+          <div class="heading text-center">
+            Since you like '{{vm.user.favorites[0]}}'
+          </div>
+          <div ng-repeat="book in vm.favouriteRecommendations">
+            <book-tile book="book" my-book="true">
+
+            </book-tile>
+          </div>
+        </div>
+      </div>
+    </ion-content>
+</ion-view>

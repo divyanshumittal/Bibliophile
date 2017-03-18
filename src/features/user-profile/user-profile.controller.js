@@ -65,9 +65,14 @@
             }
 
             function genresSelected(value) {
+              // if user didnt select nothing
+              if (value.split(';')[0] === '') {
+                vm.user.favorites = [];
+              } else {
                 vm.user.favorites = _.map(value.split(';'), function(selectedId) {
                     return _.find(vm.genres, {id: parseInt(selectedId)}).text;
                 });
+              }
             }
 
             function calcBooksRead() {

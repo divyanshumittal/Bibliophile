@@ -12,7 +12,7 @@
             self.getBook = getBook;
             self.getBooks = getBooks;
 
-            function getBooks(query) {
+            function getBooks(query, isFavourite) {
                 var defer = $q.defer();
 
                 $http({
@@ -21,7 +21,11 @@
                           + self.devKey + "%26query%3D"
                           + query + "'&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys"
                 }).then(function(res) {
-                    defer.resolve(parseBooksJSON(res));
+                    if (isFavourite) {
+                        defer.resolve(parseFavBooksJSON(res));
+                    } else {
+                        defer.resolve(parseBooksJSON(res));
+                    }
                 }, function(err) {
                     console.log('error', err);
                     defer.reject(err);
@@ -67,6 +71,9 @@
 
             function parseSingleBookJSON(res, title, getSimilarBooks) {
               var bookObj = _.get(res, ['data', 'query', 'results', 'body', 'goodreadsresponse', 'book']);
+
+              if (!bookObj) return { };
+
               var book = {
                   title: title || _.get(bookObj, ['work', 'original_title']),
                   authorName: _.get(bookObj, ['authors', 'author', 'name'],
@@ -94,6 +101,31 @@
               } else {
                 return book;
               }
+            }
+
+            function parseFavBooksJSON(res) {
+              var booksObjs = _.get(res, ['data', 'query', 'results', 'body', 'goodreadsresponse', 'search', 'results', 'work']);
+              var books = [];
+              var i = 0;
+
+              _.forEach(booksObjs, function(bookObj) {
+                  if (bookObj.best_book) {
+                    var book = {
+                        title: _.get(bookObj, ['best_book', 'content']),
+                        authorName: _.get(bookObj, ['best_book', 'author', 'name']),
+                        bookPoints: bookPointCalculator(bookObj.average_rating),
+                        imageUrl: _.get(bookObj, ['best_book', 'image_url']),
+                        goodReadsId: _.get(bookObj, ['best_book', 'id', 'content'])
+                    };
+
+                    books.push(book);
+                    if (++i === 5) {
+                      return false;
+                    }
+                  }
+              });
+
+              return books;
             }
 
             function bookPointCalculator(average_rating) {

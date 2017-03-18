@@ -119,7 +119,8 @@
                                 createdDate: new Date(),
                                 organization: userService.user.organization,
                                 createdByAdmin: userService.user.isAdmin,
-                                isDeprecated: false
+                                isDeprecated: false,
+                                goodReadsId: vm.book.goodReadsId
                             };
 
                             bookfeedService.createRecommendation(recommendation);

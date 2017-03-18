@@ -1,7 +1,7 @@
 .readingList {
 	.heading {
 		color: gray;
-		padding: 12px;
+		padding: 10px;
 		font-size: 1.2em;
 		font-weight: bold;
 	}
@@ -23,17 +23,32 @@
 	    height: 100%;
 	    opacity: 0.3;
 	    background-image: url("../resources/img/book.jpeg");
-		background-size: cover;
+			background-size: cover;
 	    background-repeat: no-repeat;
 	    background-position: 50% 0;
 	}
 
-	.recommended-section {
-		padding: 0 5px 10px;
+	.button-bar {
+		border-radius: 25px;
+		background-color: #444;
+	}
+
+	.options {
+		color: white;
 		font-size: 1.2em;
 	}
 
-	.border-left {
-		border-left: solid red 3px;
+	.selected {
+		color: darkblue;
+		background-color: white;
+		border-radius: 25px;
+	}
+
+	.no-padding {
+		padding: 0;
+	}
+
+	.margin-10 {
+		margin: 10px;
 	}
 }

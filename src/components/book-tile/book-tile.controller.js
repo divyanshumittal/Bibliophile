@@ -58,7 +58,8 @@ angular.module('app')
                         createdDate: new Date(),
                         organization: userService.user.organization,
                         createdByAdmin: userService.user.isAdmin,
-                        isDeprecated: false
+                        isDeprecated: false,
+                        goodReadsId: vm.book.goodReadsId
                     };
 
                     bookfeedService.createRecommendation(recommendation);
@@ -117,11 +118,9 @@ angular.module('app')
  	}
 
   function goToBookDetails() {
-    if (!vm.myBook) {
-      $state.go('app.bookDetails', {
-          id: vm.book.goodReadsId,
-          title: vm.book.title
-      });
-    }
+    $state.go('app.bookDetails', {
+        id: vm.book.goodReadsId,
+        title: vm.book.title
+    });
   }
  };
