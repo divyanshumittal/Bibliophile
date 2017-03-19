@@ -8,21 +8,28 @@
         function ActivityController(bookfeedService, userService, $ionicDB, $scope) {
             var vm = this;
             var bookfeeds = $ionicDB.collection('bookfeeds');
-            var activeFeedsCount = 5;
+            var activeFeedsCount;
             var newFeeds;
 
             vm.user = userService.user;
             vm.moredata = false;
             vm.loadMoreData = loadMoreData;
+            vm.getFeeds = getFeeds;
 
             init();
 
             function init() {
+              getFeeds();
+            }
+
+            function getFeeds() {
+              activeFeedsCount = 5;
               bookfeeds.findAll({ organization: _.get(userService.user, 'organization')})
                        .order('createdDate', 'descending')
-                       .watch().subscribe(function(feeds) {
+                       .fetch().subscribe(function(feeds) {
                           newFeeds = _.reject(feeds, { userUUID:  _.get(userService.user, 'id')});
                           vm.activeFeeds = newFeeds.slice(0, activeFeedsCount);
+                          $scope.$broadcast('scroll.refreshComplete');
               });
             }
 

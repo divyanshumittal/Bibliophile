@@ -1,9 +1,13 @@
 <ion-view class="activity" cache-view="false">
 	<ion-content scroll="true" class="has-footer">
+		<ion-refresher
+		  pulling-text="Pull to refresh..."
+		  on-refresh="vm.getFeeds()">
+	  </ion-refresher>
 		<div ng-repeat="user in vm.activeFeeds">
 			<custom-tile book-feed="user">
 
-        	</custom-tile>
+      </custom-tile>
 		</div>
 
 		<ion-infinite-scroll distance="2" on-infinite="vm.loadMoreData()" ng-if="!vm.moredata">

@@ -1,6 +1,13 @@
 <ion-view class="img-container">
    <ion-content>
-     <div class="heading">{{vm.status}}</div>
+     <div class="heading">
+       <span ng-if="vm.status === 'READ'">Already Read</span>
+       <span ng-if="vm.status === 'STARTED_READING'">Started Reading</span>
+       <span ng-if="vm.status === 'QUEUE'">In Queue</span>
+     </div>
+     <div class="padding-10" ng-if="!vm.books.length">
+       <span>It's lonely here</span>
+     </div>
      <div ng-repeat="book in vm.books">
        <book-tile book="book" my-book="true" callback="vm.bookCompleted(bookObj, status)"></book-tile>
        <rating ng-if="book.status === 'STARTED_READING'" class="text-center"

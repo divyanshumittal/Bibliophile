@@ -33,7 +33,7 @@
                     status: vm.status,
                     isDeprecated: false
                 }).order('createdDate', 'descending')
-                  .watch().subscribe(function(books) {
+                  .fetch().subscribe(function(books) {
                     vm.books = books;
                 });
             }
@@ -43,6 +43,8 @@
                   vm.user.score += bookObj.bookPoints;
                   users.update(vm.user);
               }
+
+              vm.books.splice(vm.books.indexOf(bookObj), 1);
             }
         }
     }(angular));

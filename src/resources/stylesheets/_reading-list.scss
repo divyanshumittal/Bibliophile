@@ -39,16 +39,19 @@
 	}
 
 	.selected {
-		color: darkblue;
-		background-color: white;
+		background-color: dodgerblue;
 		border-radius: 25px;
 	}
 
-	.no-padding {
-		padding: 0;
+	.padding-2 {
+		padding: 2px;
 	}
 
-	.margin-10 {
-		margin: 10px;
+	.margin-15 {
+		margin: 15px;
+	}
+
+	.padding-10 {
+		padding: 10px;
 	}
 }

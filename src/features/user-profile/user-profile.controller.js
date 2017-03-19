@@ -32,7 +32,7 @@
                     isDeprecated: false
                 })
                 .order('createdDate', 'descending')
-                .watch().subscribe(function(books) {
+                .fetch().subscribe(function(books) {
                     vm.books = books;
                 });
 
@@ -79,7 +79,7 @@
                 bookfeeds.findAll({
                     userUUID: _.get(userService.user, 'id'),
                     status: 'READ'
-                }).watch().subscribe(function(books) {
+                }).fetch().subscribe(function(books) {
                     vm.booksRead = _.size(books);
                 });
             }
@@ -131,6 +131,8 @@
 
             function bookCompleted(bookObj) {
               vm.user.score += bookObj.bookPoints;
+              vm.books.splice(vm.books.indexOf(bookObj), 1);
+              ++vm.booksRead;
             }
         }
 
