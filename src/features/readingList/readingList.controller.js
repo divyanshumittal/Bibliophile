@@ -5,7 +5,7 @@
             .controller('ReadingListController', ReadingListController);
 
         // @ngInject
-        function ReadingListController(userService, $ionicDB, bookfeedService) {
+        function ReadingListController(userService, $ionicDB, bookfeedService, loaderService) {
             var vm = this;
             var bookfeeds = $ionicDB.collection('bookfeeds');
             var users = $ionicDB.collection('customUsers');
@@ -27,6 +27,7 @@
             }
 
             function getBooks(status) {
+                loaderService.showLoader();
                 vm.status = status;
                 bookfeeds.findAll({
                     userUUID: _.get(userService.user, 'id'),
@@ -35,6 +36,7 @@
                 }).order('createdDate', 'descending')
                   .fetch().subscribe(function(books) {
                     vm.books = books;
+                    loaderService.hideLoader();
                 });
             }
 

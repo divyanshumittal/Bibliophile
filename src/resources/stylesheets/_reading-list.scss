@@ -36,6 +36,7 @@
 	.options {
 		color: white;
 		font-size: 1.2em;
+		padding: 2px;
 	}
 
 	.selected {
@@ -43,8 +44,8 @@
 		border-radius: 25px;
 	}
 
-	.padding-2 {
-		padding: 2px;
+	.no-padding {
+		padding: 0;
 	}
 
 	.margin-15 {

@@ -5,7 +5,7 @@
             .controller('ActivityController', ActivityController);
 
         // @ngInject
-        function ActivityController(bookfeedService, userService, $ionicDB, $scope) {
+        function ActivityController(bookfeedService, userService, $ionicDB, $scope, loaderService) {
             var vm = this;
             var bookfeeds = $ionicDB.collection('bookfeeds');
             var activeFeedsCount;
@@ -23,12 +23,14 @@
             }
 
             function getFeeds() {
+              loaderService.showLoader();
               activeFeedsCount = 5;
               bookfeeds.findAll({ organization: _.get(userService.user, 'organization')})
                        .order('createdDate', 'descending')
                        .fetch().subscribe(function(feeds) {
                           newFeeds = _.reject(feeds, { userUUID:  _.get(userService.user, 'id')});
                           vm.activeFeeds = newFeeds.slice(0, activeFeedsCount);
+                          loaderService.hideLoader();
                           $scope.$broadcast('scroll.refreshComplete');
               });
             }
