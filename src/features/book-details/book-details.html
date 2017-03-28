@@ -2,15 +2,15 @@
 	<ion-nav-bar class="bar-dark">
         <ion-nav-back-button></ion-nav-back-button>
         <ion-nav-title align-title="center">
-	      Home
-	    </ion-nav-title>
+
+	      </ion-nav-title>
     </ion-nav-bar>
 	<ion-content class="has-header has-footer" scroll="true">
 		<ion-slides options="vm.options" slider="vm.sliderData.sliderDelegate">
 	    <ion-slide-page>
 	      <div ng-include="'features/book-details/details.html'" class="height-100"></div>
 	    </ion-slide-page>
-			<ion-slide-page>
+			<ion-slide-page class="height-100">
 	      <!-- <div ng-include="'features/book-details/details.html'"></div> -->
 	    </ion-slide-page>
 	  </ion-slides>
