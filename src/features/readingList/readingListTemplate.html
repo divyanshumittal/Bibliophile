@@ -6,7 +6,7 @@
        <span ng-if="vm.status === 'QUEUE'">In Queue</span>
      </div>
      <div class="padding-10" ng-if="!vm.books.length">
-       <span>It's lonely here</span>
+       <span>It's lonely in here</span>
      </div>
      <div ng-repeat="book in vm.books">
        <book-tile book="book" my-book="true" callback="vm.bookCompleted(bookObj, status)"></book-tile>

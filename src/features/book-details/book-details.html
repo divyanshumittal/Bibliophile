@@ -10,7 +10,7 @@
 	    <ion-slide-page>
 	      <div ng-include="'features/book-details/details.html'" class="height-100"></div>
 	    </ion-slide-page>
-			<ion-slide-page class="height-100">
+			<ion-slide-page ng-if="vm.book.similar_book">
 	      <!-- <div ng-include="'features/book-details/details.html'"></div> -->
 	    </ion-slide-page>
 	  </ion-slides>

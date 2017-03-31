@@ -81,13 +81,18 @@
                   bookPoints: bookPointCalculator(bookObj.average_rating),
                   imageUrl: bookObj.image_url,
                   description: _.get(bookObj, ['description', 'content']),
-                  releaseDate: bookObj.publication_month + '/' + bookObj.publication_day
-                    + '/' + bookObj.publication_year,
+                  releaseDate: bookObj.publication_month ? (bookObj.publication_month + '/' + bookObj.publication_day
+                    + '/' + bookObj.publication_year) : 'N/A',
                   goodReadsId: bookObj.id
               };
 
               if (getSimilarBooks) {
                 var similar_book = _.get(bookObj, ['similar_books', 'book', '0']);
+
+                //choose 2nd book if 1st book has missing data
+                if (!similar_book.id || !similar_book.title_without_series) {
+                  similar_book = _.get(bookObj, ['similar_books', 'book', '1']);
+                }
 
                 if (similar_book) {
                   return getBook(similar_book.id, similar_book.title_without_series, false).then(function(result) {
@@ -96,7 +101,9 @@
                     return book;
                   });
                 } else {
-                  return {};
+                  book['similar_book'] = undefined;
+
+                  return book;
                 }
               } else {
                 return book;

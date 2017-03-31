@@ -63,7 +63,7 @@
             }
 
             function getPastReaders(applyScope) {
-              bookfeeds.findAll({ title: vm.book.email, authorName: vm.book.authorName, status: 'READ'})
+              bookfeeds.findAll({ title: vm.book.title, authorName: vm.book.authorName, status: 'READ', isDeprecated: false})
                 .fetch().subscribe(function(result) {
                   vm.pastReaders = result;
                   if (applyScope) {
